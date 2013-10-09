@@ -1,0 +1,109 @@
+snippet main
+	int main(int argc, char* argv[])
+	{
+		${1}
+		return 0;
+	}
+snippet u
+	unsigned ${1}
+snippet ui
+	unsigned int ${1}
+snippet inc
+	#include <${1:stdio}.h>
+	${2}
+snippet minc
+	#include "${1:`Filename('', 'UNTITLED')`.h}"
+	${2}
+snippet err
+	#ifdef ERRORDEBUG
+	printf("%s %s %u: ${1:name}() failed\n", __FILE__, __func__, __LINE__);
+	#endif
+	${2:///\todo errorhandling}
+	return -1;
+snippet head
+	#ifndef ${1:`toupper(Filename('', 'UNTITLED'))`_H}
+	#define $1
+
+	${2}
+
+	#endif
+snippet if
+	if (${1:condition})
+	{
+		${2}
+	}
+snippet el
+	else
+	{
+		${1}
+	}
+snippet t
+	${1:/* condition */} ? ${2:a} : ${3:b}
+snippet do
+	do
+	{
+		${2}
+	}
+	while (${1:condition});
+snippet wh
+	while (${1:condition})
+	{
+		${2}
+	}
+snippet for
+	for (int ${1:i}=0; $1<${2:count}; $1++)
+	{
+		${3}
+	}
+snippet fun
+	if (${1:function}($2) == ${3:-1})
+	{
+		#ifdef ERRORDEBUG
+		printf("%s %s %u: $1() failed\n", __FILE__, __func__, __LINE__);
+		#endif
+		${4:///\todo errorhandling}
+		return -1;
+	}
+snippet struct
+	typedef struct
+	{
+		${2}
+	} ${1:name};
+snippet enum
+	typedef enum
+	{
+		${2}
+	} ${1:name};
+snippet mal
+	${1:char}* ${2:name} = ($1*) malloc(${3:count}*sizeof($1));
+	if ($2 == 0)
+	{
+		#ifdef ERRORDEBUG
+		printf("%s %d %s: malloc() failed\n", __FILE__, __LINE__, __func__);
+		#endif
+		${4:///\todo errorhandling}
+		return -1;
+	}
+snippet pr
+	printf("${1:%s}\n"${2});${3}
+snippet dfi
+	/*!
+	\file `Filename('', 'UNTITLED')`.h
+	\brief ${1}
+	*/
+	${2}
+snippet dfu
+	/*!
+	\brief ${1}
+	
+	\param[in]
+
+	\pre
+
+	\post
+
+	\mod
+
+	\return Success: 0
+	\return Error: -1
+	*/
