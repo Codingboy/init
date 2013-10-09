@@ -6,7 +6,7 @@ CP=cp -rf
 MV=mv -rf
 RM=rm -rf
 
-.PHONY: help all update upgrade core compression programming avr gui libs
+.PHONY: help all update upgrade core compression programming avr gui libs own
 
 help:
 	@echo "make all"
@@ -20,7 +20,9 @@ help:
 	@echo "make gui"
 
 own:
-	$(CP) wallpaper ~/.wallpaper
+	$(CP) wallpaper ~/wallpaper
+	$(CP) xkcd ~/xkcd
+	$(CP) programming ~/programming
 
 all:
 	make update
