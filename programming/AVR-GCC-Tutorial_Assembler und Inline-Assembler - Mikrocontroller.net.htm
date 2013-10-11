@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <script type="text/javascript">
+      var wgBreakFrames = false;
+      var wgContentLanguage = false;
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="generator" content="MediaWiki 1.21.1" />
+<link rel="alternate" type="application/x-wiki" title="Bearbeiten" href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit" />
+<link rel="edit" title="Bearbeiten" href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/wikisoftware/opensearch_desc.php" title="Uc-wiki (de)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.mikrocontroller.net/wikisoftware/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „Uc-wiki“" href="/wikisoftware/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom" />    <title>AVR-GCC-Tutorial/Assembler und Inline-Assembler - Mikrocontroller.net</title>
+    
+        <!-- <script type="text/javascript" src="/wikisoftware/skins/common/wikibits.js"></script> -->
+            <script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=startup&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"AVR-GCC-Tutorial/Assembler_und_Inline-Assembler","wgTitle":"AVR-GCC-Tutorial/Assembler und Inline-Assembler","wgCurRevisionId":77623,"wgArticleId":6244,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Avr-gcc Tutorial"],"wgBreakFrames":false,"wgPageContentLanguage":"de","wgSeparatorTransformTable":[",	.",".	,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"AVR-GCC-Tutorial/Assembler_und_Inline-Assembler","wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":true,"previewDialog":false,"publish":true,"toc":false}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"mikrocontroller","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"wikieditor-publish":1,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});;},{},{});
+/* cache key: uc_wiki:resourceloader:filter:minify-js:7:5afc608d284909c94225e82ae67c1108 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script><style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-avrasm {line-height: normal;}
+.source-avrasm li, .source-avrasm pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for avrasm
+ * CSS class: source-avrasm, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.avrasm.source-avrasm .de1, .avrasm.source-avrasm .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.avrasm.source-avrasm  {font-family:monospace;}
+.avrasm.source-avrasm .imp {font-weight: bold; color: red;}
+.avrasm.source-avrasm li, .avrasm.source-avrasm .li1 {font-weight: normal; vertical-align:top;}
+.avrasm.source-avrasm .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.avrasm.source-avrasm .li2 {font-weight: bold; vertical-align:top;}
+.avrasm.source-avrasm .kw1 {color: #00007f;}
+.avrasm.source-avrasm .kw2 {color: #0000ff;}
+.avrasm.source-avrasm .kw3 {color: #007f00;}
+.avrasm.source-avrasm .kw4 {color: #46aa03; font-weight:bold;}
+.avrasm.source-avrasm .kw5 {color: #7f0000;}
+.avrasm.source-avrasm .kw6 {color: #7f0000;}
+.avrasm.source-avrasm .co1 {color: #adadad; font-style: italic;}
+.avrasm.source-avrasm .es0 {color: #000099; font-weight: bold;}
+.avrasm.source-avrasm .br0 {color: #66cc66;}
+.avrasm.source-avrasm .sy0 {color: #66cc66;}
+.avrasm.source-avrasm .st0 {color: #7f007f;}
+.avrasm.source-avrasm .nu0 {color: #ff0000;}
+.avrasm.source-avrasm .re0 {color: #ff0000;}
+.avrasm.source-avrasm .re1 {color: #ff0000;}
+.avrasm.source-avrasm .re2 {color: #46aa03; font-weight:bold;}
+.avrasm.source-avrasm .re3 {color: #66cc66;}
+.avrasm.source-avrasm .ln-xtra, .avrasm.source-avrasm li.ln-xtra, .avrasm.source-avrasm div.ln-xtra {background-color: #ffc;}
+.avrasm.source-avrasm span.xtra { display:block; }
+
+/*]]>*/
+</style>
+    
+    <script src="/javascripts/combined-top.js" type="text/javascript"></script>
+
+    <!--<script src="/javascripts/highlightCurrentLink.js" type="text/javascript"></script>-->
+    <script src="/javascripts/sorttable.js" type="text/javascript"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/screen.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/common/shared.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/mikrocontroller/main.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/stylesheets/print.css" />
+    <style type="text/css">#nav-foren-sub {display: none;} </style>
+    <style type="text/css">#nav-tutorial-sub {display: none;} </style>
+
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide.css" />
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide-ie6.css" />
+    <![endif]-->
+
+
+    <!--
+    <style type="text/css">
+    <div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="/articles/Kategorie:Avr-gcc_Tutorial" title="Kategorie:Avr-gcc Tutorial">Avr-gcc Tutorial</a></li></ul></div></div>    #nav-foren-sub {display: none;}
+    </style>
+    -->
+
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=ext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: uc_wiki:resourceloader:filter:minify-css:7:8c158424ea41cf09c24f6f94d82b9d56 */</style>
+
+<!-- PUT THIS TAG IN THE head SECTION -->
+<script type="text/javascript" src="//partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-1202612203358489");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+  GA_googleUseIframeRendering();
+</script>
+
+<!-- END OF TAG FOR head SECTION -->
+
+<script type="text/javascript">
+GA_googleAddAttr('pagetype', 'article');
+GA_googleAddAttr('section', 'article');
+GA_googleAddAttr('site_id', '1');
+</script>
+
+
+
+  </head>
+  <body     >
+    <div id="globalWrapper">
+    <div id="top"><h1><a href="/">www.mikrocontroller.net</a></h1></div>
+  <table id="twocolumns">
+  <tr>
+  <td id="sidebar-left" class="sidebar">
+  <!-- begin nav -->
+<div class="nav-container">
+  <ul class="nav-first">
+    <li><b><a href="/">Home</a></b></li>
+    <li>
+      <b><a href="/articles/AVR">AVR</a></b>
+      <ul>
+        <li><a href="/articles/AVR-Tutorial">AVR-Tutorial</a></li>
+        <li><a href="/articles/AVR-GCC-Tutorial">AVR-GCC-Tutorial</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/ARM">ARM</a></b>
+      <ul>
+        <li><a href="/articles/LPC1xxx">LPC1xxx</a></li>
+        <li><a href="/articles/LPC2000">LPC2000</a></li>
+        <li><a href="/articles/AT91SAM">AT91SAM7</a></li>
+        <li><a href="/articles/STM32">STM32</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/MSP430">MSP430</a></b>
+    </li>
+    <li>
+      <b><a href="/articles/Programmierbare_Logik">FPGA, CPLD &amp; Co.</a></b>
+      <ul>
+        <li><a href="/articles/FPGA">Grundlagen zu FPGAs</a></li>
+        <li><a href="/articles/Hardwarebeschreibungssprachen">VHDL &amp; Co.</a></li>
+        <li><a href="/articles/Xilinx_ISE">Xilinx ISE</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/Digitale_Signalverarbeitung">DSP</a></b>
+    </li>
+
+    <li>
+      <b><a href="/articles/Elektronik_Allgemein">Elektronik allgemein</a></b>
+      <ul>
+        <li><a href="/articles/SMD_L%C3%B6ten">SMD L&ouml;ten</a></li>
+        <li><a href="/articles/Operationsverst%C3%A4rker-Grundschaltungen">Operationsverst&auml;rker</a></li>
+        <li><a href="/articles/Oszilloskop">Oszilloskop</a></li>
+      </ul> 
+    </li>
+
+    <li>
+      <b><a href="/forum/all">Forum</a></b>
+      <ul>
+        <li><a href="/forum/mikrocontroller-elektronik">&micro;C &amp; Elektronik</a></li>
+        <li><a href="/forum/analogtechnik">Analogtechnik</a></li>
+        <li><a href="/forum/fpga-vhdl-cpld">FPGA, VHDL &amp; Co.</a></li>
+        <li><a href="/forum/dsp">DSP</a></li>
+        <li><a href="/forum/gcc">GCC</a></li>
+        <li><a href="/forum/codesammlung">Codesammlung</a></li>
+        <li><a href="/forum/markt">Markt</a></li>
+        <li><a href="/forum/platinen">Platinen</a></li>
+        <li><a href="/forum/mechanik">Mechanik &amp; Werkzeug</a></li>
+        <li><a href="/forum/hf">HF, Funk &amp; Felder</a></li>
+        <li><a href="/forum/hausbus">Hausbus</a></li>
+        <li><a href="/forum/pc-programmierung">PC-Programmierung</a></li>
+        <li><a href="/forum/pc-hardware-software">PC Hard- &amp; Software</a></li>
+        <li><a href="/forum/ausbildung-studium-beruf">Ausbildung &amp; Beruf</a></li>
+        <li><a href="/forum/offtopic">Offtopic</a></li>
+        <li><a href="/forum/website">Webseite</a></li>
+       </ul>
+    </li>
+    <li><b><a href="/buecher/">Buchtipps</a></b></li>
+    <li><b><a href="http://shop.mikrocontroller.net/">Shop</a></b></li>
+    <li><b><a href="/articles/Linksammlung">Linksammlung</a></b></li>
+    <li><b><a href="/articles/Hauptseite">Artikel&uuml;bersicht</a></b></li>
+    <li><b><a href="/articles/Spezial:Recentchanges">Letzte &Auml;nderungen</a></b></li>
+  </ul>
+</div>
+<!-- end nav -->
+  <hr />
+  <!-- google_ad_section_start(weight=ignore) -->
+
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+
+	<div id="p-cactions" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-cactions-box'); return false;" >&#9654; Dieser Artikel</a></h5>
+	  <div class="box" id="p-cactions-box">
+      <ul>
+	    <li id="ca-nstab-main"
+	       class="selected"	       ><a href="/articles/AVR-GCC-Tutorial/Assembler_und_Inline-Assembler">Seite</a></li><li id="ca-talk"
+	       class="new"	       ><a href="/wikisoftware/index.php?title=Diskussion:AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;redlink=1">Diskussion</a></li><li id="ca-edit"
+	       	       ><a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit">Bearbeiten</a></li><li id="ca-history"
+	       	       ><a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=history">Versionen/Autoren</a></li>  	  </ul>
+    </div>
+	</div>
+	<div class="portlet" id="p-personal">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-personal-box'); return false;">&#9654; Benutzer</a></h5>
+	  <div class="box" id="p-personal-box">
+	    <ul>
+	    <li id="pt-anonuserpage"><a href="/articles/Benutzer:88.68.76.176" class="new">88.68.76.176</a></li><li id="pt-anontalk"><a href="/articles/Benutzer_Diskussion:88.68.76.176" class="new">Diskussionsseite dieser IP</a></li><li id="pt-anonlogin"><a href="/wikisoftware/index.php?title=Spezial:Anmelden&amp;returnto=AVR-GCC-Tutorial%2FAssembler+und+Inline-Assembler">Anmelden</a></li>	    </ul>
+	  </div>
+	</div>
+  <!-- LOGO
+	<div class="portlet" id="p-logo">
+	  <a style="background-image: url(/wikisoftware/skins/common/images/wiki.png);"
+	    href="/articles/Hauptseite"
+	    title="Hauptseite"></a>
+	</div>
+  -->
+	<div id="p-search" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-search-box'); return false;">&#9654; Suche</a></h5>
+	  <div class="box" id="p-search-box">
+	    <form name="searchform" action="/articles/Spezial:Suche" id="searchform">
+	      <input id="searchInputX" name="search" type="text" accesskey="f" value="" /><br />
+	      <input type='submit' name="go" class="searchButton"
+	        value="Ausführen"
+	        />&nbsp;<input type='submit' name="fulltext"
+	        class="searchButton"
+	        value="Suche" />
+	    </form>
+	  </div>
+	</div>
+	<div class="portlet" id="p-tb">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-tb-box'); return false;">&#9654; Werkzeuge</a></h5>
+	    <div class="box" id="p-tb-box">
+      <ul>
+		  		  <li id="t-whatlinkshere"><a href="/articles/Spezial:Linkliste/AVR-GCC-Tutorial/Assembler_und_Inline-Assembler">Links auf diese Seite</a></li>
+		  		  <li id="t-recentchangeslinked"><a href="/articles/Spezial:%C3%84nderungen_an_verlinkten_Seiten/AVR-GCC-Tutorial/Assembler_und_Inline-Assembler">Änderungen an verlinkten Seiten</a></li>
+		  	      	      	      	      	      	      	      	      	      <li id="t-specialpages"><a href="/articles/Spezial:Spezialseiten">Spezialseiten</a></li>	      	    </ul>
+      </div>
+	</div>
+  <!-- google_ad_section_end -->
+  
+  <!-- start adsense -->
+    <!-- end adsense -->
+  
+      </td><!-- end of the left (by default at least) column -->
+  <td id="main">
+    <!-- google_ad_section_start -->
+    <a name="top" id="contentTop"></a>
+        <h1 class="firstHeading">AVR-GCC-Tutorial/Assembler und Inline-Assembler</h1>
+    <div id="bodyContent">
+
+						<!-- tagline -->
+			<!-- <div id="siteSub">Aus Uc-wiki</div> -->
+			<!-- /tagline -->
+						<!-- subtitle -->
+			<div id="contentSub"></div>
+			<!-- /subtitle -->
+												<!-- jumpto -->
+			<div id="jump-to-nav" class="mw-jump">
+				Wechseln zu:				<a href="#mw-navigation">Navigation</a>, 				<a href="#p-search">Suche</a>
+			</div>
+			<!-- /jumpto -->
+						<!-- bodycontent -->
+			<div id="mw-content-text" lang="de" dir="ltr" class="mw-content-ltr"><p>Gelegentlich erweist es sich als nützlich, C- und Assembler-Code in einer Anwendung zu nutzen. Typischerweise wird das Hauptprogramm in C verfasst und wenige, zeitkritische oder hardwarenahe Operationen in Assembler.
+</p><p>Die GNU-Toolchain bietet dazu zwei Möglichkeiten:
+</p>
+<dl><dt>Inline-Assembler</dt><dd> Die Assembleranweisungen werden direkt in den C-Code integriert. Eine Quellcode-Datei enthält somit C- und Assembleranweisungen
+</dd><dt>Assembler-Dateien</dt><dd> Der Assemblercode befindet sich in eigenen Quellcodedateien. Diese werden vom GNU-Assembler (avr-as) zu Object-Dateien assembliert und mit den aus dem C-Code erstellten Object-Dateien zusammengelinkt.
+</dd></dl>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Inline-Assembler"><span class="tocnumber">1</span> <span class="toctext">Inline-Assembler</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Assembler-Dateien"><span class="tocnumber">2</span> <span class="toctext">Assembler-Dateien</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Verwenden_der_C-Runtime_Umgebung"><span class="tocnumber">2.1</span> <span class="toctext">Verwenden der C-Runtime Umgebung</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Stand-Alone_Assembler"><span class="tocnumber">2.2</span> <span class="toctext">Stand-Alone Assembler</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Globale_Variablen_f.C3.BCr_Datenaustausch"><span class="tocnumber">3</span> <span class="toctext">Globale Variablen für Datenaustausch</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Globale_Variablen_im_Assemblerfile_anlegen"><span class="tocnumber">3.1</span> <span class="toctext">Globale Variablen im Assemblerfile anlegen</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Variablen_gr.C3.B6.C3.9Fer_als_1_Byte"><span class="tocnumber">3.2</span> <span class="toctext">Variablen größer als 1 Byte</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Todo"><span class="tocnumber">4</span> <span class="toctext">Todo</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Weblinks"><span class="tocnumber">5</span> <span class="toctext">Weblinks</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Englisch"><span class="tocnumber">5.1</span> <span class="toctext">Englisch</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=1" title="Abschnitt bearbeiten: Inline-Assembler">Bearbeiten</a>]</span> <span class="mw-headline" id="Inline-Assembler"> Inline-Assembler </span></h2>
+<p>Inline-Assembler bietet sich an, wenn nur wenig Assembleranweisungen benötigt werden. Typische Anwendung sind kurze Codesequenzen für zeitkritische Operationen, Takt-genaue Warteschleifen oder das Einfügen spezieller Instruktionen, die nicht durch reinen C-Code eingefügt werden können.
+</p><p>Inline-Assembler wird mit <b>asm</b> oder <b>asm volatile</b> eingeleitet, zusätzlich gibt es das Ansi-konforme <b>__asm__</b>.
+</p><p>Die Assembler-Anweisungen werden als statisch konstanten String angegeben, der ähnlich wie bei einem <tt>printf</tt> verwendet wird:&#160;%-Platzhalter werden durch die Werte der nachfolgenden C-Ausdrücke ersetzt und die resultierende Zeichenkette in die Assembler-Ausgabe des Compiler eingefügt. Ähnlich wie bei <tt>printf</tt> gibt es auch bei Inline-Assembler Modifier, die es erlauben, Operanden in unterschiedlicher Weise darzustellen.
+</p><p>Die Output-Operanden folgen auf das Assembler-Template und werden von diesem durch einen Doppelpunkt getrennt. Danach folgen – wieder durch einen&#160;:&#160;getrennt – die Input-Operanden. Danach eine Clobber-Liste sowie eine Liste mit Labels.
+</p><p>Ein einfaches Beispiel für Inline-Assembler ist das Einfügen einer NOP-Anweisung (NOP steht für <i>No OPeration</i>). Dieser Assembler-Befehl benötigt auf einem AVR genau einen Taktzyklus, ansonsten hat er keinen Effekt.
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">    <span class="coMULTI">/* Verzögern der weiteren Programmausführung um 2 Taktzyklen */</span>
+    asm <span class="kw4">volatile</span> <span class="br0">&#40;</span><span class="st0">&quot;nop&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    asm <span class="kw4">volatile</span> <span class="br0">&#40;</span><span class="st0">&quot;nop&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></div></div>
+<p>Als Beispiel für mehrzeiligen Inline-Assembler dient eine präzise Delay-Funktion. Die Funktion erhält einen 16-Bit Wert als Parameter, und der Inline-Assembler dekrementiert diesen Wert so lange, bis er zu –1 unterläuft, was die Schleife beendet.
+</p><p>Inline-Assembler hat hier den Vorteil, dass die Laufzeit – abgesehen von Interrupts, die gegebenenfalls während der Scheifenausführung auftreten – unabhängig von der Optimierungsstufe des Compilers und der Compiler-Version ist.
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">static</span> <span class="kw2">inline</span> <span class="kw4">void</span> __attribute__<span class="br0">&#40;</span><span class="br0">&#40;</span>always_inline<span class="br0">&#41;</span><span class="br0">&#41;</span>
+delayloop16 <span class="br0">&#40;</span><span class="kw4">unsigned</span> <span class="kw4">int</span> count<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="coMULTI">/* Die Schleife dauert  4 * count + 3  Ticks */</span>
+&#160;
+    asm <span class="kw4">volatile</span> <span class="br0">&#40;</span><span class="st0">&quot;1:&quot;</span>           <span class="st0">&quot;<span class="es1">\n</span><span class="es1">\t</span>&quot;</span>
+                  <span class="st0">&quot;sbiw&#160;%0,1&quot;</span>    <span class="st0">&quot;<span class="es1">\n</span><span class="es1">\t</span>&quot;</span>
+                  <span class="st0">&quot;brcc 1b&quot;</span>
+                  <span class="sy0">:</span> <span class="st0">&quot;+w&quot;</span> <span class="br0">&#40;</span>count<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<ul><li> Jede Anweisung wird mit <tt>"\n\t"</tt> abgeschlossen. Der Zeilenumbruch teilt dem Assembler mit, dass ein neuer Befehl beginnt.
+</li><li> Als Sprung-Label wurde eine Ziffer verwendet. Diese speziellen Labels sind mehrfach im Code verwendbar. Dies ist notwendig, wenn <tt>delayloop16</tt> mehrfach verwendet wird und durch Inlining mehrfach in der Assembler-Ausgabe erscheint. Gesprungen wird jeweils zurück (<tt>b</tt>) oder vorwärts (<tt>f</tt>) zum nächsten auffindbaren Label.
+</li><li> Das <tt>"+w"</tt> wird als <i>Inline-Assembler Constraint</i> (Nebenbedingung) bezeichnet und legt fest, wie der Compiler mit dem Ausdruck <tt>count</tt> umzugehen hat. <tt>w</tt>&#160;steht für eine bestimmte Registerklasse, nämlich die Register R24...R31: SBIW brauch eines dieser Register mit gerader Registernummer. Dass die Registernummer gerade ist, ergibt sich daraus, dass das <a rel="nofollow" class="external text" href="http://gcc.gnu.org/wiki/avr-gcc#ABI">avr-gcc ABI</a> dies für 16-Bit Werte so vorschreibt.
+</li></ul>
+<dl><dd> Das <tt>+</tt> vor der Registerklasse besagt, dass <tt>count</tt> sowohl Eingabe als auch Ausgabe des Inline-Assembler ist und mithin vom Inline-Assembler verändert wird.  Es ist wichtig, dies dem Compiler mitzuteilen, damit er <tt>count</tt> nicht an anderer Stelle wiederverwendet und damit falschen Code erzeugt.
+</dd></dl>
+<p>Das Resultat zeigt ein Blick in die Assembler-Datei, die der Compiler mit der Option <tt>-save-temps</tt> nicht löscht:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="avrasm source-avrasm"><pre class="de1">&#160;
+	<span class="nu0">1</span>:
+	sbiw r24,<span class="nu0">1</span>
+	brcc 1b</pre></div></div>
+<p>Siehe auch: 
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.atmel.com/dyn/resources/prod_documents/doc0856.pdf">Atmel: <i>AVR 8-Bit Instruction Set</i> (pdf)</a>
+</li><li> <a rel="nofollow" class="external text" href="http://www.nongnu.org/avr-libc/user-manual/inline_asm.html">AVR-Libc: <i>Inline Assembler Cookbook</i>:</a> Detaillierte Ausführungen zum Thema Inline-Assembler.
+</li><li> <a rel="nofollow" class="external text" href="http://gcc.gnu.org/wiki/avr-gcc#Register_Layout">GCC-Wiki: <i>avr-gcc: Register Layout</i></a>: Das avr-gcc (Application Binary Interface (ABI).
+</li><li> <a rel="nofollow" class="external text" href="http://www.roboternetz.de/wissen/index.php/Inline-Assembler_in_avr-gcc">RN-Wissen: <i>Deutsche Einführung in Inline-Assembler</i></a>
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=2" title="Abschnitt bearbeiten: Assembler-Dateien">Bearbeiten</a>]</span> <span class="mw-headline" id="Assembler-Dateien"> Assembler-Dateien </span></h2>
+<dl><dd>→ <a rel="nofollow" class="external text" href="http://www.nongnu.org/avr-libc/user-manual/assembler.html">AVR-Libc Doku: avr-libc and assembler programs</a>
+</dd></dl>
+<div class="thumb tright"><div class="thumbinner" style="width:252px;"><a href="/articles/Datei:Gcc-flow.svg" class="image"><img alt="" src="/wikifiles/thumb/3/39/Gcc-flow.svg/250px-Gcc-flow.svg.png" width="250" height="402" class="thumbimage" srcset="/wikifiles/thumb/3/39/Gcc-flow.svg/375px-Gcc-flow.svg.png 1.5x, /wikifiles/thumb/3/39/Gcc-flow.svg/500px-Gcc-flow.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/articles/Datei:Gcc-flow.svg" class="internal" title="vergrößern"><img src="/wikisoftware/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Codeerzeugung mit den GNU-Tools</div></div></div>
+<p>Assembler-Module werden analog zu C-Modulen übersetzte:  Während ein C-Modul <tt>modul.c</tt> mittels
+</p>
+<pre>   avr-gcc -c modul.c  <span style="color:gray">(weitere Optionen)</span>
+</pre>
+<p>zum Object übersetzt wird, ist der Compileraufruf für eine Assembler-Quelle <tt>modul.sx</tt>
+</p>
+<pre>   avr-gcc -c modul.sx  <span style="color:gray">(weitere Optionen)</span>
+</pre>
+<p>Durch die Endung <tt>.sx</tt> erkennt gcc, dass es sich bei der Datei um eine Assembler-Quelle handelt.
+</p><p>Die Quelle wird zunächst präprozessiert, d.h. man kann Direktiven wie <tt>#include</tt> und <tt>#define</tt> verwenden.  Danach wird die präprozessierte Datei an den Assembler übergeben.  Alternativ kann die Endung <tt>.S</tt> verwendet werden.  Bei einer anderen Dateiendung kann das Quellformat mit <tt>-x</tt> auf <i>Assembler mit C-Präprozessor</i> eingestellt werden:
+</p>
+<pre>   avr-gcc -x assembler-with-cpp -c modul.asm  <span style="color:gray">(weitere Optionen)</span>
+</pre>
+<p>Der Unterschied zwischen <tt>.sx</tt> und <tt>.S</tt> einerseits und <tt>.s</tt> andererseits ist dass für <tt>s</tt>-Dateien kein Präprozessor aufgerufen wird. s-Dateien werden zum Beispiel temporär von gcc erzeugt wenn eine C- oder C++-Quelle übersetzt wird. Der Compiler erzeugt keine Präprozessor-Direktiven und daher kann der Aufruf den Präprozessors nach dem Compilieren gespart werden was den Übersezuungsvorgang beschleunigt.
+</p><p>In allen Fällen wird ein Modul <tt>modul.o</tt> erzeugt, das genauso verwendet werden kann wie ein Modul, das aus C-Code oder C++-Code erzeugt wurde.  Soll die Object-Datei einen anderen Namen bekommen, dann dies mit <tt>-o dateiname</tt> erreicht werden.
+</p><p>Anhängig vom der verwendeten Build-Umgebung (eigenes Makefile, Mfile, Apache Ant, AVR Studio, Eclipe, Code::Blocks, Programmers Notepad, Shell-Skript, ...) wird die Assembler-Quelle zum Projekt hinzugefügt. Hierfür sei auf die Dokumentation der jeweiligen Entwicklungsumgebung verwiesen.
+</p>
+<hr style="visibility:hidden;clear:both;" />
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=3" title="Abschnitt bearbeiten: Verwenden der C-Runtime Umgebung">Bearbeiten</a>]</span> <span class="mw-headline" id="Verwenden_der_C-Runtime_Umgebung"> Verwenden der C-Runtime Umgebung </span></h3>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=4" title="Abschnitt bearbeiten: Stand-Alone Assembler">Bearbeiten</a>]</span> <span class="mw-headline" id="Stand-Alone_Assembler"> Stand-Alone Assembler </span></h3>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=5" title="Abschnitt bearbeiten: Globale Variablen für Datenaustausch">Bearbeiten</a>]</span> <span class="mw-headline" id="Globale_Variablen_f.C3.BCr_Datenaustausch"> Globale Variablen für Datenaustausch </span></h2>
+<p>Oftmals kommt man um globale Variablen nicht herum, z.&#160;B. um den Datenaustausch zwischen Hauptprogramm und Interrupt-Routinen zu realisieren. 
+Hierzu muss man im Assembler wissen, wo genau die Variable vom C-Compiler abgespeichert wird.
+</p><p>Hierzu muss die Variable, hier "zaehler" genannt, zuerst im C-Code als Global definiert werden, z.&#160;B. so:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="co2">#include &lt;avr/io.h&gt;</span>
+&#160;
+<span class="kw4">volatile</span> <span class="kw4">uint8_t</span> zaehler<span class="sy0">;</span>
+&#160;
+<span class="kw4">int16_t</span> main <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="co1">// irgendein Code, in dem zaehler benutzt werden kann</span>
+&#160;
+<span class="br0">&#125;</span></pre></div></div>
+<p>Im folgenden Assembler-Beispiel wird der Externe Interrupt0  verwendet, um den Zähler hochzuzählen. Es fehlen die Initialisierungen des Interrupts und die Interrupt-Freigabe, so richtig sinnvoll ist der Code auch nicht, aber er zeigt (hoffentlich) wie es geht.
+</p><p>Im Umgang mit Interrupt-Vektoren gilt beim GCC-Assembler das Gleiche, wie bei C: Man muss die exakte Schreibweise beachten, ansonsten wird nicht der Interrupt-Vektor angelegt, sondern eine neue Funktion - und man wundert sich, dass nichts funktionert (vgl. das AVR-GCC-Handbuch).
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="avrasm source-avrasm"><pre class="de1">&#160;
+#include &lt;avr/io<span class="re2">.h</span>&gt;
+&#160;
+temp = <span class="nu0">16</span>
+&#160;
+<span class="re2">.extern</span> zaehler
+&#160;
+<span class="re2">.global</span> INT0_vect
+INT0_vect:
+&#160;
+     push temp                      //<span class="co1">; wichtig: Benutzte Register und das</span>
+     in temp,_SFR_IO_ADDR<span class="br0">&#40;</span>SREG<span class="br0">&#41;</span>     //<span class="co1">; Status-Register (SREG) sichern!</span>
+     push temp
+&#160;
+     lds temp,zaehler               //<span class="co1">; Wert aus dem Speicher lesen</span>
+     inc temp                       //<span class="co1">; bearbeiten</span>
+     sts zaehler,temp               //<span class="co1">; und wieder zurückschreiben</span>
+&#160;
+     pop temp                       //<span class="co1">; die benutzten Register wiederherstellen</span>
+     out _SFR_IO_ADDR<span class="br0">&#40;</span>SREG<span class="br0">&#41;</span>,temp
+     pop temp
+     reti
+&#160;
+<span class="re2">.end</span></pre></div></div>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=6" title="Abschnitt bearbeiten: Globale Variablen im Assemblerfile anlegen">Bearbeiten</a>]</span> <span class="mw-headline" id="Globale_Variablen_im_Assemblerfile_anlegen"> Globale Variablen im Assemblerfile anlegen </span></h3>
+<p>Alternativ können Variablen aber auch im Assemblerfile angelegt werden. Dadurch kann auf eine .c-Datei verzichtet werden. Für das obige Beispiel könnte der Quelltext dann die Dateien zaehl_asm.S und zaehl_asm.h abgelegt werden, so dass nur noch zaehl_asm.S mit kompiliert werden müsste.
+</p><p>Anstatt im Assemblerfile über das Schlüsselwort <i>.extern </i> auf eine vorhandene Variable zu verweisen, wird dazu mit dem Schlüsselwort <i>.comm</i> die benötigte Anzahl von Bytes für eine Variable reserviert.
+</p><p><b>zaehl_asm.S</b>
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="avrasm source-avrasm"><pre class="de1">&#160;
+#include &lt;avr/io<span class="re2">.h</span>&gt;
+&#160;
+temp = <span class="nu0">16</span>
+&#160;
+//<span class="co1">; 1 Byte im RAM für den Zähler reservieren</span>
+<span class="re2">.comm</span> zaehler, <span class="nu0">1</span>
+&#160;
+<span class="re2">.global</span> INT0_vect
+INT0_vect:
+&#160;
+...</pre></div></div>
+<p>In der Headerdatei wird dann auf die Variable nur noch verwiesen (Schlüsselwort <i>extern</i>):
+</p><p><b>zaehl_asm.h</b>
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="co2">#ifndef ZAEHL_ASM_H</span>
+<span class="co2">#define ZAEHL_ASM_H</span>
+&#160;
+<span class="kw2">extern</span> <span class="kw4">volatile</span> <span class="kw4">uint8_t</span> zaehler<span class="sy0">;</span>
+&#160;
+<span class="co2">#endif</span></pre></div></div>
+<p>Im Gegensatz zu globalen Variablen in C werden so angelegte Variablen nicht automatisch mit dem Wert 0 initialisiert. 
+</p><p><br />
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=7" title="Abschnitt bearbeiten: Variablen größer als 1 Byte">Bearbeiten</a>]</span> <span class="mw-headline" id="Variablen_gr.C3.B6.C3.9Fer_als_1_Byte"> Variablen größer als 1 Byte </span></h3>
+<p>Variablen, die größer als <b>ein</b> Byte sind, können in Assembler auf ähnliche Art angesprochen werden. Hierzu müssen nur genug Bytes angefordert werden, um die Variable aufzunehmen. Soll z.&#160;B. für den Zähler eine Variable vom Typ <i>unsigned long</i>, also <i>uint32_t</i> verwendet werden, so müssen 4 Bytes reserviert werden:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="avrasm source-avrasm"><pre class="de1">&#160;
+...
+// <span class="nu0">4</span> Byte im RAM für den Zähler reservieren
+<span class="re2">.comm</span> zaehler, <span class="nu0">4</span>
+...</pre></div></div>
+<p>Die dazugehörige Deklaration im Headerfile wäre dann:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">...
+<span class="kw2">extern</span> <span class="kw4">volatile</span> <span class="kw4">uint32_t</span> zaehler<span class="sy0">;</span>
+...</pre></div></div>
+<p>Bei Variablen, die größer als ein Byte sind, werden die Werte beginnend mit dem niederwertigsten Byte im RAM abgelegt. Das folgende Codeschnippsel zeigt, wie unter Assembler auf die einzelnen Bytes zugegriffen werden kann. Dazu wird im Interrupt nun ein 32-Bit Zähler erhöht:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="avrasm source-avrasm"><pre class="de1">&#160;
+#include &lt;avr/io<span class="re2">.h</span>&gt;
+&#160;
+temp = <span class="nu0">16</span>
+&#160;
+// <span class="nu0">4</span> Byte im RAM für den Zähler reservieren
+<span class="re2">.comm</span> zaehler, <span class="nu0">4</span>
+&#160;
+<span class="re2">.global</span> INT0_vect
+INT0_vect:
+&#160;
+     push temp                      // wichtig: Benutzte Register und das
+     in temp,_SFR_IO_ADDR<span class="br0">&#40;</span>SREG<span class="br0">&#41;</span>     // Status-Register <span class="br0">&#40;</span>SREG<span class="br0">&#41;</span> sichern&#160;!
+     push temp
+&#160;
+     // <span class="nu0">32</span>-Bit-Zähler incrementieren
+     lds temp, <span class="br0">&#40;</span>zaehler + <span class="nu0">0</span><span class="br0">&#41;</span>        // <span class="nu0">0</span>. Byte <span class="br0">&#40;</span>niederwertigstes Byte<span class="br0">&#41;</span>
+     inc temp
+     sts <span class="br0">&#40;</span>zaehler + <span class="nu0">0</span><span class="br0">&#41;</span>, temp
+     brne RAUS
+&#160;
+     lds temp, <span class="br0">&#40;</span>zaehler + <span class="nu0">1</span><span class="br0">&#41;</span>        // <span class="nu0">1</span>. Byte
+     inc temp
+     sts <span class="br0">&#40;</span>zaehler + <span class="nu0">1</span><span class="br0">&#41;</span>, temp
+     brne RAUS
+&#160;
+     lds temp, <span class="br0">&#40;</span>zaehler + <span class="nu0">2</span><span class="br0">&#41;</span>        // <span class="nu0">2</span>. Byte
+     inc temp
+     sts <span class="br0">&#40;</span>zaehler + <span class="nu0">2</span><span class="br0">&#41;</span>, temp
+     brne RAUS
+&#160;
+     lds temp, <span class="br0">&#40;</span>zaehler + <span class="nu0">3</span><span class="br0">&#41;</span>        // <span class="nu0">3</span>. Byte <span class="br0">&#40;</span>höchstwertigstes Byte<span class="br0">&#41;</span>
+     inc temp
+     sts <span class="br0">&#40;</span>zaehler + <span class="nu0">3</span><span class="br0">&#41;</span>, temp
+     brne RAUS
+&#160;
+<span class="re3">RAUS:</span>
+     pop temp                       // die benutzten Register wiederherstellen
+     out _SFR_IO_ADDR<span class="br0">&#40;</span>SREG<span class="br0">&#41;</span>,temp
+     pop temp
+     reti
+&#160;
+<span class="re2">.end</span></pre></div></div>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=8" title="Abschnitt bearbeiten: Todo">Bearbeiten</a>]</span> <span class="mw-headline" id="Todo"> Todo </span></h2>
+<ul><li> 16-Bit / 32-Bit Variablen, Zugriff auf Arrays (Strings)
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=9" title="Abschnitt bearbeiten: Weblinks">Bearbeiten</a>]</span> <span class="mw-headline" id="Weblinks"> Weblinks </span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.rn-wissen.de/index.php/Inline-Assembler_in_avr-gcc">Roboternetz: Inline-Assembler in avr-gcc</a>
+</li></ul>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;action=edit&amp;section=10" title="Abschnitt bearbeiten: Englisch">Bearbeiten</a>]</span> <span class="mw-headline" id="Englisch"> Englisch </span></h3>
+<dl><dt> <a rel="nofollow" class="external text" href="http://nongnu.org/avr-libc/user-manual/">avr-libc-Manual</a></dt><dd>
+</dd></dl>
+<ul><li> <a rel="nofollow" class="external text" href="http://nongnu.org/avr-libc/user-manual/group__asmdemo.html">Demo-Projekt: <i>"Combining C and assembly source files"</i></a>
+</li><li> <a rel="nofollow" class="external text" href="http://www.nongnu.org/avr-libc/user-manual/inline_asm.html">Inline-Assembler Cookbook</a>
+</li></ul>
+<dl><dt> <a rel="nofollow" class="external text" href="http://gcc.gnu.org/onlinedocs/gcc/">GCC-Manual</a></dt><dd>
+</dd></dl>
+<ul><li> <a rel="nofollow" class="external text" href="http://gcc.gnu.org/onlinedocs/gcc/Explicit-Reg-Vars.html#Explicit-Reg-Vars">Variables in Specified Registers</a>
+</li><li> <a rel="nofollow" class="external text" href="http://gcc.gnu.org/onlinedocs/gcc/Asm-Labels.html#Asm-Labels">Controlling Names Used in Assembler Code</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 155/1000000
+Preprocessor generated node count: 333/1000000
+Post‐expand include size: 194/2097152 bytes
+Template argument size: 54/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key uc_wiki:pcache:idhash:6244-0!*!*!!de!2!* and timestamp 20131011095834 -->
+</div>			<!-- /bodycontent -->
+						<!-- printfooter -->
+			<div class="printfooter">
+			Von „<a href="http://www.mikrocontroller.net/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;oldid=77623">http://www.mikrocontroller.net/wikisoftware/index.php?title=AVR-GCC-Tutorial/Assembler_und_Inline-Assembler&amp;oldid=77623</a>“			</div>
+			<!-- /printfooter -->
+									<!-- catlinks -->
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="/articles/Kategorie:Avr-gcc_Tutorial" title="Kategorie:Avr-gcc Tutorial">Avr-gcc Tutorial</a></li></ul></div></div>			<!-- /catlinks -->
+									<div class="visualClear"></div>
+			<!-- debughtml -->
+						<!-- /debughtml -->
+
+      <!-- start adsense -->
+            <!-- end adsense -->
+      
+      <div class="visualClear"></div>
+    </div>
+  </td>
+  <!-- google_ad_section_end -->
+      </tr>
+      </table>
+      <!--
+      <div class="visualClear"></div>
+      <div id="footer" style="clear:both">
+    <div id="f-poweredbyico"><a href="//www.mediawiki.org/"><img src="/wikisoftware/skins/common/images/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki" /></a></div>		<ul id="f-list">
+	  <li id="f-lastmod"> Diese Seite wurde zuletzt am 16. Juli 2013 um 21:58 Uhr geändert.</li>	  <li id="f-viewcount">Diese Seite wurde bisher 19.342-mal abgerufen.</li>	  	  	  <li id="f-about"><a href="/articles/Uc-wiki:%C3%9Cber_Uc-wiki" title="Uc-wiki:Über Uc-wiki">Über Uc-wiki</a></li>	  <li id="f-disclaimer"><a href="/articles/Uc-wiki:Impressum" title="Uc-wiki:Impressum">Impressum</a></li>	</ul>
+      </div>-->
+    </div>
+<div id="bottom">
+  <div id="impress">
+    <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Mikrocontroller.net">webmaster@mikrocontroller.net</a> – <a href="/contact">Impressum</a> – <a href="/user/conditions">Nutzungsbedingungen</a> – <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Anfrage%20zu%20Werbung%20auf%20Mikrocontroller.net">Werbung auf Mikrocontroller.net</a>
+  </div>
+  <div id="powered">
+<!--    powered by Ruby on Rails -->
+  </div>
+ <a href="/util/rb"><!-- nothing --></a>
+ <!-- <a href="http://www.mikrocontroller.net/hp/curlews.php">nothing to see here</a> -->
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-80574-1");
+if (typeof GS_googleAddAdSenseService != 'function') {
+  pageTracker._setCustomVar(3, "GAM", "No", 1);
+} else {
+  pageTracker._setCustomVar(3, "GAM", "Yes", 1);
+}
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<script>if(window.mw){
+mw.loader.state({"site":"loading","user":"missing","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.page.ready","mediawiki.searchSuggest","mediawiki.hidpi"], null, true);
+}</script>
+<script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<!-- Served in 0.076 secs. -->  </body>
+</html>

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <script type="text/javascript">
+      var wgBreakFrames = false;
+      var wgContentLanguage = false;
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="generator" content="MediaWiki 1.21.1" />
+<link rel="alternate" type="application/x-wiki" title="Bearbeiten" href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit" />
+<link rel="edit" title="Bearbeiten" href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/wikisoftware/opensearch_desc.php" title="Uc-wiki (de)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.mikrocontroller.net/wikisoftware/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „Uc-wiki“" href="/wikisoftware/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom" />    <title>AVR-GCC-Codeoptimierung - Mikrocontroller.net</title>
+    
+        <!-- <script type="text/javascript" src="/wikisoftware/skins/common/wikibits.js"></script> -->
+            <script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=startup&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"AVR-GCC-Codeoptimierung","wgTitle":"AVR-GCC-Codeoptimierung","wgCurRevisionId":76862,"wgArticleId":2917,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Avr-gcc"],"wgBreakFrames":false,"wgPageContentLanguage":"de","wgSeparatorTransformTable":[",	.",".	,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"AVR-GCC-Codeoptimierung","wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":true,"previewDialog":false,"publish":true,"toc":false}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"mikrocontroller","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"wikieditor-publish":1,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});;},{},{});
+/* cache key: uc_wiki:resourceloader:filter:minify-js:7:5afc608d284909c94225e82ae67c1108 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script><style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style>
+    
+    <script src="/javascripts/combined-top.js" type="text/javascript"></script>
+
+    <!--<script src="/javascripts/highlightCurrentLink.js" type="text/javascript"></script>-->
+    <script src="/javascripts/sorttable.js" type="text/javascript"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/screen.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/common/shared.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/mikrocontroller/main.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/stylesheets/print.css" />
+    <style type="text/css">#nav-foren-sub {display: none;} </style>
+    <style type="text/css">#nav-tutorial-sub {display: none;} </style>
+
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide.css" />
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide-ie6.css" />
+    <![endif]-->
+
+
+    <!--
+    <style type="text/css">
+    <div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="/articles/Kategorie:Avr-gcc" title="Kategorie:Avr-gcc">Avr-gcc</a></li></ul></div></div>    #nav-foren-sub {display: none;}
+    </style>
+    -->
+
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=ext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: uc_wiki:resourceloader:filter:minify-css:7:8c158424ea41cf09c24f6f94d82b9d56 */</style>
+
+<!-- PUT THIS TAG IN THE head SECTION -->
+<script type="text/javascript" src="//partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-1202612203358489");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+  GA_googleUseIframeRendering();
+</script>
+
+<!-- END OF TAG FOR head SECTION -->
+
+<script type="text/javascript">
+GA_googleAddAttr('pagetype', 'article');
+GA_googleAddAttr('section', 'article');
+GA_googleAddAttr('site_id', '1');
+</script>
+
+
+
+  </head>
+  <body     >
+    <div id="globalWrapper">
+    <div id="top"><h1><a href="/">www.mikrocontroller.net</a></h1></div>
+  <table id="twocolumns">
+  <tr>
+  <td id="sidebar-left" class="sidebar">
+  <!-- begin nav -->
+<div class="nav-container">
+  <ul class="nav-first">
+    <li><b><a href="/">Home</a></b></li>
+    <li>
+      <b><a href="/articles/AVR">AVR</a></b>
+      <ul>
+        <li><a href="/articles/AVR-Tutorial">AVR-Tutorial</a></li>
+        <li><a href="/articles/AVR-GCC-Tutorial">AVR-GCC-Tutorial</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/ARM">ARM</a></b>
+      <ul>
+        <li><a href="/articles/LPC1xxx">LPC1xxx</a></li>
+        <li><a href="/articles/LPC2000">LPC2000</a></li>
+        <li><a href="/articles/AT91SAM">AT91SAM7</a></li>
+        <li><a href="/articles/STM32">STM32</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/MSP430">MSP430</a></b>
+    </li>
+    <li>
+      <b><a href="/articles/Programmierbare_Logik">FPGA, CPLD &amp; Co.</a></b>
+      <ul>
+        <li><a href="/articles/FPGA">Grundlagen zu FPGAs</a></li>
+        <li><a href="/articles/Hardwarebeschreibungssprachen">VHDL &amp; Co.</a></li>
+        <li><a href="/articles/Xilinx_ISE">Xilinx ISE</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/Digitale_Signalverarbeitung">DSP</a></b>
+    </li>
+
+    <li>
+      <b><a href="/articles/Elektronik_Allgemein">Elektronik allgemein</a></b>
+      <ul>
+        <li><a href="/articles/SMD_L%C3%B6ten">SMD L&ouml;ten</a></li>
+        <li><a href="/articles/Operationsverst%C3%A4rker-Grundschaltungen">Operationsverst&auml;rker</a></li>
+        <li><a href="/articles/Oszilloskop">Oszilloskop</a></li>
+      </ul> 
+    </li>
+
+    <li>
+      <b><a href="/forum/all">Forum</a></b>
+      <ul>
+        <li><a href="/forum/mikrocontroller-elektronik">&micro;C &amp; Elektronik</a></li>
+        <li><a href="/forum/analogtechnik">Analogtechnik</a></li>
+        <li><a href="/forum/fpga-vhdl-cpld">FPGA, VHDL &amp; Co.</a></li>
+        <li><a href="/forum/dsp">DSP</a></li>
+        <li><a href="/forum/gcc">GCC</a></li>
+        <li><a href="/forum/codesammlung">Codesammlung</a></li>
+        <li><a href="/forum/markt">Markt</a></li>
+        <li><a href="/forum/platinen">Platinen</a></li>
+        <li><a href="/forum/mechanik">Mechanik &amp; Werkzeug</a></li>
+        <li><a href="/forum/hf">HF, Funk &amp; Felder</a></li>
+        <li><a href="/forum/hausbus">Hausbus</a></li>
+        <li><a href="/forum/pc-programmierung">PC-Programmierung</a></li>
+        <li><a href="/forum/pc-hardware-software">PC Hard- &amp; Software</a></li>
+        <li><a href="/forum/ausbildung-studium-beruf">Ausbildung &amp; Beruf</a></li>
+        <li><a href="/forum/offtopic">Offtopic</a></li>
+        <li><a href="/forum/website">Webseite</a></li>
+       </ul>
+    </li>
+    <li><b><a href="/buecher/">Buchtipps</a></b></li>
+    <li><b><a href="http://shop.mikrocontroller.net/">Shop</a></b></li>
+    <li><b><a href="/articles/Linksammlung">Linksammlung</a></b></li>
+    <li><b><a href="/articles/Hauptseite">Artikel&uuml;bersicht</a></b></li>
+    <li><b><a href="/articles/Spezial:Recentchanges">Letzte &Auml;nderungen</a></b></li>
+  </ul>
+</div>
+<!-- end nav -->
+  <hr />
+  <!-- google_ad_section_start(weight=ignore) -->
+
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+
+	<div id="p-cactions" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-cactions-box'); return false;" >&#9654; Dieser Artikel</a></h5>
+	  <div class="box" id="p-cactions-box">
+      <ul>
+	    <li id="ca-nstab-main"
+	       class="selected"	       ><a href="/articles/AVR-GCC-Codeoptimierung">Seite</a></li><li id="ca-talk"
+	       	       ><a href="/articles/Diskussion:AVR-GCC-Codeoptimierung">Diskussion</a></li><li id="ca-edit"
+	       	       ><a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit">Bearbeiten</a></li><li id="ca-history"
+	       	       ><a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=history">Versionen/Autoren</a></li>  	  </ul>
+    </div>
+	</div>
+	<div class="portlet" id="p-personal">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-personal-box'); return false;">&#9654; Benutzer</a></h5>
+	  <div class="box" id="p-personal-box">
+	    <ul>
+	    <li id="pt-anonuserpage"><a href="/articles/Benutzer:88.68.76.176" class="new">88.68.76.176</a></li><li id="pt-anontalk"><a href="/articles/Benutzer_Diskussion:88.68.76.176" class="new">Diskussionsseite dieser IP</a></li><li id="pt-anonlogin"><a href="/wikisoftware/index.php?title=Spezial:Anmelden&amp;returnto=AVR-GCC-Codeoptimierung">Anmelden</a></li>	    </ul>
+	  </div>
+	</div>
+  <!-- LOGO
+	<div class="portlet" id="p-logo">
+	  <a style="background-image: url(/wikisoftware/skins/common/images/wiki.png);"
+	    href="/articles/Hauptseite"
+	    title="Hauptseite"></a>
+	</div>
+  -->
+	<div id="p-search" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-search-box'); return false;">&#9654; Suche</a></h5>
+	  <div class="box" id="p-search-box">
+	    <form name="searchform" action="/articles/Spezial:Suche" id="searchform">
+	      <input id="searchInputX" name="search" type="text" accesskey="f" value="" /><br />
+	      <input type='submit' name="go" class="searchButton"
+	        value="Ausführen"
+	        />&nbsp;<input type='submit' name="fulltext"
+	        class="searchButton"
+	        value="Suche" />
+	    </form>
+	  </div>
+	</div>
+	<div class="portlet" id="p-tb">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-tb-box'); return false;">&#9654; Werkzeuge</a></h5>
+	    <div class="box" id="p-tb-box">
+      <ul>
+		  		  <li id="t-whatlinkshere"><a href="/articles/Spezial:Linkliste/AVR-GCC-Codeoptimierung">Links auf diese Seite</a></li>
+		  		  <li id="t-recentchangeslinked"><a href="/articles/Spezial:%C3%84nderungen_an_verlinkten_Seiten/AVR-GCC-Codeoptimierung">Änderungen an verlinkten Seiten</a></li>
+		  	      	      	      	      	      	      	      	      	      <li id="t-specialpages"><a href="/articles/Spezial:Spezialseiten">Spezialseiten</a></li>	      	    </ul>
+      </div>
+	</div>
+  <!-- google_ad_section_end -->
+  
+  <!-- start adsense -->
+    <!-- end adsense -->
+  
+      </td><!-- end of the left (by default at least) column -->
+  <td id="main">
+    <!-- google_ad_section_start -->
+    <a name="top" id="contentTop"></a>
+        <h1 class="firstHeading">AVR-GCC-Codeoptimierung</h1>
+    <div id="bodyContent">
+
+						<!-- tagline -->
+			<!-- <div id="siteSub">Aus Uc-wiki</div> -->
+			<!-- /tagline -->
+						<!-- subtitle -->
+			<div id="contentSub"></div>
+			<!-- /subtitle -->
+												<!-- jumpto -->
+			<div id="jump-to-nav" class="mw-jump">
+				Wechseln zu:				<a href="#mw-navigation">Navigation</a>, 				<a href="#p-search">Suche</a>
+			</div>
+			<!-- /jumpto -->
+						<!-- bodycontent -->
+			<div id="mw-content-text" lang="de" dir="ltr" class="mw-content-ltr"><p>Entstanden aus diesem <a class="external text" href="http://www.mikrocontroller.net/topic/66690">Thread</a> sollen hier ein paar Hinweise/Erfahrungen gegeben werden, um den Quellcode in Punkto Größe und Geschwindigkeit zu optimieren. <i>En detail</i> ist das Thema komplex, da es stark von der Codeoptimierung des Compilers abhängt. Es ist im Einzelfall ratsam zu prüfen, ob die eigenen Maßnahmen auch erfolgreich waren. Die Diskussionen <a class="external autonumber" href="http://www.mikrocontroller.net/topic/132624">[1]</a> bzw. <a class="external autonumber" href="http://www.mikrocontroller.net/topic/180800#new">[2]</a> können als Anhaltspunkte dienen, wie eine solche Prüfung ablaufen kann.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Prinzipien_der_Optimierung"><span class="tocnumber">1</span> <span class="toctext">Prinzipien der Optimierung</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Warum"><span class="tocnumber">1.1</span> <span class="toctext">Warum</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Was"><span class="tocnumber">1.2</span> <span class="toctext">Was</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Speicherverbrauch_nach_Funktionen_aufschl.C3.BCsseln"><span class="tocnumber">1.2.1</span> <span class="toctext">Speicherverbrauch nach Funktionen aufschlüsseln</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#Laufzeit_messen"><span class="tocnumber">1.2.2</span> <span class="toctext">Laufzeit messen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#Wieviel"><span class="tocnumber">1.3</span> <span class="toctext">Wieviel</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Wie"><span class="tocnumber">1.4</span> <span class="toctext">Wie</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#GCC-Optionen"><span class="tocnumber">2</span> <span class="toctext">GCC-Optionen</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Optimierungs-Level"><span class="tocnumber">2.1</span> <span class="toctext">Optimierungs-Level</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Feinabstimmung_der_Optimizer"><span class="tocnumber">2.2</span> <span class="toctext">Feinabstimmung der Optimizer</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Linker-Optionen"><span class="tocnumber">2.3</span> <span class="toctext">Linker-Optionen</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Weitere_Optionen"><span class="tocnumber">2.4</span> <span class="toctext">Weitere Optionen</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#.C3.84nderung_des_Bin.C3.A4rinterfaces_per_Option"><span class="tocnumber">2.5</span> <span class="toctext">Änderung des Binärinterfaces per Option</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Anpassungen_der_Quelle"><span class="tocnumber">3</span> <span class="toctext">Anpassungen der Quelle</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Attribute_noreturn.2C_OS_main_und_OS_task"><span class="tocnumber">3.1</span> <span class="toctext">Attribute noreturn, OS_main und OS_task</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Statische_Variablen_in_einer_Struktur_sammeln"><span class="tocnumber">3.2</span> <span class="toctext">Statische Variablen in einer Struktur sammeln</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Multiplikationen_mit_Konstanten"><span class="tocnumber">3.3</span> <span class="toctext">Multiplikationen mit Konstanten</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Alle_Variablen_nur_so_breit_wie_n.C3.B6tig"><span class="tocnumber">3.4</span> <span class="toctext">Alle Variablen nur so breit wie nötig</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Logische_Operatoren_werden_auf_int-Gr.C3.B6.C3.9Fe_erweitert"><span class="tocnumber">3.5</span> <span class="toctext">Logische Operatoren werden auf int-Größe erweitert</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Speichern_von_globalen_Flags"><span class="tocnumber">3.6</span> <span class="toctext">Speichern von globalen Flags</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Puffern_von_volatile-Variablen"><span class="tocnumber">3.7</span> <span class="toctext">Puffern von volatile-Variablen</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Schleifen"><span class="tocnumber">3.8</span> <span class="toctext">Schleifen</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Schiebeoperationen"><span class="tocnumber">3.9</span> <span class="toctext">Schiebeoperationen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Optimierung_der_Ausf.C3.BChrungsgeschwindigkeit"><span class="tocnumber">4</span> <span class="toctext">Optimierung der Ausführungsgeschwindigkeit</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#Fu.C3.9Fnoten"><span class="tocnumber">5</span> <span class="toctext">Fußnoten</span></a></li>
+<li class="toclevel-1 tocsection-26"><a href="#Links"><span class="tocnumber">6</span> <span class="toctext">Links</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=1" title="Abschnitt bearbeiten: Prinzipien der Optimierung">Bearbeiten</a>]</span> <span class="mw-headline" id="Prinzipien_der_Optimierung"> Prinzipien der Optimierung </span></h2>
+<p>Wie so oft sollte man nicht einfach wild drauf los optimieren und sich zunächst ein paar Dinge klar machen.
+</p>
+<ul><li> Warum will ich optimieren?
+</li><li> Was kann man sinnvoll optimieren?
+</li><li> Wieviel Rechenzeit oder Speicher soll dabei gespart werden?
+</li><li> Wie kann optimiert werden?
+</li><li> "Verfrühte Optimierung ist die Wurzel allen Übels"
+</li></ul>
+<p>Viele Optimierungen sind "Angst-Optimierungen", die nicht wirklich nötig sind. Die Gefahr mit Optimierungen ist, den Code tot zu optimieren, sprich Lesbarkeit, Portierbarkeit und ggf. Fehlerfreiheit sinken massgeblich. Kurz und knapp in diesem <a rel="nofollow" class="external text" href="http://blogs.msdn.com/b/audiofool/archive/2007/06/14/the-rules-of-code-optimization.aspx">BLOG</a> formuliert.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=2" title="Abschnitt bearbeiten: Warum">Bearbeiten</a>]</span> <span class="mw-headline" id="Warum"> Warum </span></h3>
+<p>Optimieren sollte man nur, wenn
+</p>
+<ul><li> der Speicher nicht mehr ausreicht (RAM, Flash)
+</li><li> Die Laufzeit für bestimmte Programmteile zu groß wird und somit bestimmte (Echtzeit-)Ausgaben nicht im erforderlichen Zeitrahmen erledigt werden
+</li></ul>
+<p>Weiter sollte man folgende Punkte gegeneinander abwägen:
+</p>
+<ul><li> Codeverbrauch
+</li><li> Datenverbrauch. Statisch/Stack/Heap
+</li><li> Mittlere Laufzeit/maximale Laufzeit
+</li><li> Entwicklungszeit
+</li><li> Portabilität (Compiler, Hardware, ...)
+</li><li> Verständlichkeit der Quelle, siehe <a href="/articles/Strukturierte_Programmierung_auf_Mikrocontrollern" title="Strukturierte Programmierung auf Mikrocontrollern">Strukturierte Programmierung auf Mikrocontrollern</a> 
+</li><li> ABI-Konformität
+</li></ul>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=3" title="Abschnitt bearbeiten: Was">Bearbeiten</a>]</span> <span class="mw-headline" id="Was"> Was </span></h3>
+<p>Die goldene Regle lautet: 90% der Rechenleistung werden in 10% des Codes verbraucht. Diese 10% muss man finden und zum richtigen Zeitpunkt optimieren. Der Rest muss nur sauber und lesbar geschrieben sein. Was jedoch nichts bringt, ist eine Funktion, die von 1 Minute Programmlaufzeit lediglich 1 Sekunde verbraucht, um den Faktor 10 schneller zu machen. Die Programmlaufzeit sinkt dann von 60 Sekunden auf 59.1 Sekunden. Der Aufwand, die Funktion um einen Faktor 10 schneller zu machen ist aber meistens beträchtlich!  Kann ich aber den Code, der für die 59 Sekunden verantwortlich ist um einen Faktor 10 schneller machen, dann sinkt die Gesamtlaufzeit von 60 Sekunden auf 6.9 Sekunden. Dort bringt Optimieren augenscheinlich viel mehr!
+</p><p>Um die optimierungswürdigen Stellen zu finden, muss man sein Programm analysieren. Dazu gibt es verschiedene Möglichkeiten.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=4" title="Abschnitt bearbeiten: Speicherverbrauch nach Funktionen aufschlüsseln">Bearbeiten</a>]</span> <span class="mw-headline" id="Speicherverbrauch_nach_Funktionen_aufschl.C3.BCsseln">Speicherverbrauch nach Funktionen aufschlüsseln</span></h4>
+<dl><dt>map-File</dt><dd>
+</dd><dd>dort sind alle globalen und statischen Variablen enthalten. Eine Map-Datei kann mit den GNU-Tools während des Linkens angelegt werden:
+<dl><dd><pre>&gt; avr-gcc ... -Wl,-Map,foo.map</pre>
+</dd></dl>
+</dd><dd> Die Option -Wl bewirkt, daß avr-gcc die angehängen Optionen unverändert an den Linker weiterreicht. Dieser erzeugt dann das Mapfile "foo.map", eine Textdatei.
+</dd><dt>avr-size</dt><dd> Mit Tools wie avr-size kann die Platzbelegung einzelner Module ermittelt werden:
+<dl><dd><pre>&gt; avr-size -x foo1.o foo2.o ...</pre>
+</dd></dl>
+</dd><dd>bzw. die Platzbelegung der elf-Datei:
+<dl><dd><pre>&gt; avr-size foo.elf</pre>
+</dd></dl>
+</dd></dl>
+<dl><dt>avr-nm</dt><dd>
+<dl><dd><pre>&gt; avr-nm --size-sort -S foo.elf</pre>
+</dd></dl>
+</dd><dd>ergibt eine Liste mit der Größe aller Objekte: der erste Spalte enthälte die Adresse, die zweite Spalte die Größe, die dritte den Typ und die vierte Spalte den zugehörigen Symbolnamen. Der Typ ergibt sich aus der folgenden Zuordnung, wobei Großbuchstaben globale Symbole kennzeichnen und Kleinbuchstaben Symbole, die Modul-lokal sind:
+<dl><dt>T/t</dt><dd> Objekte in der text-Section: Funktionen, Daten im Flash
+</dd><dt>D/d</dt><dd> Objekte im data-Segment (initialisierte Daten)
+</dd><dt>B/b</dt><dd> Objekte im bss-Segment (Null-initialisierte Daten)
+</dd></dl>
+</dd></dl>
+<dl><dt>avr-gcc</dt><dd> Der Compiler hat bereits Informationen über die übersetzten Funktionen, die man direkt zur Analyse verwenden kann. Dazu lässt man avr-gcc die Assembler-Ausgabe, die ohne weiteres Zutun nur als temporäre Datei angelegt wird, abspeichern. Etwa für die Quelldatei foo.c:
+<dl><dd><pre>&gt; avr-gcc -save-temps foo.c -c ...</pre>
+</dd></dl>
+</dd><dd>Die Assembler-Datei wird damit als foo.s angelegt und nicht gelöscht. (Das ebenfalls angelegte Präcompilat foo.i wird nicht benötigt). Für jede Funktion gibt avr-gcc 3.4.x im Prolog einen Kommentar der Form<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>
+<dl><dd><pre>/* prologue: frame size=0 */</pre>
+</dd></dl>
+</dd><dd>aus, was die Größe des aktuellen Frames angibt. Dies ist der Platz auf dem Stack, der für lokale Variablen benötigt wird. Am besten ist es, wenn die Frame-Size wie im Beispiel gleich 0 ist. Ansonsten sollte man versuchen, diese Größe auf Null zu bringen. Für Variablen, die nicht in Registern gehalten werden können, müssen Speicherzugriffe in den Stack erzeugt werden. Diese machen das Programm sowohl größer aus auch langsamer. Zudem reserviert avr-gcc bei solche Funktionen das Y-Register als Frame-Pointer; das Y-Register steht damit nicht mehr für lokale Variablen zur Verfügung was sich ebenfalls ungünstig auf die Codegüte auswirkt. Ein Grund für das Anlegen eines Frames können zu viele lokale Variablen sein (zB lokale Puffer/Arrays) oder lokale Variablen/Strukturen/Parameter mit ungünstigen Größen, etwa eine 3-Byte große Struktur. 
+</dd></dl>
+<dl><dd> Neben dieser Information gibt avr-gcc Kommentare der Gestalt
+<dl><dd><pre>/* prologue end (size=2) */</pre>
+</dd></dl>
+</dd><dd>aus die darüber informieren, wie viele Register auf dem Stack gesichert wurden.
+</dd></dl>
+<dl><dd> Zusammen mit Werkzeugen wie grep, die in jedem Linux und jeder WinAVR-Distribution enthalten sind, findet man schnell Übeltäter wie Funktionen mit Frame.
+</dd></dl>
+<dl><dt>Assembler-Code sichten</dt><dd> Ein kurzer Blick auf den erzeugten Assembler-Code zeigt oft, wie gut der Compiler den Code umgesetzt hat. Den erzeugten Assembler-Code zu überfliegen ist wesentlich zeitsparender als selbst in Assembler zu programmieren. Je nach Gusto verwendet man zur Einsicht den Assembler-Code, den avr-gcc ausgibt (s.o.), Assembler-Dumps des Assemblers, List-Files oder HEX-Dumps. Siehe auch<sup id="cite_ref-2" class="reference"><a href="#cite_note-2">[2]</a></sup>
+</dd></dl>
+<dl><dt>Hilfsmittel</dt><dd> einkaufen oder selber bauen. Es gilt herauszufinden, welche Funktion massig Stack durch lokale Variablen verbraucht. Stacktracer können das. Wenn man keinen hat, dann muss man sich eben selber einen bauen, indem man den Stackpointer mitloggt. Zur Not einen Code-Review machen: Alle Funktionen optisch durchgehen und die identifizieren, die viele Variablen anlegen. Dann die Aufrufhierarchie der Funktion feststellen: Wirken sich die vielen Variablen überhaupt aus oder entsteht mein Problem durch eine tiefe Funktionsaufrufhierarchie, bei der zwar wenige Variablen pro Funktion im Spiel sind, aber die Menge der ineinandergeschachtelten Aufrufe 'das Kraut fett macht'
+</dd><dt>Profitools</dt><dd> können das alles fast auf Knopfdruck, kosten aber viel Geld
+</dd></dl>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=5" title="Abschnitt bearbeiten: Laufzeit messen">Bearbeiten</a>]</span> <span class="mw-headline" id="Laufzeit_messen">Laufzeit messen</span></h4>
+<ul><li>Simulator
+</li><li>In Echtzeit mittels Testpin, welche an Anfang einer Funktion/Blocks gesetzt wird und am Ende wieder gelöscht wird. Mit einem <a href="/articles/Oszilloskop" title="Oszilloskop">Oszilloskop</a> kann man so sehr einfach die Laufzeit messen.
+</li></ul>
+<dl><dt> Anmerkung</dt><dd> Solche Messverfahren liefern immer nur eine <i>untere</i> Schranke für die Laufzeit, niemals eine obere Schranke. Eine obere Schranke, wie man sie etwa in sicherheitsktitischen Systemen benötigt, liefert eine statische Codeanalyse.
+</dd></dl>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=6" title="Abschnitt bearbeiten: Wieviel">Bearbeiten</a>]</span> <span class="mw-headline" id="Wieviel"> Wieviel </span></h3>
+<p>Der Aufwand von Optimierungen wächst exponentiell. Die letzten paar Prozent brauchen überproportional viel Aufwand.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=7" title="Abschnitt bearbeiten: Wie">Bearbeiten</a>]</span> <span class="mw-headline" id="Wie"> Wie </span></h3>
+<p>Meist muss man die Wahl treffen ob man Speicher oder Rechenzeit sparen will, beides gleichzeitg geht meist nicht. Das Konzept heißt 'Space for Time' und kann in beide Richtungen verwendet werden. Als Beispiel soll eine komplizierte Berechnung dienen. Diese kann man relativ kompakt in eine Funktion packen, welche dann aber eher langsam ist. Oder man benutzt eine sehr große Tabelle, in welcher die Ergebnisse schon für jeden Eingangswert vorausberechnet wurden. Diese Lösung ist sehr schnell, verbraucht aber sehr viel Speicher.
+</p>
+<ul><li> Inlining von Funktionen erhöht den Speicherverbrauch, senkt aber die Laufzeit. Beispiel: Funktion A ist 50 Byte groß und wird 10 mal im Programm aufgerufen. Ein Aufruf kostet 10 Byte:
+<ul><li> Ohne Inline: 10 * 10Byte + 50 Byte = 150 Byte Platzverbrauch
+</li><li> Mit Inline: 10 * 50 Byte = 500 Byte
+</li></ul>
+</li><li> Optimierer einschalten
+</li><li> möglichst keine Floating Point Operationen, besser ist meist <a href="/articles/Festkommaarithmetik" title="Festkommaarithmetik">Festkommaarithmetik</a>
+</li><li> Formeln umstellen und zusammenfassen
+</li><li> Variablen so klein wie möglich, uint8_t wo's nur geht.
+</li><li> Wirklich zeitkritische Funktionen und Interrupts als Assemblercode in separater Datei
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=8" title="Abschnitt bearbeiten: GCC-Optionen">Bearbeiten</a>]</span> <span class="mw-headline" id="GCC-Optionen"> GCC-Optionen </span></h2>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=9" title="Abschnitt bearbeiten: Optimierungs-Level">Bearbeiten</a>]</span> <span class="mw-headline" id="Optimierungs-Level"> Optimierungs-Level </span></h3>
+<p>avr-gcc kennt mehrere Optimierungsstufen:
+</p>
+<dl><dt><tt>-O0</tt></dt><dd> Keine Optimierung des erzeugten Codes. Diese Optimierungsstufe optimiert den Resourcenverbrauch des <i>Hostrechners</i> und die Nachvollziehbarkeit der erzeugten Codes anhand von Debug-Information. Alle lokalen Variablen werden auf dem Stack angelegt und nicht in Registern gehalten. Es werden keine komplexen Optimierungsalgorithmen angewandt; lediglich Konstanten wie 1+2 werden zu 3 gefaltet.
+</dd></dl>
+<dl><dt><tt>-O1</tt></dt><dd> Je höher die Optimierungsstufe, desto schwieriger ist der erzeugte Code nachvollziehbar — auch mit Debugger. Diese O-Stufe ist ein Kompromiss zwischen aggressiver Optimierung und Nachvollziehbarkeit des erzeugten Codes. Ein ehernes Gesetz in GCC ist, dass er den gleichen Code erzeugen muss unabhängig davon, ob Debug-Information erzeugt wird oder nicht. Im Umkehrschluss erlaubt volle Debug-Unterstützung nicht alle Optimierungen, wozu diese Optimierungsstufe dient.
+</dd></dl>
+<dl><dt><tt>-O2</tt></dt><dd> Optimierung auf Geschwindigkeit. Für AVR nur mässig sinnvoll, da sich der Codezuwachs nicht in einen entsprechenden Geschwindigkeitszuwachs transformiert. Dies liegt vor allem daran, daß Sprünge und Funktionsaufrufe auf AVR im Vergleich zu anderen Architekturen sehr billig sind. Es bringt also kaum einen Geschwindigkeitszuwachs, einen Block zu kopieren um einen Sprung zu sparen. Hingegen vergrößert dies den Code deutlich.
+</dd></dl>
+<dl><dt><tt>-O3</tt></dt><dd> Dito. Auf Teufel-komm-raus Funktionen zu inlinen, Schleifen aufzurollen oder gar Funktionen mehrfach für unterschiedliche Aufruf-Szenarien zu implementieren, ist auf einem kleinen µC wie AVR der Overkill.
+</dd></dl>
+<dl><dt><tt>-Os</tt></dt><dd> Optimierung auf Codegröße. Die bevorzugte Optimierungsstufe für AVR und viele andere µC.
+</dd></dl>
+<p>Jede O-Option ist ein Sammlung von verschiedenen Schaltern, welche bestimmte Optimierungsstrategien aktivieren. Um zu sehen, welche Schalter dies genau sind, erzeugt man wie oben beschrieben mit den Schalten
+</p>
+<pre>  -save-temps -fverbose-asm
+</pre>
+<p>die Assembler-Ausgabe von gcc und schaut die Optionen im s-File nach. Einzelne Optionen lassen sich gezielt aktivieren bzw. deaktivieren und damit zum Beispiel zum <tt>-Os</tt>-Paket hinzufügen. 
+</p><p>Eine Ausnahme bildet <tt>-O0</tt>: Hier ist Code-Optimierung generell deaktiviert, und Optimierungsschalter bleiben ohne Wirkung.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=10" title="Abschnitt bearbeiten: Feinabstimmung der Optimizer">Bearbeiten</a>]</span> <span class="mw-headline" id="Feinabstimmung_der_Optimizer"> Feinabstimmung der Optimizer </span></h3>
+<p>Kandidaten für Optimierungsoptionen sind folgende Schalter. <tt>-m</tt> kennzeichnet maschinenspezifische Schalter, die nur für AVR gültig sind. <tt>-f</tt> bzw. <tt>-fno-</tt> sind maschinenunabhängige Schalter, die auch für andere Architekturen verfügbar sind.
+</p>
+<dl><dt><tt>-fno-split-wide-types</tt></dt><dd> Je nach Quelle kann die Deaktivierung von <tt>-fsplit-wide-types</tt> besseren Code ergeben.
+</dd></dl>
+<dl><dt><tt>-fno-inline-small-functions</tt></dt><dd> Relativ kleine Funktionen /immer/ zu inlinen kann den Code unnötig vergrößern, dieser Schalter unterbindet das automatische Inlinen kleiner Funktionen.
+</dd></dl>
+<dl><dt><tt>-finline-limit=</tt><i>wert</i></dt><dd> Maximalwert für automatisch geinlinte Funktionen. In einschlägigen Foren werden kleine Werte für <i>wert</i> vorgeschlagen, z.B.&#160;1…3
+</dd></dl>
+<dl><dt><tt>-mcall-prologues</tt></dt><dd> Die für aufwändige Funktionen mitunter recht langen push/pop-Sequenzen werden durch Hilfsfunktionen ersetzt. Das kann vor allem bei grossen Programmen Platz sparen. Die Ausführungszeit steigt an.
+</dd></dl>
+<dl><dt><tt>-fno-jump-tables</tt></dt><dd> Switch-Statements werden hierdurch mitunter deutlich kürzer.
+</dd></dl>
+<dl><dt><tt>-fno-move-loop-invariants<br />-fno-tree-loop-optimize</tt></dt><dd> Einige Schleifenoptimierungen, welche die Registerlast erhöhen und für AVR kaum zu einem Geschwindigkeitszuwachs führen, werden deaktiviert.
+</dd></dl>
+<dl><dt><tt>-fno-tree-switch-conversion</tt></dt><dd> Neue GCC-Versionen können switch/case Anweisungen u.U. in Loopup-Tabellen umwandeln, die im RAM abgelegt werden, siehe auch <a rel="nofollow" class="external text" href="http://gcc.gnu.org/PR49857">PR49857</a>. Dieser Optimierung ist bei RAM-Knappheit in Betracht zu ziehen, bring aber natürlich nur dann etwas, wenn diese Optimierung auch ausgeführt wurde.
+</dd></dl>
+<dl><dt><tt>-fno-optimize-sibling-calls</tt></dt><dd> Ab 4.7 wirksam: Tailcall-Optimierung kann den Code vergrößern, wenn Epiloge mehrfach erzeugt werden. In diesem Fall deaktiviert man die Tailcall-Optimierung.
+</dd></dl>
+<dl><dt><tt>-maccumulate-args</tt></dt><dd> Ab 4.7: Funktionen, die mehrere printf-artige Aufrufe enthalten und viele Artumente per Stack an diese übergeben, werden u.U kleiner.
+</dd></dl>
+<dl><dt><tt>-mstrict-X</tt></dt><dd> Ab 4.7: Beeinflusst die Art und Weise, wie das X-Register zur Adressierung verwendet wird.
+</dd></dl>
+<dl><dt><tt>-mbranch-cost=</tt><i>wert</i></dt><dd> Ab 4.7: Setzt die Kosten, mit der der Compiler einen bedingten Sprunge veranschlagt. Default-Wert ist <i>wert</i><tt>=0</tt>.
+</dd></dl>
+<dl><dt><tt>-fno-caller-saves</tt></dt><dd> Kann zu effizienteren Pro-/Epilogen beitragen.
+</dd></dl>
+<dl><dt><tt>-fno-tree-ter</tt></dt><dd> Es gibt Fälle, in denen der Compiler die Berechnung temporärer Variablen über volatile-Zugriffe und Memory-Barriers zieht, siehe <a rel="nofollow" class="external text" href="http://gcc.gnu.org/PR53033">PR53033</a>. Von der  C-Spezifikation her ist dies zulässig, kann aber zu unerwünschter Umsortierung der volatile-Operation führe, z.B. wenn es sich dabei um eine <tt>SEI</tt>-Instruktion handelt. Ohne diese Optimierung wird der Code evtl. etwas größer, aber Probleme wie im PR beschrieben können vermieden werden.
+</dd></dl>
+<dl><dt><tt>--param case-values-threshold=</tt><i>wert</i></dt><dd> Ab 4.7: Schwellwert an Einträgen in einem switch/case, ab dem anstatt eines binären if/else-Entscheidungsbaums eine Sprungtabelle zu den case-Labels erzeugt wird. Voreinstellung ab 4.7 ist <i>wert</i><tt>=7</tt>. Ältere Compilerversionen verwenden andere Werte. Siehe auch <tt>-f[no-]jump-tables</tt>.
+</dd></dl>
+<p>Generell gilt für all diese Optionen, daß sie abhängig vom Projekt zu einer Codeverbesserung oder -verschlechterung führen können — dies ist i.d.R. vom Projektcode abhängig.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=11" title="Abschnitt bearbeiten: Linker-Optionen">Bearbeiten</a>]</span> <span class="mw-headline" id="Linker-Optionen"> Linker-Optionen </span></h3>
+<dl><dt><tt>-ffunction-sections<br />-Wl,--gc-sections</tt></dt><dd> Der Linker wirft nicht referenzierte Sections weg, was die Codegröße günstig beeinflussen kann.  Diese Optimierung verkleinert den Code nur dann, wenn nicht verwendete Funktionen in der Anwendung rumgammeln. Weil der Linker nur auf Section-Ebene optimieren kann, muss zusätzlich der Compiler mit <tt>-ffunction-sections</tt> aufgerufen werden, um die Anwendung auf möglichst viele Sections zu verteilen.
+</dd></dl>
+<dl><dt><tt>-Wl,--relax<br />-mrelax</tt></dt><dd> Der Linker fasst Tail-Calls wie
+<dl><dd><tt>CALL some_function<br />RET</tt>
+</dd></dl>
+</dd><dd> zusammen als
+<dl><dd><tt>JMP some_function</tt>
+</dd></dl>
+</dd><dd> Siehe auch die Compiler-Option <tt>-f[no-]optimize-sibling-calls</tt> von oben. Zudem wird <tt>CALL</tt> umgewandelt zur kürzeren <tt>RCALL</tt>-Instruktion falls das Sprungziel im ±4&#160;KiB-Zielbereich von <tt>RCALL</tt> liegt. Analog für <tt>JMP</tt> zu <tt>RJMP</tt>.
+</dd></dl>
+<dl><dd> Die beiden Optionen sind gleichwertig; die erste Variante veranlasst den Compiler, den Linker mit <tt>--relax</tt> aufzurufen. Die zweite Variante verwendet den allgemeinen <tt>-Wl</tt>-Mechanismus, um eine Option von der Compiler-Kommandozeile an den Linker durchzureichen.
+</dd></dl>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=12" title="Abschnitt bearbeiten: Weitere Optionen">Bearbeiten</a>]</span> <span class="mw-headline" id="Weitere_Optionen"> Weitere Optionen </span></h3>
+<dl><dt><tt>-mtiny-stack</tt></dt><dd> Der Compiler ändert nur das Low-Byte des Stackpointers (SP), was auf Controllern mit 16-Bit SP zu kleinerem Code führen kann.  Benötigt der Code Platz auf dem Stack, so erzeugt der Compiler u.U. Code, der den SP liest, einen Offset aufaddiert/abzieht und den SP dann zurückschreibt. Dies ist aufwändig. Für den Fall, daß sich dabei das High-Byte SP nicht ändert, kann Code eingespart werden.
+</dd></dl>
+<dl><dd><u>Beispiel</u>: ATtiny44 hat RAM von <tt>0x60</tt> bis <tt>0x15f</tt>. Braucht die Anwendung nicht mehr als <tt>0x60</tt>&#160;=&#160;96 Bytes an Stack, dann kann mit <tt>-mtiny-stack</tt> compiliert werden.
+</dd></dl>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=13" title="Abschnitt bearbeiten: Änderung des Binärinterfaces per Option">Bearbeiten</a>]</span> <span class="mw-headline" id=".C3.84nderung_des_Bin.C3.A4rinterfaces_per_Option"> Änderung des Binärinterfaces per Option </span></h3>
+<div style="margin:1em; padding:1em; border:solid 2px #ee0040;">
+<dl><dt>Warnung</dt><dd> Im Gegensatz zu den Optionen der vorherigen Abschnitte, bei denen es sich um reine Optimierungsoptionen handelt, ändern die folgenden Optionen das Binärinterface (ABI) des vom Compiler erzeugten Codes und sind daher nur nach eingehender Prüfung anzuwenden! Wird eine Anwendung mit diesen Schaltern übersetzt, dann ist sicher zu stellen, daß <i>alle</i> Module inclusive Libraries damit derzeugt werden oder die ABI-Änderung sich nicht auf Code in Bibliotheken auswirkt!
+</dd></dl>
+</div>
+<p>Vorsicht in auch deshalb geboten, weil manche Entwicklungsumgebungen wie "Atmel Studio" das ABI <i>per Default</i> verändern und ohne daß der Anwender es extra anfordert.
+</p>
+<dl><dt><tt>-funsigned-char</tt></dt><dd> Anders als im avr-gcc ABI ist der Typ <tt>char</tt> unsigned anstatt signed.
+</dd><dd><u>Besser</u>: Verwende die C99-Typen wie <tt>uint8_t</tt> aus dem C99-Header <tt>stdint.h</tt>.
+</dd></dl>
+<dl><dt><tt>-funsigned-bitfields</tt></dt><dd> Bitfelder mit Basetype <tt>char</tt>, <tt>short</tt>, <tt>int</tt> <tt>long</tt> und <tt>long long</tt> werden als unsigned implementiert anstatt als signed wie in der avr-gcc ABI.
+</dd><dd><u>Besser</u>: Wenn ein Bitfeld unsigned sein soll, dann mach es unsigned!
+</dd></dl>
+<dl><dt><tt>-fpack-struct</tt></dt><dd> Im Gegensatz zur avr-gcc ABI werden Strukturen und Unions per default gepackt.
+</dd><dd><u>Besser</u>: Wenn ein zusammengesetzter Typ gepackt werden soll, mache ein Typedef mit explizitem <tt>__attribute__((packed))</tt>!
+</dd></dl>
+<dl><dt><tt>-fshort-enums</tt></dt><dd> Enum-Typen werden so kurz wie möglich implementiert anstatt als <tt>int</tt> gemäß avr-gcc ABI.
+</dd></dl>
+<dl><dt><tt>-mint8</tt></dt><dd> Ein <tt>int</tt> ist nur nocht 8 Bits breit. Dies entspricht nicht mehr dem C-Standard und wird nicht durch die C-Bibliotheken wie AVR-Libc oder newlib unterstützt! Die Codegröße von 8-Bit Operationen kann sich verkleinern, weil andere Integer-Promotion Regeln angewandt werden. Literals müssen ggf. angepasst bzw gecastet werden, siehe auch C99-Makros wie <tt>UINT16_C</tt> aus <tt>stdint.h</tt>.
+</dd></dl>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=14" title="Abschnitt bearbeiten: Anpassungen der Quelle">Bearbeiten</a>]</span> <span class="mw-headline" id="Anpassungen_der_Quelle"> Anpassungen der Quelle </span></h2>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=15" title="Abschnitt bearbeiten: Attribute noreturn, OS main und OS task">Bearbeiten</a>]</span> <span class="mw-headline" id="Attribute_noreturn.2C_OS_main_und_OS_task"> Attribute noreturn, OS_main und OS_task </span></h3>
+<p>Mikrocontroller-Programme laufen normalerweise in einer Endlosschleife, so dass die main-Routine nie verlassen wird.
+Teilt man dies dem Compiler mit, kann er bestimmte Optimierungen durchführen.
+So ist es zum Beispiel unnötig, Code zum Sichern und Zurücklesen von Registern zu erzeugen.
+</p><p>Das Mitteilen funktioniert beim gcc über Attribute, die man der Deklaration oder bei der Implementierung einer Funktion anhängt:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">static</span> <span class="kw4">void</span> main_loop <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span> __attribute__<span class="br0">&#40;</span><span class="br0">&#40;</span>noreturn<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw4">void</span> main_loop <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="kw1">while</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+     <span class="co1">// Hauptschleife</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>oder
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">static</span> <span class="kw4">void</span> __attribute__<span class="br0">&#40;</span><span class="br0">&#40;</span>noreturn<span class="br0">&#41;</span><span class="br0">&#41;</span>
+main_loop <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="kw1">while</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+     <span class="co1">// Hauptschleife</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>Die Funktion <tt>main_loop</tt> kann dann in <tt>main</tt> aufgerufen werden:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">int</span> main <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  main_loop<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&#160;
+  <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>Das abschließende <tt>return</tt> wird vom Compiler wegoptimiert und belegt keinen Speicher.
+</p><p><tt>avr-gcc</tt> kennt weiterhin die Attribute <tt>OS_main</tt> und <tt>OS_task</tt>.
+Die Verwendung von <tt>OS_main</tt> kann etwa aussehen wie folgt. Natürlich kann auch wie oben die Hauptschleife in einer eigenen Funktion implementiert werden, und das <tt>return</tt> verursacht keinen zusätzlichen Code:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">int</span> __attribute__<span class="br0">&#40;</span><span class="br0">&#40;</span>OS_main<span class="br0">&#41;</span><span class="br0">&#41;</span>
+main <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="kw1">while</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+     <span class="co1">// Hauptschleife</span>
+  <span class="br0">&#125;</span>
+&#160;
+  <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=16" title="Abschnitt bearbeiten: Statische Variablen in einer Struktur sammeln">Bearbeiten</a>]</span> <span class="mw-headline" id="Statische_Variablen_in_einer_Struktur_sammeln"> Statische Variablen in einer Struktur sammeln </span></h3>
+<p>Gibt es in einem Programm mehrere inhaltlich zusammengehörende Variablen, dann ist es sinnvoll diese in einer Struktur zu vereinigen.  Neben einer klareren Programm- bzw. Datenstruktur kann dies auch zu kleinerem Code führen.
+</p><p>Beispiel ist die folgende kleine Routine, welche die Zeit in der globalen <tt>time</tt>-Strukture um eine Sekunde erhöht:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="co2">#include &lt;stdint.h&gt;</span>
+&#160;
+<span class="kw4">typedef</span> <span class="kw4">struct</span> 
+<span class="br0">&#123;</span>
+    <span class="kw4">uint8_t</span> second<span class="sy0">;</span>
+    <span class="kw4">uint8_t</span> minute<span class="sy0">;</span>
+    <span class="kw4">uint8_t</span> hour<span class="sy0">;</span>
+<span class="br0">&#125;</span> time_t<span class="sy0">;</span>
+&#160;
+<span class="co1">// Globale time-Struktur enthält die Zeit</span>
+time_t <span class="kw3">time</span><span class="sy0">;</span>
+&#160;
+<span class="kw4">void</span> next_second <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="co1">// Zeiger auf die globale time-Struktur</span>
+    time_t <span class="sy0">*</span>ptime <span class="sy0">=</span> <span class="sy0">&amp;</span><span class="kw3">time</span><span class="sy0">;</span>
+&#160;
+    <span class="co1">// time um 1 Sekunde erhöhen</span>
+&#160;
+    <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">++</span>ptime<span class="sy0">-&gt;</span>second <span class="sy0">==</span> <span class="nu0">60</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        ptime<span class="sy0">-&gt;</span>second <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+&#160;
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">++</span>ptime<span class="sy0">-&gt;</span>minute <span class="sy0">==</span> <span class="nu0">60</span><span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+            ptime<span class="sy0">-&gt;</span>minute <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+&#160;
+            <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">++</span>ptime<span class="sy0">-&gt;</span>hour <span class="sy0">==</span> <span class="nu0">24</span><span class="br0">&#41;</span>
+                ptime<span class="sy0">-&gt;</span>hour <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>Die Funktion enthält mehrere indirekte Zugriffe auf die <tt>time</tt>-Struktur, und es wäre günstig, wenn <tt>avr-gcc</tt> indirekte Adressierung für die Zugriffe verwendet: Alle Zugriffe geschehen über den Struktur-Zeiger <tt>ptime</tt>, und ein indirekter Zugriff per <tt>LD</tt>, <tt>LDD</tt>, <tt>ST</tt> oder <tt>STT</tt> kostet 2&#160;Bytes, während die direkten Spreicherzugriffe <tt>LDS</tt> und <tt>STS</tt> jeweils 4&#160;Bytes verbrauchen.
+</p><p><tt>avr-gcc</tt> erzeugt mit Optimierung auf Größe jedoch folgenden Code:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">next_second<span class="sy0">:</span>
+    <span class="co1">// if (++ptime-&gt;second == 60)</span>
+    lds  r24<span class="sy0">,</span> <span class="kw3">time</span>
+    subi r24<span class="sy0">,</span> <span class="sy0">-</span><span class="nu0">1</span>
+    sts  <span class="kw3">time</span><span class="sy0">,</span> r24
+    cpi  r24<span class="sy0">,</span> <span class="nu0">60</span>
+    brne .<span class="me1">L1</span>
+    <span class="co1">// ptime-&gt;second = 0;</span>
+    sts  <span class="kw3">time</span><span class="sy0">,</span> __zero_reg__
+    <span class="co1">// if (++ptime-&gt;minute == 60)</span>
+    lds  r24<span class="sy0">,</span> <span class="kw3">time</span><span class="sy0">+</span><span class="nu0">1</span>
+    subi r24<span class="sy0">,</span> <span class="sy0">-</span><span class="nu0">1</span>
+    sts  <span class="kw3">time</span><span class="sy0">+</span><span class="nu0">1</span><span class="sy0">,</span> r24
+    cpi  r24<span class="sy0">,</span> <span class="nu0">60</span>
+    brne .<span class="me1">L1</span>
+    <span class="co1">// ptime-&gt;minute = 0;</span>
+    sts  <span class="kw3">time</span><span class="sy0">+</span><span class="nu0">1</span><span class="sy0">,</span> __zero_reg__
+    <span class="co1">// if (++ptime-&gt;hour == 24)</span>
+    lds  r24<span class="sy0">,</span><span class="kw3">time</span><span class="sy0">+</span><span class="nu0">2</span>
+    subi r24<span class="sy0">,</span> <span class="sy0">-</span><span class="nu0">1</span>
+    sts  <span class="kw3">time</span><span class="sy0">+</span><span class="nu0">2</span><span class="sy0">,</span> r24
+    cpi  r24<span class="sy0">,</span> <span class="nu0">24</span>
+    brne .<span class="me1">L1</span>
+    <span class="co1">// ptime-&gt;hour = 0;</span>
+    sts  <span class="kw3">time</span><span class="sy0">+</span><span class="nu0">2</span><span class="sy0">,</span> __zero_reg__
+.<span class="me1">L1</span><span class="sy0">:</span>
+    ret</pre></div></div>
+<p>D.h. obwohl der C-Code indirekt zugreift, enthält das Compilat direkte Zugriffe und der Code belegt 56&#160;Bytes an Flash. Grund ist, daß der Compiler den Inhalt der Variablen <tt>ptime</tt> kennt und daher die indirekten Struktur-Zugriffe in direkte umwandelt.
+</p><p>Um indirekte Adressierung im erzeugten Code zu erzwingen, kann man die Struktur-Adresse als Parameter übergeben:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">void</span> next_second <span class="br0">&#40;</span>time_t <span class="sy0">*</span>ptime<span class="br0">&#41;</span></pre></div></div>
+<p>oder – als hässliche Lösung – dem Compiler des Wissen um den Inhalt von <tt>ptime</tt> per Inline-Assembler nehmen:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">asm <span class="br0">&#40;</span><span class="st0">&quot;&quot;</span> <span class="sy0">:</span> <span class="st0">&quot;+r&quot;</span> <span class="br0">&#40;</span>ptime<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></div></div>
+<p>Dies führt denn zu folgendem Code, der um 25% kleiner ist und nur noch 42&#160;Bytes Flash belegt:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">next_second<span class="sy0">:</span>
+    <span class="co1">// time_t *ptime = &amp;time;</span>
+    <span class="co1">// asm (&quot;&quot;&#160;: &quot;+r&quot; (ptime));</span>
+    ldi  r30<span class="sy0">,</span> lo8<span class="br0">&#40;</span><span class="kw3">time</span><span class="br0">&#41;</span>
+    ldi  r31<span class="sy0">,</span> hi8<span class="br0">&#40;</span><span class="kw3">time</span><span class="br0">&#41;</span>
+    <span class="co1">// if (++ptime-&gt;second == 60)</span>
+    ld   r24<span class="sy0">,</span> Z
+    subi r24<span class="sy0">,</span> <span class="sy0">-</span><span class="nu0">1</span>
+    st   Z<span class="sy0">,</span> r24
+    cpi  r24<span class="sy0">,</span> <span class="nu0">60</span>
+    brne .<span class="me1">L1</span>
+    <span class="co1">// ptime-&gt;second = 0;</span>
+    st   Z<span class="sy0">,</span> __zero_reg__
+    <span class="co1">// if (++ptime-&gt;minute == 60)</span>
+    ldd  r24<span class="sy0">,</span> Z<span class="sy0">+</span><span class="nu0">1</span>
+    subi r24<span class="sy0">,</span> <span class="sy0">-</span><span class="nu0">1</span>
+    std  Z<span class="sy0">+</span><span class="nu0">1</span><span class="sy0">,</span> r24
+    cpi  r24<span class="sy0">,</span> <span class="nu0">60</span>
+    brne .<span class="me1">L1</span>
+    <span class="co1">// ptime-&gt;minute = 0;</span>
+    std  Z<span class="sy0">+</span><span class="nu0">1</span><span class="sy0">,</span> __zero_reg__
+    <span class="co1">// if (++ptime-&gt;hour == 24)</span>
+    ldd  r24<span class="sy0">,</span> Z<span class="sy0">+</span><span class="nu0">2</span>
+    subi r24<span class="sy0">,</span> <span class="sy0">-</span><span class="nu0">1</span>
+    std  Z<span class="sy0">+</span><span class="nu0">2</span><span class="sy0">,</span> r24
+    cpi  r24<span class="sy0">,</span> <span class="nu0">24</span>
+    brne .<span class="me1">L1</span>
+    <span class="co1">// ptime-&gt;hour = 0;</span>
+    std  Z<span class="sy0">+</span><span class="nu0">2</span><span class="sy0">,</span> __zero_reg__
+.<span class="me1">L1</span><span class="sy0">:</span>
+    ret</pre></div></div>
+<p>Weil AVRs nur zwei Zeiger-Register haben, die über diese Addressierungsart verfügen (Y und Z), ist diese Optimierung nur eingeschränkt anwendbar.
+</p><p>Werden etwa Z oder Y für andere Zwecke benötigt – etwa für Flash-Adressierung per <tt>LPM</tt> oder Y als Frame-Pointer gebraucht – verkleinert sich das Anwendungsfeld noch weiter. Zudem müssen genügend Struktur-Zugriffe nacheinander erfolgen, damit ein positiven Effekt auf die Codegröße zustande kommt. Immerhin muss die Adresse geladen werden, das Zeiger-Register wird belegt und steht nicht für andere Variablen zur Verfügung, und im Falle von Y kommen <tt>PUSH</tt>/<tt>POP</tt> im Prolog/Epilog hinzu. Werden viele unterschiedliche Struktur-Pointer verwendet ("viele" relativ zur Anzahl der verfügbaren Pointer-Registern), kann die Codegröße auch ansteigen.
+</p><p>Direkte Zugriffe sind in jedem Falle schneller, denn direkte und indirekte Zugriffe kosten die gleiche Zeit. Die Indirekten Zugriffe erfordern jedoch die Initialisierung des Zeiger-Registers und evl <tt>PUSH</tt>/<tt>POP</tt>.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=17" title="Abschnitt bearbeiten: Multiplikationen mit Konstanten">Bearbeiten</a>]</span> <span class="mw-headline" id="Multiplikationen_mit_Konstanten"> Multiplikationen mit Konstanten </span></h3>
+<p>Der Compiler instanziiert sofort eine teure allgemeine Bibliotheksfunktion, auch wenn es anders ginge. Ich hatte eine einzige 32-bit Multiplikation mit 10 drin, die mir ein mulsi3 beschert hat. Mit a = (b&lt;&lt;3) + (b&lt;&lt;1) geht es in dem Fall kürzer. Wie gesagt, map-File beobachten.
+</p>
+<dl><dt>Anmerkung</dt><dd> Variablen als unsigned definieren, dann sollte der Compiler das selbst machen.
+</dd></dl>
+<dl><dt>Anmerkung</dt><dd> Auch Schieben ist teuer auf AVR. Schauen wir uns also mal an, was aus folgendem Code wird:
+</dd></dl>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">uint32_t</span> foo <span class="br0">&#40;</span><span class="kw4">uint32_t</span> i<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">return</span> i<span class="sy0">*</span><span class="nu0">10</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&#160;
+<span class="kw4">uint32_t</span> bar <span class="br0">&#40;</span><span class="kw4">uint32_t</span> i<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="br0">&#40;</span>i <span class="sy0">&lt;&lt;</span> <span class="nu0">1</span><span class="br0">&#41;</span> <span class="sy0">+</span> <span class="br0">&#40;</span>i <span class="sy0">&lt;&lt;</span> <span class="nu0">3</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+</p>
+<div style="overflow:auto; height:15ex;; border: 1px solid gray;">
+<pre>
+00000032 &lt;foo&gt;:
+  32:	2a e0       	ldi	r18, 0x0A	; 10
+  34:	30 e0       	ldi	r19, 0x00	; 0
+  36:	40 e0       	ldi	r20, 0x00	; 0
+  38:	50 e0       	ldi	r21, 0x00	; 0
+  3a:	19 d0       	rcall	.+50     	; 0x6e &lt;__mulsi3&gt;
+  3c:	08 95       	ret
+
+0000003e &lt;bar&gt;:
+  3e:	26 2f       	mov	r18, r22
+  40:	37 2f       	mov	r19, r23
+  42:	48 2f       	mov	r20, r24
+  44:	59 2f       	mov	r21, r25
+  46:	22 0f       	add	r18, r18
+  48:	33 1f       	adc	r19, r19
+  4a:	44 1f       	adc	r20, r20
+  4c:	55 1f       	adc	r21, r21
+  4e:	e3 e0       	ldi	r30, 0x03	; 3
+  50:	66 0f       	add	r22, r22
+  52:	77 1f       	adc	r23, r23
+  54:	88 1f       	adc	r24, r24
+  56:	99 1f       	adc	r25, r25
+  58:	ea 95       	dec	r30
+  5a:	d1 f7       	brne	.-12     	; 0x50 &lt;__SREG__+0x11&gt;
+  5c:	26 0f       	add	r18, r22
+  5e:	37 1f       	adc	r19, r23
+  60:	48 1f       	adc	r20, r24
+  62:	59 1f       	adc	r21, r25
+  64:	95 2f       	mov	r25, r21
+  66:	84 2f       	mov	r24, r20
+  68:	73 2f       	mov	r23, r19
+  6a:	62 2f       	mov	r22, r18
+  6c:	08 95       	ret
+
+0000006e &lt;__mulsi3&gt;:
+  6e:	ff 27       	eor	r31, r31
+  70:	ee 27       	eor	r30, r30
+  72:	bb 27       	eor	r27, r27
+  74:	aa 27       	eor	r26, r26
+
+00000076 &lt;__mulsi3_loop&gt;:
+  76:	60 ff       	sbrs	r22, 0
+  78:	04 c0       	rjmp	.+8      	; 0x82 &lt;__mulsi3_skip1&gt;
+  7a:	a2 0f       	add	r26, r18
+  7c:	b3 1f       	adc	r27, r19
+  7e:	e4 1f       	adc	r30, r20
+  80:	f5 1f       	adc	r31, r21
+
+00000082 &lt;__mulsi3_skip1&gt;:
+  82:	22 0f       	add	r18, r18
+  84:	33 1f       	adc	r19, r19
+  86:	44 1f       	adc	r20, r20
+  88:	55 1f       	adc	r21, r21
+  8a:	96 95       	lsr	r25
+  8c:	87 95       	ror	r24
+  8e:	77 95       	ror	r23
+  90:	67 95       	ror	r22
+  92:	89 f7       	brne	.-30     	; 0x76 &lt;__mulsi3_loop&gt;
+  94:	00 97       	sbiw	r24, 0x00	; 0
+  96:	76 07       	cpc	r23, r22
+  98:	71 f7       	brne	.-36     	; 0x76 &lt;__mulsi3_loop&gt;
+
+0000009a &lt;__mulsi3_exit&gt;:
+  9a:	9f 2f       	mov	r25, r31
+  9c:	8e 2f       	mov	r24, r30
+  9e:	7b 2f       	mov	r23, r27
+  a0:	6a 2f       	mov	r22, r26
+  a2:	08 95       	ret
+
+</pre>
+</div>
+<dl><dd> Der Funktionsaufruf samt Lib-Funktion ist garnicht sooo teuer. Bereits mit zwei Multiplikationen im Programm &#8212; auch einer Multiplikation mit einer anderen Konstanten oder einer Variablen &#8212; gewinnt die lib-Version, da der Code wiederverwendet wird. Übrigens sind diese Multiplikationsroutinen und auch die in die libgcc enthaltenen Divisionen keine "normalen" Funktionen wie sie von C erzeugt werden. avr-gcc weiß genau, welche Register diese Routinen belegen und welche nicht. Damit ist der Aufruf einer solchen Funktion billiger als ein herkömmlicher Funktionsaufruf, bei dem die Funktion als Blackbox behandelt werden muss, die alle call-clobbered Register zerstört.
+</dd></dl>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=18" title="Abschnitt bearbeiten: Alle Variablen nur so breit wie nötig">Bearbeiten</a>]</span> <span class="mw-headline" id="Alle_Variablen_nur_so_breit_wie_n.C3.B6tig"> Alle Variablen nur so breit wie nötig </span></h3>
+<p>Hatte ich eigentlich schon, nur an einigen wenigen Stellen war ich da etwas nachlässig. Mitunter reicht ein kleinerer Typ doch, wenn man z.&#160;B. vorher geeignet skaliert. Am besten nur die skalaren Typen aus &lt;stdint.h&gt; verwenden, das erleichtert auch das Folgende. Bei RAM Knappheit: kann ich Strings sinnvollerweise aus dem RAM ins Flash verbannen? Kann ich es mir leisten mehrere Flag-Variablen in ein Byte zusammenzufassen, auch wenn dann die Zugriffe möglicherweise etwas langsamer werden.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=19" title="Abschnitt bearbeiten: Logische Operatoren werden auf int-Größe erweitert">Bearbeiten</a>]</span> <span class="mw-headline" id="Logische_Operatoren_werden_auf_int-Gr.C3.B6.C3.9Fe_erweitert"> Logische Operatoren werden auf int-Größe erweitert </span></h3>
+<p>Obwohl der AVR ein 8-Bit Controller ist, verlangt der C-Standard, daß ein <tt>int</tt> mindestens 16&#160;Bits groß ist. Wegen den Promotion-Regeln von C werden 8-Bit Operanden in Operationen auf 16&#160;Bits aufgeweitet. Beispiel:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="co2">#include &lt;stdint.h&gt;</span>
+&#160;
+<span class="kw4">uint8_t</span> c<span class="sy0">;</span>
+&#160;
+<span class="kw4">void</span> foo <span class="br0">&#40;</span><span class="kw4">uint8_t</span> a<span class="sy0">,</span> <span class="kw4">uint8_t</span> b<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>a <span class="sy0">==</span> ~b<span class="br0">&#41;</span>
+        c <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>Den zweiten Operanden mit dem Komplement weitet der Compiler auf 16 Bit auf, wodurch alle high-Bits von <tt>~b</tt> gesetzt werden. Der Compiler erkennt, daß der Vergleich niemals wahr ist und optimiert ihn weg:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">foo<span class="sy0">:</span>
+    ret</pre></div></div>
+<p>Ein Cast verhindert dieses:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">void</span> foo <span class="br0">&#40;</span><span class="kw4">uint8_t</span> a<span class="sy0">,</span> <span class="kw4">uint8_t</span> b<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>a <span class="sy0">==</span> <span class="br0">&#40;</span><span class="kw4">uint8_t</span><span class="br0">&#41;</span> ~b<span class="br0">&#41;</span>
+        c <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>was übersetzt wird zu:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">foo<span class="sy0">:</span>
+    <span class="co1">// if (a == (uint8_t) ~b)</span>
+    com  r22
+    cpse r24<span class="sy0">,</span> r22   
+    rjmp .<span class="me1">L1</span>
+    <span class="co1">// c = 0</span>
+    sts c<span class="sy0">,</span> __zero_reg__
+.<span class="me1">L1</span><span class="sy0">:</span>
+ret</pre></div></div>
+<dl><dt>Achtung</dt><dd> Tatsächlich handelt es sich dabei nicht um ein Optimierungsproblem, sondern einen typischen Programmierfehler. Die beiden Varianten sind keineswegs identisch! Bei Variablen vom Typ <tt>uint8_t</tt> ist der Ausdruck <tt>(a == ~b)</tt> immer falsch! Dies unterstreicht mehr als eindringlich, daß eine gute Kenntnis der Programmiersprache das A und O jedes erfolgreichen Programmierers ist. Kenne zuallerst mal deine Programmiersprache - und zwar auch in den intimen Details!
+</dd></dl>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=20" title="Abschnitt bearbeiten: Speichern von globalen Flags">Bearbeiten</a>]</span> <span class="mw-headline" id="Speichern_von_globalen_Flags"> Speichern von globalen Flags </span></h3>
+<p>Oft werden in den Programmen Flags verwendet um beispielsweise eingetroffene Interrupts in der main-Routine auszuwerten. Hierzu wird üblicherweise eine globale Variable verwendet.
+</p><p>Um den Wert dieser Variable abzufragen, muss sie jedoch erst aus dem SRAM in ein Register geladen werden, und kann dann erst auf ihren Status hin überprüft werden. Eine Möglichkeit ist, der globalen Variablen ein einziges Register fest zuzuordnen:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">register</span> <span class="kw4">uint8_t</span> counter8_1 asm<span class="br0">&#40;</span><span class="st0">&quot;r2&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw4">register</span> <span class="kw4">uint8_t</span> counter8_2 asm<span class="br0">&#40;</span><span class="st0">&quot;r3&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw4">register</span> <span class="kw4">uint16_t</span> counter16_1 asm<span class="br0">&#40;</span><span class="st0">&quot;r4&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// r4:r5</span>
+<span class="kw4">register</span> <span class="kw4">uint16_t</span> counter16_2 asm<span class="br0">&#40;</span><span class="st0">&quot;r6&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// r6:r7</span></pre></div></div>
+<p>siehe auch: <a rel="nofollow" class="external free" href="http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_regbind">http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_regbind</a>
+</p><p>Als Alternative kann man ein nicht verwendetes Register des I/O-Bereichs verwenden. Dabei würde sich z.&#160;B. das Register eines zweiten UARTs, oder das  EEPROM-Register anbieten, falls diese nicht benötigt werden.
+</p><p>Neuere AVR-Modelle besitzen für diesen Zweck 3 frei verwendbare Bytes im bitadressierbaren I/O-Bereich: GPIOR0-2.
+</p>
+<div style="margin:1em; padding:1em; border:solid 2px #ee0040;">
+<dl><dt>Warnung</dt><dd> Dieses Vorgehen verändert das ABI! Um dieses Feature fehlerfrei anzuwenden, ist einiges an Wissen über die Interna von GCC notwendig. Auch ein korrekt funktionierendes Programm ist keine Garantie dafür, daß die globalen Register fehlerfrei implementiert wurden. Unter Umständen bringen erst spätere Codeänderungen/-erweiterung den Fehler zum Vorschein, und weil der Fehler vorher nicht akut war, sucht man sich den Wolf an der falschen Stelle im Code anstatt bei der globalen Registern. Siehe auch <a href="/wikisoftware/index.php?title=Globale_Register&amp;action=edit&amp;redlink=1" class="new" title="Globale Register (Seite nicht vorhanden)">Globale Register</a>.
+</dd></dl>
+</div>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=21" title="Abschnitt bearbeiten: Puffern von volatile-Variablen">Bearbeiten</a>]</span> <span class="mw-headline" id="Puffern_von_volatile-Variablen"> Puffern von volatile-Variablen </span></h3>
+<p>Der Compiler behandelt volatile-Variablen bei mehreren Manipulationen wie heiße Kartoffeln. Für jeden einzelnen Vorgang wiederholt sich das Spiel:
+</p>
+<ul><li> aus dem Speicher holen
+</li><li> bearbeiten
+</li><li> zurückspeichern
+</li></ul>
+<p>Unter Umständen ist dieses Verhalten unsinnig. Ein Minimalbeispiel:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">volatile</span> <span class="kw4">char</span> var<span class="sy0">;</span>
+&#160;
+ISR<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    var<span class="sy0">++;</span>
+&#160;
+    <span class="kw1">if</span> <span class="br0">&#40;</span>var <span class="sy0">&gt;</span> <span class="nu0">100</span><span class="br0">&#41;</span>
+        var <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&#160;
+<span class="kw4">void</span> main <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">while</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+        <span class="kw3">printf</span> <span class="br0">&#40;</span>var<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div> 
+<p>Hier wird <b>var</b> pro <a href="/articles/ISR" title="ISR" class="mw-redirect">ISR</a>-Ausführung zwei mal aus dem RAM geholt und zurückgeschrieben. Das ist überflüssig, weil die Interruptrountine nicht unterbrochen werden kann. Aus Sicht der ISR bräuchte man eigentlich kein volatile, kann es aber wegen des Zugriffs aus main heraus nicht weglassen. Eine Lösung findet sich im folgenden Schnipsel:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">volatile</span> <span class="kw4">char</span> var<span class="sy0">;</span>
+&#160;
+ISR<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw4">char</span> temp <span class="sy0">=</span> var<span class="sy0">;</span>
+&#160;
+    <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">++</span>temp <span class="sy0">&gt;</span> <span class="nu0">100</span><span class="br0">&#41;</span>
+        temp<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span>
+&#160;
+    var <span class="sy0">=</span> temp<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&#160;
+<span class="kw4">void</span> main <span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">while</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+        <span class="kw3">printf</span> <span class="br0">&#40;</span>var<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div></div> 
+<p>Hier wird die globale Variable <b>var</b> in der lokalen Variable <b>temp</b> gepuffert. Ein Nachteil durch das Anlegen von <b>temp</b> ergibt sich nicht, da das dafür verwendete Register für die Manipulation sowieso benötigt wird. 
+</p><p>Wie alle Optimierungen kann dieses Vorgehen auch nach hinten losgehen: Wenn Laden und Zurückspeichern von <b>var</b> weit auseinanderliegen (extrem lange ISR), müllt man sich die Register zu. Im schlimmsten Fall wird <b>temp</b> sogar zwischenzeitlich auf dem Stack ausgelagert.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=22" title="Abschnitt bearbeiten: Schleifen">Bearbeiten</a>]</span> <span class="mw-headline" id="Schleifen"> Schleifen </span></h3>
+<p>Bei Schleifen, die eine bestimmte Anzahl an Durchläufen ausgeführt werden sollen, ist es besser den Schleifenzähler vorher auf einen Wert zu setzen, und am Ende einer Do-While Schleife diesen zu dekrementieren.
+So beschränkt sich die Sprungbedingung auf ein brne (branch if not equal).
+</p><p>Beispiel:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="kw4">uint8_t</span> counter<span class="sy0">;</span>	
+counter <span class="sy0">=</span> <span class="nu0">100</span><span class="sy0">;</span>
+<span class="kw1">do</span>
+<span class="br0">&#123;</span>
+    <span class="co1">// mach irgendetwas</span>
+<span class="br0">&#125;</span> <span class="kw1">while</span> <span class="br0">&#40;</span><span class="sy0">--</span>counter<span class="br0">&#41;</span><span class="sy0">;</span></pre></div></div>
+<p>Achtung: Derartige Optimierungen sind meistens zweifelhaft und sehr Compilerabhängig. Compiler betreiben aufwendige Code- und Datenflussanalysen, in denen sie viele Dinge ins Kalkül ziehen, die ein menschlicher Programmierer im Regelfall nicht mehr überblicken kann. Von einem ordentlichen Compiler kann erwartet werden, dass er derartige Umstellungen (sofern sie möglich sind) in Eigenregie erledigt. Auch wenn es einzelne Compiler bzw. Compilerversionen gibt, in denen ein manueller Umbau einer derartigen Schleife tatsächlich eine Verbesserung bringt, sollte man immer im Hinterkopf behalten, dass sich in der nächsten Compilerversion alles umdrehen kann. Im Zweifelsfall lieber die Schleifenvariante benutzen, die der Situation angemessen ist und die den gewünschten Vorgang am klarsten beschreibt. Wenn dieser Vorgang im weitesten Sinne einen Countdown darstellt, dann ist natürlich nichts gegen eine derartige Schleifenkonstruktion einzuwenden.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=23" title="Abschnitt bearbeiten: Schiebeoperationen">Bearbeiten</a>]</span> <span class="mw-headline" id="Schiebeoperationen"> Schiebeoperationen </span></h3>
+<p>Oft benötigt man Schiebeoperationen, um Daten Bit für Bit zu <a href="/articles/Bitmanipulation" title="Bitmanipulation"> verarbeiten</a>, z.B. für <a class="external text" href="http://www.mikrocontroller.net/articles/AVR-Tutorial:_Schieberegister">Soft</a>-<a href="/articles/SPI" title="SPI" class="mw-redirect">SPI</a>. Hier empfiehlt es sich DRINGEND, möglichst nur Schiebeoperationen mit konstanten Verschiebungszähler durchzuführen, diese sind auf dem AVR deutlich schneller als Schiebeoperationen mit Variablen, welche meist durch mehrfache Funktionsaufrufe mit Scheifen etc. gelöst werden. Dabei verwendet man oft konstante Bitmasken, um die einzelnen Bits nacheinander zu maskieren.
+</p><p>Noch schneller geht das Schieben von Konstanten um einen konstanten Wert, denn das macht der Compiler bei eingeschalteter Optimierung noch während des Compilierens. Gerade für schnelle IO-Operationen kommt dann meist nur ein einziger ASM-Befehl heraus (sbi, cbi).
+</p><p>Ebenso ist es wenig empfehlenswert, 32 oder gar 64 Bit Datentypen zu schieben, das dauert sehr lange. Besser ist es, die Daten als Array von 8 Bit Werten zu handhaben und diese zu schieben, das ist meist deutlich schneller. Gute Beispiele findet man <a class="external text" href="http://www.mikrocontroller.net/topic/179566#1729219">hier</a> und <a class="external text" href="http://www.mikrocontroller.net/topic/169509#1631439">hier</a>.
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="co2">#define DATAPORT PORTD</span>
+<span class="co2">#define IO-BIT PD4</span>
+&#160;
+<span class="kw4">uint8_t</span> a<span class="sy0">,</span> b<span class="sy0">,</span> i<span class="sy0">;</span>
+&#160;
+i<span class="sy0">=</span><span class="nu0">5</span>
+a <span class="sy0">=</span> b <span class="sy0">&lt;&lt;</span> i<span class="sy0">;</span>    <span class="co1">// variabler Verschiebewert, langsam</span>
+a <span class="sy0">=</span> b <span class="sy0">&lt;&lt;</span> <span class="nu0">5</span><span class="sy0">;</span>    <span class="co1">// konstanter Verschiebewert, schnell</span>
+&#160;
+DATAPORT <span class="sy0">|=</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">&lt;&lt;</span>IO<span class="sy0">-</span>BIT<span class="br0">&#41;</span><span class="sy0">;</span>   <span class="co1">// alles Konstanten, sehr schnell</span></pre></div></div>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=24" title="Abschnitt bearbeiten: Optimierung der Ausführungsgeschwindigkeit">Bearbeiten</a>]</span> <span class="mw-headline" id="Optimierung_der_Ausf.C3.BChrungsgeschwindigkeit">Optimierung der Ausführungsgeschwindigkeit</span></h2>
+<p>Hierzu gibt es schon eine Application-Note von Atmel. Diese AppNote bezieht sich auf den IAR-Compiler. Die darin genannten "Optimierungen" sind für avr-gcc größtenteils obsolet oder bleiben bestenfalls ohne Effekt.
+</p><p>Weblinks:
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.atmel.com/dyn/resources/prod_documents/doc1497.pdf">AVR035</a>: Efficient C Coding for AVR
+</li><li> <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Program_optimization">Program optimization</a> auf Wikipedia, engl.
+</li><li> <a rel="nofollow" class="external text" href="http://bleaklow.com/2012/06/20/sensor_smoothing_and_optimised_maths_on_the_arduino.html">Sensor smoothing and optimised maths on the Arduino</a> - Multiplikation vs. Division
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=25" title="Abschnitt bearbeiten: Fußnoten">Bearbeiten</a>]</span> <span class="mw-headline" id="Fu.C3.9Fnoten"> Fußnoten </span></h2>
+<ol class="references">
+<li id="cite_note-1"><span class="mw-cite-backlink"><a href="#cite_ref-1">↑</a></span> <span class="reference-text">Für avr-gcc 4.x sehen die Kommentare anders aus oder fehlen je nach Compilerversion ganz</span>
+</li>
+<li id="cite_note-2"><span class="mw-cite-backlink"><a href="#cite_ref-2">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external text" href="http://rn-wissen.de/index.php/Assembler-Dump_erstellen_mit_avr-gcc">roboternetz.de: Assembler-Dump erstellen mit avr-gcc</a></span>
+</li>
+</ol>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;action=edit&amp;section=26" title="Abschnitt bearbeiten: Links">Bearbeiten</a>]</span> <span class="mw-headline" id="Links"> Links </span></h2>
+<p><a rel="nofollow" class="external text" href="http://www.atmel.com/Images/doc8453.pdf">Atmel AVR4027</a>: Tips and Tricks to Optimize Your C Code for 8-bit AVR Microcontrollers (<a rel="nofollow" class="external text" href="http://www.atmel.com/Images/AVR4027.zip">Beispiel-Code</a>)
+</p>
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 415/1000000
+Preprocessor generated node count: 901/1000000
+Post‐expand include size: 1281/2097152 bytes
+Template argument size: 1068/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key uc_wiki:pcache:idhash:2917-0!*!0!!de!*!* and timestamp 20131011103623 -->
+</div>			<!-- /bodycontent -->
+						<!-- printfooter -->
+			<div class="printfooter">
+			Von „<a href="http://www.mikrocontroller.net/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;oldid=76862">http://www.mikrocontroller.net/wikisoftware/index.php?title=AVR-GCC-Codeoptimierung&amp;oldid=76862</a>“			</div>
+			<!-- /printfooter -->
+									<!-- catlinks -->
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="/articles/Kategorie:Avr-gcc" title="Kategorie:Avr-gcc">Avr-gcc</a></li></ul></div></div>			<!-- /catlinks -->
+									<div class="visualClear"></div>
+			<!-- debughtml -->
+						<!-- /debughtml -->
+
+      <!-- start adsense -->
+            <!-- end adsense -->
+      
+      <div class="visualClear"></div>
+    </div>
+  </td>
+  <!-- google_ad_section_end -->
+      </tr>
+      </table>
+      <!--
+      <div class="visualClear"></div>
+      <div id="footer" style="clear:both">
+    <div id="f-poweredbyico"><a href="//www.mediawiki.org/"><img src="/wikisoftware/skins/common/images/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki" /></a></div>		<ul id="f-list">
+	  <li id="f-lastmod"> Diese Seite wurde zuletzt am 23. Juni 2013 um 21:15 Uhr geändert.</li>	  <li id="f-viewcount">Diese Seite wurde bisher 74.775-mal abgerufen.</li>	  	  	  <li id="f-about"><a href="/articles/Uc-wiki:%C3%9Cber_Uc-wiki" title="Uc-wiki:Über Uc-wiki">Über Uc-wiki</a></li>	  <li id="f-disclaimer"><a href="/articles/Uc-wiki:Impressum" title="Uc-wiki:Impressum">Impressum</a></li>	</ul>
+      </div>-->
+    </div>
+<div id="bottom">
+  <div id="impress">
+    <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Mikrocontroller.net">webmaster@mikrocontroller.net</a> – <a href="/contact">Impressum</a> – <a href="/user/conditions">Nutzungsbedingungen</a> – <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Anfrage%20zu%20Werbung%20auf%20Mikrocontroller.net">Werbung auf Mikrocontroller.net</a>
+  </div>
+  <div id="powered">
+<!--    powered by Ruby on Rails -->
+  </div>
+ <a href="/util/rb"><!-- nothing --></a>
+ <!-- <a href="http://www.mikrocontroller.net/hp/curlews.php">nothing to see here</a> -->
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-80574-1");
+if (typeof GS_googleAddAdSenseService != 'function') {
+  pageTracker._setCustomVar(3, "GAM", "No", 1);
+} else {
+  pageTracker._setCustomVar(3, "GAM", "Yes", 1);
+}
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<script>if(window.mw){
+mw.loader.state({"site":"loading","user":"missing","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.page.ready","mediawiki.searchSuggest","mediawiki.hidpi"], null, true);
+}</script>
+<script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<!-- Served in 0.108 secs. -->  </body>
+</html>

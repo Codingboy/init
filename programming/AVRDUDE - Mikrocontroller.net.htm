@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <script type="text/javascript">
+      var wgBreakFrames = false;
+      var wgContentLanguage = false;
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="generator" content="MediaWiki 1.21.1" />
+<link rel="alternate" type="application/x-wiki" title="Bearbeiten" href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit" />
+<link rel="edit" title="Bearbeiten" href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/wikisoftware/opensearch_desc.php" title="Uc-wiki (de)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.mikrocontroller.net/wikisoftware/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „Uc-wiki“" href="/wikisoftware/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom" />    <title>AVRDUDE - Mikrocontroller.net</title>
+    
+        <!-- <script type="text/javascript" src="/wikisoftware/skins/common/wikibits.js"></script> -->
+            <script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=startup&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"AVRDUDE","wgTitle":"AVRDUDE","wgCurRevisionId":78723,"wgArticleId":1179,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["AVR-Programmer und -Bootloader","Entwicklungstools"],"wgBreakFrames":false,"wgPageContentLanguage":"de","wgSeparatorTransformTable":[",	.",".	,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"AVRDUDE","wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":true,"previewDialog":false,"publish":true,"toc":false}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"mikrocontroller","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"wikieditor-publish":1,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});;},{},{});
+/* cache key: uc_wiki:resourceloader:filter:minify-js:7:5afc608d284909c94225e82ae67c1108 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script>
+    
+    <script src="/javascripts/combined-top.js" type="text/javascript"></script>
+
+    <!--<script src="/javascripts/highlightCurrentLink.js" type="text/javascript"></script>-->
+    <script src="/javascripts/sorttable.js" type="text/javascript"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/screen.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/common/shared.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/mikrocontroller/main.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/stylesheets/print.css" />
+    <style type="text/css">#nav-foren-sub {display: none;} </style>
+    <style type="text/css">#nav-tutorial-sub {display: none;} </style>
+
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide.css" />
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide-ie6.css" />
+    <![endif]-->
+
+
+    <!--
+    <style type="text/css">
+    <div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorien</a>: <ul><li><a href="/articles/Kategorie:AVR-Programmer_und_-Bootloader" title="Kategorie:AVR-Programmer und -Bootloader">AVR-Programmer und -Bootloader</a></li><li><a href="/articles/Kategorie:Entwicklungstools" title="Kategorie:Entwicklungstools">Entwicklungstools</a></li></ul></div></div>    #nav-foren-sub {display: none;}
+    </style>
+    -->
+
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=ext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: uc_wiki:resourceloader:filter:minify-css:7:8c158424ea41cf09c24f6f94d82b9d56 */</style>
+
+<!-- PUT THIS TAG IN THE head SECTION -->
+<script type="text/javascript" src="//partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-1202612203358489");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+  GA_googleUseIframeRendering();
+</script>
+
+<!-- END OF TAG FOR head SECTION -->
+
+<script type="text/javascript">
+GA_googleAddAttr('pagetype', 'article');
+GA_googleAddAttr('section', 'article');
+GA_googleAddAttr('site_id', '1');
+</script>
+
+
+
+  </head>
+  <body     >
+    <div id="globalWrapper">
+    <div id="top"><h1><a href="/">www.mikrocontroller.net</a></h1></div>
+  <table id="twocolumns">
+  <tr>
+  <td id="sidebar-left" class="sidebar">
+  <!-- begin nav -->
+<div class="nav-container">
+  <ul class="nav-first">
+    <li><b><a href="/">Home</a></b></li>
+    <li>
+      <b><a href="/articles/AVR">AVR</a></b>
+      <ul>
+        <li><a href="/articles/AVR-Tutorial">AVR-Tutorial</a></li>
+        <li><a href="/articles/AVR-GCC-Tutorial">AVR-GCC-Tutorial</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/ARM">ARM</a></b>
+      <ul>
+        <li><a href="/articles/LPC1xxx">LPC1xxx</a></li>
+        <li><a href="/articles/LPC2000">LPC2000</a></li>
+        <li><a href="/articles/AT91SAM">AT91SAM7</a></li>
+        <li><a href="/articles/STM32">STM32</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/MSP430">MSP430</a></b>
+    </li>
+    <li>
+      <b><a href="/articles/Programmierbare_Logik">FPGA, CPLD &amp; Co.</a></b>
+      <ul>
+        <li><a href="/articles/FPGA">Grundlagen zu FPGAs</a></li>
+        <li><a href="/articles/Hardwarebeschreibungssprachen">VHDL &amp; Co.</a></li>
+        <li><a href="/articles/Xilinx_ISE">Xilinx ISE</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/Digitale_Signalverarbeitung">DSP</a></b>
+    </li>
+
+    <li>
+      <b><a href="/articles/Elektronik_Allgemein">Elektronik allgemein</a></b>
+      <ul>
+        <li><a href="/articles/SMD_L%C3%B6ten">SMD L&ouml;ten</a></li>
+        <li><a href="/articles/Operationsverst%C3%A4rker-Grundschaltungen">Operationsverst&auml;rker</a></li>
+        <li><a href="/articles/Oszilloskop">Oszilloskop</a></li>
+      </ul> 
+    </li>
+
+    <li>
+      <b><a href="/forum/all">Forum</a></b>
+      <ul>
+        <li><a href="/forum/mikrocontroller-elektronik">&micro;C &amp; Elektronik</a></li>
+        <li><a href="/forum/analogtechnik">Analogtechnik</a></li>
+        <li><a href="/forum/fpga-vhdl-cpld">FPGA, VHDL &amp; Co.</a></li>
+        <li><a href="/forum/dsp">DSP</a></li>
+        <li><a href="/forum/gcc">GCC</a></li>
+        <li><a href="/forum/codesammlung">Codesammlung</a></li>
+        <li><a href="/forum/markt">Markt</a></li>
+        <li><a href="/forum/platinen">Platinen</a></li>
+        <li><a href="/forum/mechanik">Mechanik &amp; Werkzeug</a></li>
+        <li><a href="/forum/hf">HF, Funk &amp; Felder</a></li>
+        <li><a href="/forum/hausbus">Hausbus</a></li>
+        <li><a href="/forum/pc-programmierung">PC-Programmierung</a></li>
+        <li><a href="/forum/pc-hardware-software">PC Hard- &amp; Software</a></li>
+        <li><a href="/forum/ausbildung-studium-beruf">Ausbildung &amp; Beruf</a></li>
+        <li><a href="/forum/offtopic">Offtopic</a></li>
+        <li><a href="/forum/website">Webseite</a></li>
+       </ul>
+    </li>
+    <li><b><a href="/buecher/">Buchtipps</a></b></li>
+    <li><b><a href="http://shop.mikrocontroller.net/">Shop</a></b></li>
+    <li><b><a href="/articles/Linksammlung">Linksammlung</a></b></li>
+    <li><b><a href="/articles/Hauptseite">Artikel&uuml;bersicht</a></b></li>
+    <li><b><a href="/articles/Spezial:Recentchanges">Letzte &Auml;nderungen</a></b></li>
+  </ul>
+</div>
+<!-- end nav -->
+  <hr />
+  <!-- google_ad_section_start(weight=ignore) -->
+
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+
+	<div id="p-cactions" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-cactions-box'); return false;" >&#9654; Dieser Artikel</a></h5>
+	  <div class="box" id="p-cactions-box">
+      <ul>
+	    <li id="ca-nstab-main"
+	       class="selected"	       ><a href="/articles/AVRDUDE">Seite</a></li><li id="ca-talk"
+	       class="new"	       ><a href="/wikisoftware/index.php?title=Diskussion:AVRDUDE&amp;action=edit&amp;redlink=1">Diskussion</a></li><li id="ca-edit"
+	       	       ><a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit">Bearbeiten</a></li><li id="ca-history"
+	       	       ><a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=history">Versionen/Autoren</a></li>  	  </ul>
+    </div>
+	</div>
+	<div class="portlet" id="p-personal">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-personal-box'); return false;">&#9654; Benutzer</a></h5>
+	  <div class="box" id="p-personal-box">
+	    <ul>
+	    <li id="pt-anonuserpage"><a href="/articles/Benutzer:88.68.76.176" class="new">88.68.76.176</a></li><li id="pt-anontalk"><a href="/articles/Benutzer_Diskussion:88.68.76.176" class="new">Diskussionsseite dieser IP</a></li><li id="pt-anonlogin"><a href="/wikisoftware/index.php?title=Spezial:Anmelden&amp;returnto=AVRDUDE">Anmelden</a></li>	    </ul>
+	  </div>
+	</div>
+  <!-- LOGO
+	<div class="portlet" id="p-logo">
+	  <a style="background-image: url(/wikisoftware/skins/common/images/wiki.png);"
+	    href="/articles/Hauptseite"
+	    title="Hauptseite"></a>
+	</div>
+  -->
+	<div id="p-search" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-search-box'); return false;">&#9654; Suche</a></h5>
+	  <div class="box" id="p-search-box">
+	    <form name="searchform" action="/articles/Spezial:Suche" id="searchform">
+	      <input id="searchInputX" name="search" type="text" accesskey="f" value="" /><br />
+	      <input type='submit' name="go" class="searchButton"
+	        value="Ausführen"
+	        />&nbsp;<input type='submit' name="fulltext"
+	        class="searchButton"
+	        value="Suche" />
+	    </form>
+	  </div>
+	</div>
+	<div class="portlet" id="p-tb">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-tb-box'); return false;">&#9654; Werkzeuge</a></h5>
+	    <div class="box" id="p-tb-box">
+      <ul>
+		  		  <li id="t-whatlinkshere"><a href="/articles/Spezial:Linkliste/AVRDUDE">Links auf diese Seite</a></li>
+		  		  <li id="t-recentchangeslinked"><a href="/articles/Spezial:%C3%84nderungen_an_verlinkten_Seiten/AVRDUDE">Änderungen an verlinkten Seiten</a></li>
+		  	      	      	      	      	      	      	      	      	      <li id="t-specialpages"><a href="/articles/Spezial:Spezialseiten">Spezialseiten</a></li>	      	    </ul>
+      </div>
+	</div>
+  <!-- google_ad_section_end -->
+  
+  <!-- start adsense -->
+    <!-- end adsense -->
+  
+      </td><!-- end of the left (by default at least) column -->
+  <td id="main">
+    <!-- google_ad_section_start -->
+    <a name="top" id="contentTop"></a>
+        <h1 class="firstHeading">AVRDUDE</h1>
+    <div id="bodyContent">
+
+						<!-- tagline -->
+			<!-- <div id="siteSub">Aus Uc-wiki</div> -->
+			<!-- /tagline -->
+						<!-- subtitle -->
+			<div id="contentSub"></div>
+			<!-- /subtitle -->
+												<!-- jumpto -->
+			<div id="jump-to-nav" class="mw-jump">
+				Wechseln zu:				<a href="#mw-navigation">Navigation</a>, 				<a href="#p-search">Suche</a>
+			</div>
+			<!-- /jumpto -->
+						<!-- bodycontent -->
+			<div id="mw-content-text" lang="de" dir="ltr" class="mw-content-ltr"><table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Beschreibung"><span class="tocnumber">1</span> <span class="toctext">Beschreibung</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#GUIs"><span class="tocnumber">1.1</span> <span class="toctext">GUIs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Kurzanleitung_f.C3.BCr_Linux_und_STK200"><span class="tocnumber">2</span> <span class="toctext">Kurzanleitung für Linux und STK200</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Tipps_.2B_Tricks"><span class="tocnumber">3</span> <span class="toctext">Tipps + Tricks</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Parallelport-Programmer_an_aktuellen_PCs"><span class="tocnumber">3.1</span> <span class="toctext">Parallelport-Programmer an aktuellen PCs</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Steckkarten"><span class="tocnumber">3.1.1</span> <span class="toctext">Steckkarten</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#USB-Parallel-Adapter"><span class="tocnumber">3.1.2</span> <span class="toctext">USB-Parallel-Adapter</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Geschwindigkeit_begrenzen"><span class="tocnumber">3.1.3</span> <span class="toctext">Geschwindigkeit begrenzen</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Spezielle_Hacks"><span class="tocnumber">3.1.4</span> <span class="toctext">Spezielle Hacks</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#64-Bit-Problem"><span class="tocnumber">3.1.5</span> <span class="toctext">64-Bit-Problem</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#USB-Programmer"><span class="tocnumber">3.2</span> <span class="toctext">USB-Programmer</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#libusb0.dll_wird_bei_WinAvr_20070525_nicht_gefunden"><span class="tocnumber">3.2.1</span> <span class="toctext">libusb0.dll wird bei WinAvr 20070525 nicht gefunden</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Aufruf_unter_Linux_als_user_.28non-root.29"><span class="tocnumber">3.2.2</span> <span class="toctext">Aufruf unter Linux als user (non-root)</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Linux-Treiberprobleme"><span class="tocnumber">3.2.3</span> <span class="toctext">Linux-Treiberprobleme</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="#Anzeige_unterst.C3.BCtzter_AVRs"><span class="tocnumber">3.3</span> <span class="toctext">Anzeige unterstützter AVRs</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#neuere_AVRs_hinzuf.C3.BCgen"><span class="tocnumber">3.4</span> <span class="toctext">neuere AVRs hinzufügen</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Anschluss_an_COM10_und_h.C3.B6her_.28Windows.29"><span class="tocnumber">3.5</span> <span class="toctext">Anschluss an COM10 und höher (Windows)</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#AVRISPmkII_.2B_AVRDUDE_.2B_Window_Vista_.2832.29"><span class="tocnumber">3.6</span> <span class="toctext">AVRISPmkII + AVRDUDE + Window Vista (32)</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#.22avrdude_was_compiled_without_usb_support.22"><span class="tocnumber">3.7</span> <span class="toctext">"avrdude was compiled without usb support"</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Textausgabe_in_Datei_umleiten.3F"><span class="tocnumber">3.8</span> <span class="toctext">Textausgabe in Datei umleiten?</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Franzis_bzw._ELO_Lernpaket_Mikrocontroller_.28Attiny13.29"><span class="tocnumber">3.9</span> <span class="toctext">Franzis bzw. ELO Lernpaket Mikrocontroller (Attiny13)</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#AVRDUDE_mit_Arduino_Bootloader_benutzen"><span class="tocnumber">3.10</span> <span class="toctext">AVRDUDE mit Arduino Bootloader benutzen</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#mysmartUSB_V2.11_und_ATtiny_13"><span class="tocnumber">3.11</span> <span class="toctext">mysmartUSB V2.11 und ATtiny 13</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Anpassungen_von_avrdude.conf_an_neuere_AVRs"><span class="tocnumber">4</span> <span class="toctext">Anpassungen von avrdude.conf an neuere AVRs</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#Weblinks"><span class="tocnumber">5</span> <span class="toctext">Weblinks</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=1" title="Abschnitt bearbeiten: Beschreibung">Bearbeiten</a>]</span> <span class="mw-headline" id="Beschreibung"> Beschreibung </span></h2>
+<p>AVRDUDE (<a rel="nofollow" class="external free" href="http://www.nongnu.org/avrdude/">http://www.nongnu.org/avrdude/</a>) ist eine Programmiersoftware für Atmel <a href="/articles/AVR" title="AVR">AVR</a> Controller. 
+</p><p>Funktionen unter Anderem: 
+</p>
+<ul><li> Übertragen von Programmcode in den Flash-Speicher
+</li><li> Auslesen ungeschützen Codes aus dem Flash
+</li><li> Setzen und Lesen von Fuse- und Lockbits (Siehe auch: <a href="/articles/AVR_Fuses#Vergleich_der_Fuses_bei_verschiedenen_Programmen" title="AVR Fuses">Vergleich der Fuses bei verschiedenen Programmen</a>)
+</li><li> Schreiben und Lesen des EEPROMs
+</li></ul>
+<p>AVRDUDE kann das <a href="/articles/STK500" title="STK500">STK500</a> (auch mit Firmware 2.x als stk500v2), das Atmel AVRISP (auch mit Firmware 2.x als avrispv2 o.ä.), das Atmel AVRISP MKII (USB Ansteuerung mittels lib-usb bzw. lib-usb-W32), <a href="/articles/AVR_In_System_Programmer#USB" title="AVR In System Programmer"> AVR910-kompatible</a> Programmierer, den <a href="/articles/AVR_Butterfly" title="AVR Butterfly">AVR Butterfly</a>/AVR109-kompatible Bootloader, <a href="/articles/STK200" title="STK200">STK200</a>-Programmierdongles und verschiedene andere Parallelport-Adapter sowie "serielle Statusportprogrammierer" (Siprog) ansteuern. Auch das Atmel JTAGICE (oder Nachbauten wie Bootice oder Evertool), Atmel JTAGICE-MKII und der AVR Dragon können als Programmierhardware genutzt werden.
+</p><p>Das Programm ist unter MS-Windows (Cygwin nicht erforderlich), Linux, BSD, Solaris und Mac OS X lauffähig. Die Version für MS-Windows ist im <a href="/articles/WinAVR" title="WinAVR">WinAVR</a>-Paket enthalten. Der Quellcode ist frei verfügbar (Lizenz beachten).
+</p><p>Da alle AVRDUDE-Funktionen über Kommandozeilenparamter gesteuert werden können, eignet es sich gut zur Integration in Makefiles. Beispiele finden sich in der Makefile-Vorlage von <a href="/articles/WinAVR" title="WinAVR">WinAVR</a> und Mfile. 
+</p><p>Die gesamte Konfiguration liegt in einer Textdatei (avrdude.conf), so dass sich bei Bedarf ein beliebiger neuer Parallelport-Programmierdongle oder auch ein noch nicht unterstützter AVR-Controller ergänzen lassen. Die Syntax für die Definition eines AVR-Controllers lehnt sich an die Datenblatt-Tabelle für die serielle Programmierung an, so dass man praktisch nur das Datenblatt "intelligent" abtippen muss.
+</p><p>Für die Ansteuerung von Parallelport-Adaptern unter MS-Windows NT/2000/XP wird ein spezieller Porttreiber (giveio) mitgeliefert. Bei der Installation von <a href="/articles/WinAVR" title="WinAVR">WinAVR</a> wird giveio bereits mitinstalliert. 
+</p><p>Programmer mit üblicher serieller Schnittstelle (RS232) benötigen keine zusätzliche Software oder Treiber zum Betrieb mit AVRDUDE. 
+</p><p>Für Hardware mit USB-Anschluss muss die lib-usb bzw. lib-usb-win32 installiert sein.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=2" title="Abschnitt bearbeiten: GUIs">Bearbeiten</a>]</span> <span class="mw-headline" id="GUIs">GUIs</span></h3>
+<p>Bei <a href="/articles/WinAVR" title="WinAVR">WinAVR</a> wird die grafische Oberfläche avrdude-gui.exe mitgeliefert.
+</p><p>In der IDE von <a href="/articles/LunaAVR" title="LunaAVR">LunaAVR</a> ist ebenfalls eine GUI für AVRDUDE enthalten (Windows und Linux).
+</p><p>Für Windows, Linux und andere Betriebssysteme gibt es zwei weitere GUIs: den in Java geschriebene <a href="/articles/Burn-o-mat" title="Burn-o-mat">AVR Burn-O-Mat</a> und den <a rel="nofollow" class="external text" href="http://www.soft-land.de/">AVRBurner</a>.
+</p><p>Für Mac OS X gibt es noch <a rel="nofollow" class="external text" href="http://www.vonnieda.org/software/avrfuses">AVRFuses.app</a>. AVRFuses muss beim ersten Starten auf den verwendeten Programmer und den Speicherort von AVRDUDE eingestellt werden.
+</p><p>GUIs vereinfachen vor allem Programmieren der Fuses.
+</p>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=3" title="Abschnitt bearbeiten: Kurzanleitung für Linux und STK200">Bearbeiten</a>]</span> <span class="mw-headline" id="Kurzanleitung_f.C3.BCr_Linux_und_STK200"> Kurzanleitung für Linux und STK200 </span></h2>
+<p>Dazu muss erst ein Hardware-Link auf die Printerport-Treiber eingerichtet werden:
+</p>
+<pre>
+su
+mknod /dev/parport0 c 99 0
+chmod a+rw /dev/parport0
+avrdude -p m8535 -c stk200 -e -U qqtraff.hex
+</pre>
+<p>Hinweis&#160;:
+Bei USB Programmern ist zu beachten, dass diese durch das Betriebssystem auf einen anderen Port gelegt werden können, als im Beispiel angegeben.
+Diesen Port kann man unter Anderem "im Terminal" mit dem Befehl
+</p>
+<pre>
+user@server: dmesg
+</pre>
+<p>ermitteln.
+Alternativ kann man sich eine Auflistung der Ports, im Verzeichnis "/dev" anzeigen lassen:
+</p>
+<pre>
+user@server: ls /dev/
+</pre>
+<p>Sollte man nicht sicher sein, auf welchem Port der Programmer liegt, kann man den Programmer nochmals ausstecken und "ls /dev/" ausführen. Der nun Fehlende Port, ist der Programmerport.
+Diesen Port muss man statt "parport0" in die oben beschriebenen Terminalkommandos einsetzen.
+</p><p>Siehe auch&#160;: 
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://wiki.ctbot.de/index.php/AVR_ISP_Programmer#BlueMP3_bzw._STK200_kompatible_Flasher">weitere Beispiele für avrdude Kommandos (http://wiki.ctbot.de/index.php)</a>
+</li><li> <a href="/articles/AVR_In_System_Programmer#STK200-kompatibel" title="AVR In System Programmer">AVR_In_System_Programmer#STK200-kompatibel</a>
+</li><li> <a class="external free" href="http://www.mikrocontroller.net/topic/200390#new">http://www.mikrocontroller.net/topic/200390#new</a>
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=4" title="Abschnitt bearbeiten: Tipps + Tricks">Bearbeiten</a>]</span> <span class="mw-headline" id="Tipps_.2B_Tricks"> Tipps + Tricks </span></h2>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=5" title="Abschnitt bearbeiten: Parallelport-Programmer an aktuellen PCs">Bearbeiten</a>]</span> <span class="mw-headline" id="Parallelport-Programmer_an_aktuellen_PCs"> <a href="/articles/AVR_In_System_Programmer#Parallelport" title="AVR In System Programmer">Parallelport-Programmer</a> an aktuellen PCs </span></h3>
+<p>Sofern man ein echtes Parallelport hat, die preiswerteste und auch schnellste Art der Datenübertragung zum Zielsystem (Mikrocontroller). Alles andere wie bspw. eine PCI-, PCIexpress- oder ExpressCard-Karte ist schon komplizierter und teurer.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=6" title="Abschnitt bearbeiten: Steckkarten">Bearbeiten</a>]</span> <span class="mw-headline" id="Steckkarten"> Steckkarten </span></h4>
+<p>Diese liegen auf anderen Basisadressen. Kann man im Geräte-Manager einsehen. Diese ist <tt>avrdude</tt> per Kommandozeile <i>(irgendwie)</i> mitzuteilen. Sonst kann es nicht funktionieren.
+</p><p>Die Geschwindigkeit ist gleich eingebauter echter Parallelports, also sehr schnell.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=7" title="Abschnitt bearbeiten: USB-Parallel-Adapter">Bearbeiten</a>]</span> <span class="mw-headline" id="USB-Parallel-Adapter"> USB-Parallel-Adapter </span></h4>
+<p>Gewöhnliche USB-Paralleldrucker-Adapter (um 5 € zu haben) <b>funktionieren nicht</b>. (Das Problem wäre zu lösen, wenn <tt>avrdude</tt> auf InpOut32.dll setzt. Siehe <a href="#64-Bit-Problem">64-Bit-Problem unten</a>.)
+</p><p><a rel="nofollow" class="external text" href="http://www.tu-chemnitz.de/~heha/usb2lpt">Spezielle USB-Parallel-Adapter</a>, die Portadressen emulieren, funktionieren, allerdings gähnend langsam.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=8" title="Abschnitt bearbeiten: Geschwindigkeit begrenzen">Bearbeiten</a>]</span> <span class="mw-headline" id="Geschwindigkeit_begrenzen"> Geschwindigkeit begrenzen </span></h4>
+<p>Aktuelle PCs sind einfach zu schnell mit dem Bitgewackel an der parallelen Schnittstelle, vor allem für AVRs, die noch mit den 1 MHz im Auslieferungszustand laufen (maximal zulässiger ISP-Takt &lt; 250 kHz). Neuere Versionen von avrdude unterstützen zu diesem Zweck eine Option <b>-i &lt;N&gt;</b>, wobei &lt;N&gt; die Anzahl der Mikrosekunden bezeichnet, die beim Bitwackeln zusätzlich zu warten ist. Einfach mal mit -i 10 anfangen und dann entweder die Fuses auf die Ziel-Taktfrequenz umstellen (falls diese wesentlich höher sein wird als die 1 MHz), oder sukkzessive mit kleineren Werten testen (<a class="external text" href="http://www.mikrocontroller.net/topic/83524#699933">Forenbeitrag von Jörg</a>).
+</p><p>Die Option -i ist auch nützlich bei AVRs, die für einen langsamen Takt konfiguriert sind. Bei einem ATmega8, der mit einem 32.768 kHz Quarz läuft, kann es z.B. notwendig sein, die Option -i 90 zu verwenden. Den Zahlenwert ggf. ausprobieren.
+</p><p>Manche Programmer werten die Option -i manchmal nicht aus, dann sollte man einen anderen Programmer versuchen.
+</p><p>Beim USBTINY und USBASP kann man die Geschwindigkeit der SPI-Schnittstelle mit dem Parameter -B [Periodendauer in Mikrosekunden] begrenzen. Da beide Geräte durch Interrupts der Software-USB-Schnittstelle stark belastet werden, handelt es sich hier um die Maximalbitrate.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=9" title="Abschnitt bearbeiten: Spezielle Hacks">Bearbeiten</a>]</span> <span class="mw-headline" id="Spezielle_Hacks"> Spezielle Hacks </span></h4>
+<p>Unter Windows XP Service Pack 2 auf einem IBM Thinkpad T40 ließ sich die Fehlermeldung „avrdude: AVR device not responding“ beheben durch Ändern im Gerätemanager⇒Lpt1⇒Eigenschaften⇒Anschlusseinstellungen⇒„Interrupt-nie-verwenden“ in „Jeden dem Anschluss zugewiesenem Interrupt verwenden“.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=10" title="Abschnitt bearbeiten: 64-Bit-Problem">Bearbeiten</a>]</span> <span class="mw-headline" id="64-Bit-Problem"> 64-Bit-Problem </span></h4>
+<p>Unter 64-Bit-Windows-Versionen kann das Parallelport nicht benutzt werden, da der GiveIO-Treiber systembedingt nicht funktioniert. Genauer, es wird ohne <a rel="nofollow" class="external text" href="http://www.codeproject.com/Articles/28318/Bypassing-PatchGuard-3">böse Hacks</a> nicht möglich sein, eine 64-Bit-Version von GiveIO zu erstellen, da es hier eine <a rel="nofollow" class="external text" href="http://msdn.microsoft.com/en-us/library/windows/hardware/gg487350.aspx">Kernel-Mode-Codeänderungs-Überwachung</a> gibt, die Änderungen an Systemtabellen (hier: Die IOPM, die In/Out Permission Map, falls es diese überhaupt gibt, und wenn ja, dann nur als Emulation für das 32-Bit-Subsystem) vereitelt (d.h. ein paar Minuten nach der Änderung kommt ein Bluescreen). Solange AVRDUDE an GiveIO (und eincompilierten E/A-Befehlen) festhält bleibt es so, und der Ausweich für den Bastler ist <a href="/articles/Pony-Prog_Tutorial" title="Pony-Prog Tutorial">PonyProg</a>, bis AVRDUDE künftig ebenfalls InpOut32.dll bzw. InpOutX64.dll verwendet.
+</p>
+<div style="margin:0.5em;padding:0.5em;border:1px green solid;border-radius:8px;-moz-border-radius:8px;background:#EFE">
+<b>Problem gelöst!</b><p>
+So geht's:
+<ul><li> Neue <a rel="nofollow" class="external text" href="http://www-user.tu-chemnitz.de/~heha/viewzip.cgi/hs_freeware/inpout32-h%23s.zip/2013/Release">InpOut32.dll</a> herunterladen
+</li><li> Kommandozeile: <b>crundll InpOut32,CatchIo avrdude.exe </b><i>... (usw.)</i>
+</li></ul>
+
+<small>Und so funktioniert's:</small>
+<ul><li> Die winzige crundll.exe ist ein Ersatz für rundll32.exe, als Konsolen-Version. Das verhindert, dass für avrdude eine neue Konsole geöffnet wird.
+</li><li> crundll lädt InpOut32.dll und ruft den Einsprungpunkt CatchIoW auf. Als Kommandozeile wird L"avrdude.exe ..." (also die üblichen Parameter) übergeben
+</li><li> Die CatchIoW-Routine erstellt einen schlafenden Prozess aus dem avrdude-Image. Nicht als Debugger, um teuere Prozessumschaltungen für das Exception-Handling (s.u.) zu vermeiden
+</li><li> Ein "Remote Thread" wird im avrdude-Prozess gestartet, um InpOut32.dll zu laden. Genannt: <a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/DLL-Injection">DLL-Injektion</a>
+</li><li> Die DLL-Initialisierungsroutine packt inpout64.sys aus, installiert und lädt diesen Kernmodus-Treiber. Das erfordert Admin-Rechte. Da es keine "I/O permission map" im X64 "long mode" gibt, kann es keinen Treiber geben, der E/A-Zugriffe für den User Mode transparent macht. Deshalb bleibt nichts anderes als ein Exception-Mechanismus übrig, um das Problem zu erschlagen. Nebenbei kann InpOut32.dll auf unübliche Portadressen sowie USB-Geräte umleiten. Die dazu notwendige Geräte- und Adresserkennung läuft ebenfalls in der Initialisierungsroutine
+</li><li> In der Initialisierung wird ein prozessweiter Exception-Filter installiert
+</li><li> Ein zweiter "Remote Thread" ändert die Adresse von kernel32.dll:GetVersionEx(). Die Ersatzroutine liefert als Plattform Windows 9x/Me. Auch genannt API-Hooking. Der Grund für den zweiten "Remote Thread" ist, dass dieses Verhalten bei regulärer Benutzung der InpOut32.dll (also LoadLibrary oder quasistatische Einbindung) unerwünscht ist.
+</li><li> Der avrdude-Prozess wird aufgeweckt und startet. Er "erkennt" Windows 9x/Me and versucht gar nicht erst, GiveIo.sys zu starten.
+</li><li> Dann macht avrdude die üblichen IN+OUT-Befehle. Jeder dieser Befehle generiert eine (IMHO) Allgemeine Schutzverletzung, also Int13 (General Protection Fault #GP). Bevor die sattsam bekannte Messagebox erscheint, geht der Interrupthandler zu ntdll:KiUserExceptionDispatcher, welche schließlich den installierten prozessweiten Exception-Filter aufruft, bevor es zum Abarbeiten eventueller try/except-Blöcke kommt
+</li><li> Der Filter (also das Stückchen Kode in der InpOut32.dll) stellt fest, dass es sich tatsächlich im einen IN- oder OUT-Befehl handelt. Der Befehl wird einfach übersprungen und inpoutx64.sys bemüht, per DeviceIoControl() die E/A-Operation im Kernel Mode auszuführen. Kontext-Register (hier AL und DX) werden entsprechend benutzt. Danach meldet der Filter dem Aufrufer "Ausnahme erschlagen, bitte weiter im Text"
+</li><li> Nach dieser länglichen Umleitung geht es weiter mit dem nächsten Assemblerbefehl
+</li></ul>
+
+Fertig. &lt;/div&gt;
+
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=11" title="Abschnitt bearbeiten: USB-Programmer">Bearbeiten</a>]</span> <span class="mw-headline" id="USB-Programmer"> USB-Programmer </span></h3>
+<p>Die meisten USB-Programmiergeräte benötigen <a rel="nofollow" class="external text" href="http://sourceforge.net/apps/trac/libusb-win32/wiki">libusb-win32</a> bzw. <a rel="nofollow" class="external text" href="http://www.libusb.org/">libusb</a>.
+</p><p>Ein Selbstbau-USB-Programmieradapter ist unter
+<a rel="nofollow" class="external text" href="http://www.rototron.info/?Page=USBAVR/USBAVR.aspx">http://www.rototron.info</a>
+zu finden. Er benötigt eine relativ neue AVRDUDE-Version, aber benötigt unter <i>keinem</i> Windows-Betriebssystem einen Treiber, da er ein <a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/Human_Interface_Device">HID</a>-Gerät implementiert. <tt>libusb-win32</tt> wird nicht benötigt. Normale (= reduzierte) Benutzerrechte genügen zum Betrieb des Gerätes.
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=12" title="Abschnitt bearbeiten: libusb0.dll wird bei WinAvr 20070525 nicht gefunden">Bearbeiten</a>]</span> <span class="mw-headline" id="libusb0.dll_wird_bei_WinAvr_20070525_nicht_gefunden"> libusb0.dll wird bei WinAvr 20070525 nicht gefunden</span></h4>
+<p><a class="external text" href="http://www.mikrocontroller.net/topic/83524#701461">Forenbeitrag von Paul</a>: Habe leider noch etwas zu bemängeln, und zwar meckerte avrdude, dass es die "libusb0.dll" nicht fand. Musste dann erst noch manuell den Pfad c:\winavr\utils\libusb\bin in die autoxecec.bat eintragen. Siehe auch <a rel="nofollow" class="external text" href="http://www.avrfreaks.net/index.php?name=PNphpBB2&amp;file=viewtopic&amp;p=373283">Diskussion bei www.avrfreaks.net</a>
+</p>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=13" title="Abschnitt bearbeiten: Aufruf unter Linux als user (non-root)">Bearbeiten</a>]</span> <span class="mw-headline" id="Aufruf_unter_Linux_als_user_.28non-root.29">Aufruf unter Linux als user (non-root)</span></h4>
+<p>Unter Linux kann häufig avrdude nur als user 'root' auf den USB-Programmer zugreifen. Als normaler User bekommt man eine Fehlermeldung wie:
+</p>
+<pre>
+#avrdude -c usbtiny -p m8
+ 
+avrdude: error: usbtiny_transmit: 
+error sending control message: 
+Operation not permitted
+</pre>
+<p>Dies liegt daran, dass die device-nodes, die beim Einstecken des USB-Programmers von udev angelegt werden, root zugeordnet sind. Man kann dies ändern, indem man udev-Regeln für die verwendeten Programmer anlegt. Unter Debian muß man dazu nur eine neue Datei, z.&#160;B. 015_usbprog.rules unter /etc/udev/rules.d anlegen, z.&#160;B. mit folgenden Inhalt:
+</p><p><br />
+</p>
+<pre>
+# Atmel AVR ISP mkII
+SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;03eb&quot;, ATTRS{idProduct}==&quot;2104&quot;, GROUP=&quot;users&quot;, MODE=&quot;0660&quot;
+
+# usbprog bootloader
+ATTRS{idVendor}==&quot;1781&quot;, ATTRS{idProduct}==&quot;0c62&quot;, GROUP=&quot;users&quot;, MODE=&quot;0660&quot;
+ 
+# USBasp programmer
+ATTRS{idVendor}==&quot;16c0&quot;, ATTRS{idProduct}==&quot;05dc&quot;, GROUP=&quot;users&quot;, MODE=&quot;0660&quot;
+ 
+# USBtiny programmer
+ATTRS{idVendor}==&quot;1781&quot;, ATTRS{idProduct}==&quot;0c9f&quot;, GROUP=&quot;users&quot;, MODE=&quot;0660&quot;
+</pre>
+<p><br />
+Danach muss in der Regel der udev-Dienst neu gestartet werden, was -- je nach System -- mit einem der beiden folgenden Befehle funktionieren sollte (natürlich nur als root):
+</p>
+<pre>sudo /sbin/udevadm control --reload-rules</pre> bei aktueller udev-version, oder
+<pre>sudo /sbin/udevcontrol --reload_rules</pre>, bei älteren udev-versionen.
+<p><br />
+Danach sollte der USB-Programmer erneut angeschlossen werden. Falls es immer noch nicht funktioniert kann es helfen, als GROUP "plugdev" statt "users" zu verwenden.
+</p><p>Hiermit werden der AVR ISP mkII, der usbprog Bootloader, USBasp und USBtiny bekannt gemacht, so daß alle User in der Gruppe "users" darauf zugreifen können.
+</p><p>Für weitere USB-Programmer muß man die entsprechende Zeile (mit ATTRS...) anlegen und die passenden Vendor und Product IDs eintragen.
+</p><p>Siehe auch:
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.reactivated.net/writing_udev_rules.html">Writing udev rules</a>
+</li></ul>
+<h4><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=14" title="Abschnitt bearbeiten: Linux-Treiberprobleme">Bearbeiten</a>]</span> <span class="mw-headline" id="Linux-Treiberprobleme">Linux-Treiberprobleme</span></h4>
+<p>Wenn der Programmer (usbprog mit AVRisp mkII) unter Ubuntu trotz korrekter Konfiguration nicht gefunden wird, kann es daran liegen, dass das Paket "libmtp-runtime" installiert ist. siehe <a class="external text" href="https://www.mikrocontroller.net/topic/245816">hier</a>
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=15" title="Abschnitt bearbeiten: Anzeige unterstützter AVRs">Bearbeiten</a>]</span> <span class="mw-headline" id="Anzeige_unterst.C3.BCtzter_AVRs"> Anzeige unterstützter AVRs </span></h3>
+<p>Wie die anderen Atmels bei avrdude heißen zeigt:
+</p>
+<pre>
+avrdude -?
+avrdude -p&#160;?
+</pre>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=16" title="Abschnitt bearbeiten: neuere AVRs hinzufügen">Bearbeiten</a>]</span> <span class="mw-headline" id="neuere_AVRs_hinzuf.C3.BCgen"> neuere AVRs hinzufügen </span></h3>
+<p>Manch neueres Silizium wird nicht erkannt da sich z.T. die IDs geändert haben. Um diese erfolgreich zu Programmieren empfiehlt sich ein eigenes config-File zu verwenden. Darin werden die 'fehlenden' CPUs ergänzt:
+</p><p>z.B. ATmega168P (Programmierung wie ATmega168): einfach den ATmega168 Teil duplizieren und die entsprechenden Änderungen (id, desc, signature) vornehmen
+</p>
+<pre>
+#------------------------------------------------------------
+# ATmega168P
+#------------------------------------------------------------
+
+part
+    id              = &quot;m168p&quot;;
+    desc            = &quot;ATMEGA168P&quot;;
+     has_debugwire = yes;
+     flash_instr   = 0xB6, 0x01, 0x11;
+     eeprom_instr  = 0xBD, 0xF2, 0xBD, 0xE1, 0xBB, 0xCF, 0xB4, 0x00,
+	             0xBE, 0x01, 0xB6, 0x01, 0xBC, 0x00, 0xBB, 0xBF,
+	             0x99, 0xF9, 0xBB, 0xAF;
+    stk500_devcode  = 0x86;
+    # avr910_devcode = 0x;
+    signature       = 0x1e 0x94 0x0b;
+
+ ...
+;
+</pre>
+<p>danach kann, unter Angabe des neuen config-Files, auch ein ATmega168P programmiert werden, z.B.:
+</p>
+<pre>
+avrdude -pm168p -C ~/.avrdude.config.neu -cstk500v2 -v  -U flash:w:main.hex
+</pre>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=17" title="Abschnitt bearbeiten: Anschluss an COM10 und höher (Windows)">Bearbeiten</a>]</span> <span class="mw-headline" id="Anschluss_an_COM10_und_h.C3.B6her_.28Windows.29"> Anschluss an COM10 und höher (Windows) </span></h3>
+<p>Wenn AVRDUDE unter Windows an COM10 und höher betrieben werden soll, ist eine andere Schreibweise für die Schnittstelle in der Kommandozeile nötig. Beispiel:
+</p>
+<pre>
+avrdude -c stk500v2 -p m16 -P \\.\com13 -uF -vvvv 2&gt; logfile.txt
+</pre>
+<p>In diesem Beispiel wird statt der gewohnten Schreibweise <b>com13</b> die spezielle Schreibweise  <b>\\.\com13</b> verwendet und es wird mit <i>-vvvv 2&gt; logfile.txt</i> eine ausführliche Debugausgabe für Fragen im Forum erzeugt. Näheres hierzu in der  <a class="external text" href="http://www.mikrocontroller.net/topic/90401">Forumsdiskussion</a>.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=18" title="Abschnitt bearbeiten: AVRISPmkII + AVRDUDE + Window Vista (32)">Bearbeiten</a>]</span> <span class="mw-headline" id="AVRISPmkII_.2B_AVRDUDE_.2B_Window_Vista_.2832.29"> AVRISPmkII + AVRDUDE + Window Vista (32) </span></h3>
+<p><a class="external free" href="http://www.mikrocontroller.net/topic/126594#1157327">http://www.mikrocontroller.net/topic/126594#1157327</a>
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=19" title="Abschnitt bearbeiten: &quot;avrdude was compiled without usb support&quot;">Bearbeiten</a>]</span> <span class="mw-headline" id=".22avrdude_was_compiled_without_usb_support.22"> "avrdude was compiled without usb support" </span></h3>
+<p>Offenbar enthielt WinAVR-20100110 zunächst fälschlicherweise eine AVRDUDE Version ohne USB Support <a class="external autonumber" href="http://www.mikrocontroller.net/topic/163022#1554907">[1]</a>.
+</p><p>Abhilfe:
+</p><p>1. WinAVR deinstallieren, gleiches Release (WinAVR-20100110) nocheinmal herunterladen und installieren (mindestens seit Anfang März 2010 enthält dieses Release avrdude in der Version 5.10 und bringt USB-Support mit).
+</p><p>2. AVRDUDE selbst compilieren: <a class="external free" href="http://www.mikrocontroller.net/topic/163675">http://www.mikrocontroller.net/topic/163675</a>
+</p><p>3. Compilierte Version 5.10 downloaden: <a class="external free" href="http://www.mikrocontroller.net/topic/163675#1594689">http://www.mikrocontroller.net/topic/163675#1594689</a>
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=20" title="Abschnitt bearbeiten: Textausgabe in Datei umleiten?">Bearbeiten</a>]</span> <span class="mw-headline" id="Textausgabe_in_Datei_umleiten.3F"> Textausgabe in Datei umleiten? </span></h3>
+<p>Die Windows-"Shell" <i>cmd</i> benutzt für die Ausgabeumleitung die gleiche Syntax wie die Bourne-Shell (und damit auch
+Bash): 
+</p>
+<pre>
+programm &gt;datei 2&gt;&amp;1
+</pre>
+<p>zur Umleitung von STDOUT und STDERR in die gleiche Datei (Yalu in <a class="external autonumber" href="http://www.mikrocontroller.net/topic/124509#1135568">[2]</a>).
+</p><p>Beispiel für Windows (<a class="external autonumber" href="http://www.mikrocontroller.net/topic/124509#1136322">[3]</a>, <a rel="nofollow" class="external text" href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/redirection.mspx?mfr=true">M$</a>):
+</p>
+<pre>
+avrdude -c avrispmkII -p m8 -P usb:xx -v &gt; &quot;C:\output.txt&quot; 2&gt;&amp;1
+</pre>
+<p>oder nur STDERR in Datei umleiten:
+</p>
+<pre>
+avrdude -c avrispmkII -p m8 -P usb:xx -v 2&gt; &quot;C:\output.txt&quot;
+</pre>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=21" title="Abschnitt bearbeiten: Franzis bzw. ELO Lernpaket Mikrocontroller (Attiny13)">Bearbeiten</a>]</span> <span class="mw-headline" id="Franzis_bzw._ELO_Lernpaket_Mikrocontroller_.28Attiny13.29"> <a rel="nofollow" class="external text" href="http://www.franzis.de/elektronik/lernpakete-elektronik/lernpaket-mikrocontroller">Franzis</a> bzw. <a rel="nofollow" class="external text" href="http://www.elo-web.de/elo/mikrocontroller-und-programmierung/avr-grundlagen/experimente-mit-dem-attiny13">ELO</a> Lernpaket Mikrocontroller (Attiny13) </span></h3>
+<p>Markus hat in <a class="external autonumber" href="http://www.mikrocontroller.net/topic/169549#1649459">[4]</a> einen Weg beschrieben, wie man den einfachen Programmieradapter des Lernpakets mit AVRDUDE ansteuern kann.
+</p><p>Eine weitere Anleitung <a rel="nofollow" class="external text" href="http://www.elektronik-labor.de/AVR/AVRdude.html">LP Mikrocontroller und Attiny45 mit Avrdude</a> gibt es von Ralf Beesner auf der Webseite des Entwicklers Burkhard Kainka. In <i>avrdude.conf</i> wird dabei ein neuer Programmieradapter namens <i>burkhard</i> hinzugefügt. Ein zweiter Eintrag <i>burkhard2</i> in dieser <b>avrdude.conf</b> ist für die Programmierung des Atmega8 auf dem Franzis Retro-Pong Bausatz mit Hilfe des "Mega8-ISP-Programmer" (Layout siehe ELO-Webseite) vorgesehen.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=22" title="Abschnitt bearbeiten: AVRDUDE mit Arduino Bootloader benutzen">Bearbeiten</a>]</span> <span class="mw-headline" id="AVRDUDE_mit_Arduino_Bootloader_benutzen"> AVRDUDE mit Arduino Bootloader benutzen </span></h3>
+<p>Mit der Option <i>-c stk500v1</i> kann AVRDUDE den <a href="/articles/Bootloader" title="Bootloader">Bootloader</a> in Arduino Boards ansprechen <a class="external autonumber" href="http://www.mikrocontroller.net/topic/195963#1919654">[5]</a>.
+</p><p>Es existieren auch modifizierte Versionen von AVRDUDE, die einen Programmer namens <i>arduino</i> kennen (avrdude.conf untersuchen!). Damit lautet die Kommandozeile für ein Arduinoboard mit Atmega168 beispielsweise <a rel="nofollow" class="external autonumber" href="http://www.neuraladvance.com/2010/04/08/using-avrdude-with-the-arduino-duemilanove/">[6]</a>
+</p>
+<pre>
+avrdude -c arduino -p m168 -P usb -U flash:w:&lt;filename&gt;
+</pre>
+<p>Evtl. muss auch noch die Datenrate mit der Option -b angepasst werden, je nach Board werden verschiedene (19200, 57600, 115200) verwendet.
+</p><p>Die Bootloader-Hacks von <a rel="nofollow" class="external text" href="http://www.ladyada.net/library/arduino/bootloader.html">Ladyada</a> arbeiten nochmal etwas anders.
+</p><p>Gelegentlich gibt es unter Windows Probleme mit der allgemeinen AVRDUDE Version und deren Handling der DTR/RTS Leitung (<a href="/articles/RS232" title="RS232" class="mw-redirect">RS232</a>). Es kann helfen, unmittelbar von dem Absenden der Kommandozeile einen RESET auf dem Arduinoboard durchzuführen.
+Ein kurzes Setzen der DTR Leitung auf HIGH bewirkt ein RESET. So ist es möglich eine .bat Datei zu erstellen mit folgendem Code: (com6 ist ein Virtueller USB Comport) 
+</p>
+<pre>
+mode com6 dtr=on
+avrdude -c arduino -p m168 -P \\.\com6 -U flash:w:&lt;filename&gt;
+if&#160;%ERRORLEVEL%==0 goto fertig
+Pause
+:fertig
+exit
+</pre>
+Wenn man den mode-Befehl nicht verwenden kann, etwa weil man cygwin und ein makefile verwendet, so kann man stattdessen <pre>cmd /c mode com6 dtr=on</pre> verwenden. In cygwin empfiehlt sich <pre>cmd /c mode com6 dtr=on &gt; /dev/null</pre>, damit wird die unnütze Ausgabe des Befehls verborgen.
+<p>Siehe auch:
+</p>
+<ul><li> <a class="external free" href="http://www.mikrocontroller.net/topic/232367">http://www.mikrocontroller.net/topic/232367</a>
+</li><li> <a class="external free" href="http://www.mikrocontroller.net/topic/238243">http://www.mikrocontroller.net/topic/238243</a>
+</li></ul>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=23" title="Abschnitt bearbeiten: mysmartUSB V2.11 und ATtiny 13">Bearbeiten</a>]</span> <span class="mw-headline" id="mysmartUSB_V2.11_und_ATtiny_13"> mysmartUSB V2.11 und ATtiny 13 </span></h3>
+<p>mysmartUSB V2.11 verlangt -cavr910 als Programmer. Leider ist in avrdude
+5.10 immer noch nicht der ATtiny13 damit zu programmieren. Also in die
+avrdude.conf folgendes mit unter ATtiny13 aufnehmen, so kann er dann
+korrekt programmiert werden(inkl. Fuse Bits).
+</p>
+<pre>
+#------------------------------------------------------------
+# ATtiny13
+#------------------------------------------------------------
+
+part
+    id                  = &quot;t13&quot;;
+    desc                = &quot;ATtiny13&quot;;
+     has_debugwire = yes;
+     flash_instr   = 0xB4, 0x0E, 0x1E;
+     eeprom_instr  = 0xBB, 0xFE, 0xBB, 0xEE, 0xBB, 0xCC, 0xB2, 0x0D,
+               0xBC, 0x0E, 0xB4, 0x0E, 0xBA, 0x0D, 0xBB, 0xBC,
+               0x99, 0xE1, 0xBB, 0xAC;
+    stk500_devcode      = 0x14;
+    avr910_devcode      = 0x55;
+......
+</pre>
+<p>Achtung! Programmieren geht auch mit -cavr911. Allerdings geht das Fuse
+setzen nicht und man bekommt eine Fehlermeldung.(Programm läuft aber)
+</p>
+<pre>
+Reading | ################################################## | 100%
+0.12s
+
+avrdude: verifying ...
+avrdude: 226 bytes of flash verified
+avrdude: reading input file &quot;0x7a&quot;
+avrdude: writing lfuse (1 bytes):
+
+Writing |  ***failed;
+################################################## | 100% 0.00s
+
+avrdude: 1 bytes of lfuse written
+avrdude: verifying lfuse memory against 0x7a:
+avrdude: load data lfuse data from input file 0x7a:
+avrdude: input file 0x7a contains 1 bytes
+avrdude: reading on-chip lfuse data:
+
+Reading | ################################################## | 100%
+0.00s
+
+avrdude: verifying ...
+avrdude: 1 bytes of lfuse verified
+avrdude: reading input file &quot;0xff&quot;
+avrdude: writing hfuse (1 bytes):
+
+Writing |  ***failed;
+</pre>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=24" title="Abschnitt bearbeiten: Anpassungen von avrdude.conf an neuere AVRs">Bearbeiten</a>]</span> <span class="mw-headline" id="Anpassungen_von_avrdude.conf_an_neuere_AVRs"> Anpassungen von avrdude.conf an neuere AVRs </span></h2>
+<ul><li> <b>ATtiny167</b> siehe <a class="external text" href="http://www.mikrocontroller.net/topic/236355">Forumbeitrag von Volker U.</a>
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=AVRDUDE&amp;action=edit&amp;section=25" title="Abschnitt bearbeiten: Weblinks">Bearbeiten</a>]</span> <span class="mw-headline" id="Weblinks"> Weblinks </span></h2>
+<ul><li> Offizielle AVRDUDE Homepage unter <a rel="nofollow" class="external free" href="http://www.nongnu.org/avrdude/">http://www.nongnu.org/avrdude/</a>
+</li><li> User Manual (engl.) unter <a rel="nofollow" class="external free" href="http://www.nongnu.org/avrdude/user-manual/avrdude.html#Top">http://www.nongnu.org/avrdude/user-manual/avrdude.html#Top</a>
+</li><li> Kompilierte Windows Version mit USB Support <a rel="nofollow" class="external free" href="http://yuki-lab.jp/hw/avrdude-GUI/avrdude-5.5-win32-bin.zip">http://yuki-lab.jp/hw/avrdude-GUI/avrdude-5.5-win32-bin.zip</a>
+</li><li> Kompilierte Windows Version avrdude 5.10 mit USB Support <a class="external free" href="http://www.mikrocontroller.net/topic/163675#1594689">http://www.mikrocontroller.net/topic/163675#1594689</a>
+</li><li> Kompilierte Windows Version avrdude 5.11.1 mit USB Support <a class="external free" href="http://www.mikrocontroller.net/topic/163675#2383773">http://www.mikrocontroller.net/topic/163675#2383773</a>
+</li><li> Kompilierte Windows Version avrdude 6.0 rc2 <a class="external free" href="http://www.mikrocontroller.net/topic/296379#3166155">http://www.mikrocontroller.net/topic/296379#3166155</a>
+</li><li> Wer Interesse an der modifizierten Version von AVRDUDE und des AVR910-Programmer hat, kann sich bei <a rel="nofollow" class="external free" href="http://www.fischl.de/thomas/elektronik/avr910e/">http://www.fischl.de/thomas/elektronik/avr910e/</a> informieren. Der Programmer bleibt auch mit der Modifikation weiterhin kompatibel zu anderer Programmiersoftware.
+</li><li> <a href="/articles/LunaAVR" title="LunaAVR">LunaAVR</a> GUI für AVRDUDE in der IDE enthalten <a rel="nofollow" class="external free" href="http://avr.myluna.de">http://avr.myluna.de</a> mit FUSE-Editor (für Windows und Linux)
+</li><li> <a href="/articles/Burn-o-mat" title="Burn-o-mat">AVR Burn-O-Mat</a> GUI (Graphic User Interface) für AVRDUDE <a rel="nofollow" class="external free" href="http://burn-o-mat.net">http://burn-o-mat.net</a> mit FUSE-Editor (Java, für Windows und Linux)
+</li><li> <a rel="nofollow" class="external text" href="http://www.soft-land.de/">AVRBurner</a> Ponyprog-ähnliche Oberfläche für AVRDUDE.</p>
+</li></ul>
+</div>
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 283/1000000
+Preprocessor generated node count: 518/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key uc_wiki:pcache:idhash:1179-0!*!0!!de!*!* and timestamp 20131011063929 -->
+</div>			<!-- /bodycontent -->
+						<!-- printfooter -->
+			<div class="printfooter">
+			Von „<a href="http://www.mikrocontroller.net/wikisoftware/index.php?title=AVRDUDE&amp;oldid=78723">http://www.mikrocontroller.net/wikisoftware/index.php?title=AVRDUDE&amp;oldid=78723</a>“			</div>
+			<!-- /printfooter -->
+									<!-- catlinks -->
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorien</a>: <ul><li><a href="/articles/Kategorie:AVR-Programmer_und_-Bootloader" title="Kategorie:AVR-Programmer und -Bootloader">AVR-Programmer und -Bootloader</a></li><li><a href="/articles/Kategorie:Entwicklungstools" title="Kategorie:Entwicklungstools">Entwicklungstools</a></li></ul></div></div>			<!-- /catlinks -->
+									<div class="visualClear"></div>
+			<!-- debughtml -->
+						<!-- /debughtml -->
+
+      <!-- start adsense -->
+            <!-- end adsense -->
+      
+      <div class="visualClear"></div>
+    </div>
+  </td>
+  <!-- google_ad_section_end -->
+      </tr>
+      </table>
+      <!--
+      <div class="visualClear"></div>
+      <div id="footer" style="clear:both">
+    <div id="f-poweredbyico"><a href="//www.mediawiki.org/"><img src="/wikisoftware/skins/common/images/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki" /></a></div>		<ul id="f-list">
+	  <li id="f-lastmod"> Diese Seite wurde zuletzt am 30. September 2013 um 22:06 Uhr geändert.</li>	  <li id="f-viewcount">Diese Seite wurde bisher 253.180-mal abgerufen.</li>	  	  	  <li id="f-about"><a href="/articles/Uc-wiki:%C3%9Cber_Uc-wiki" title="Uc-wiki:Über Uc-wiki">Über Uc-wiki</a></li>	  <li id="f-disclaimer"><a href="/articles/Uc-wiki:Impressum" title="Uc-wiki:Impressum">Impressum</a></li>	</ul>
+      </div>-->
+    </div>
+<div id="bottom">
+  <div id="impress">
+    <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Mikrocontroller.net">webmaster@mikrocontroller.net</a> – <a href="/contact">Impressum</a> – <a href="/user/conditions">Nutzungsbedingungen</a> – <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Anfrage%20zu%20Werbung%20auf%20Mikrocontroller.net">Werbung auf Mikrocontroller.net</a>
+  </div>
+  <div id="powered">
+<!--    powered by Ruby on Rails -->
+  </div>
+ <a href="/util/rb"><!-- nothing --></a>
+ <!-- <a href="http://www.mikrocontroller.net/hp/curlews.php">nothing to see here</a> -->
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-80574-1");
+if (typeof GS_googleAddAdSenseService != 'function') {
+  pageTracker._setCustomVar(3, "GAM", "No", 1);
+} else {
+  pageTracker._setCustomVar(3, "GAM", "Yes", 1);
+}
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<script>if(window.mw){
+mw.loader.state({"site":"loading","user":"missing","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.page.ready","mediawiki.searchSuggest","mediawiki.hidpi"], null, true);
+}</script>
+<script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<!-- Served in 0.094 secs. -->  </body>
+</html>

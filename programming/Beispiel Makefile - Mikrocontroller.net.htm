@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <script type="text/javascript">
+      var wgBreakFrames = false;
+      var wgContentLanguage = false;
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="generator" content="MediaWiki 1.21.1" />
+<link rel="alternate" type="application/x-wiki" title="Bearbeiten" href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit" />
+<link rel="edit" title="Bearbeiten" href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/wikisoftware/opensearch_desc.php" title="Uc-wiki (de)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.mikrocontroller.net/wikisoftware/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „Uc-wiki“" href="/wikisoftware/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom" />    <title>Beispiel Makefile - Mikrocontroller.net</title>
+    
+        <!-- <script type="text/javascript" src="/wikisoftware/skins/common/wikibits.js"></script> -->
+            <script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=startup&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Beispiel_Makefile","wgTitle":"Beispiel Makefile","wgCurRevisionId":76886,"wgArticleId":2812,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Avr-gcc"],"wgBreakFrames":false,"wgPageContentLanguage":"de","wgSeparatorTransformTable":[",	.",".	,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"Beispiel_Makefile","wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":true,"previewDialog":false,"publish":true,"toc":false}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"mikrocontroller","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"wikieditor-publish":1,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});;},{},{});
+/* cache key: uc_wiki:resourceloader:filter:minify-js:7:5afc608d284909c94225e82ae67c1108 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script><style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style>
+    
+    <script src="/javascripts/combined-top.js" type="text/javascript"></script>
+
+    <!--<script src="/javascripts/highlightCurrentLink.js" type="text/javascript"></script>-->
+    <script src="/javascripts/sorttable.js" type="text/javascript"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/screen.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/common/shared.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/wikisoftware/skins/mikrocontroller/main.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/stylesheets/print.css" />
+    <style type="text/css">#nav-foren-sub {display: none;} </style>
+    <style type="text/css">#nav-tutorial-sub {display: none;} </style>
+
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide.css" />
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide-ie6.css" />
+    <![endif]-->
+
+
+    <!--
+    <style type="text/css">
+    <div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="/articles/Kategorie:Avr-gcc" title="Kategorie:Avr-gcc">Avr-gcc</a></li></ul></div></div>    #nav-foren-sub {display: none;}
+    </style>
+    -->
+
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=ext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=styles&amp;skin=mikrocontroller&amp;*" />
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: uc_wiki:resourceloader:filter:minify-css:7:8c158424ea41cf09c24f6f94d82b9d56 */</style>
+
+<!-- PUT THIS TAG IN THE head SECTION -->
+<script type="text/javascript" src="//partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-1202612203358489");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+  GA_googleUseIframeRendering();
+</script>
+
+<!-- END OF TAG FOR head SECTION -->
+
+<script type="text/javascript">
+GA_googleAddAttr('pagetype', 'article');
+GA_googleAddAttr('section', 'article');
+GA_googleAddAttr('site_id', '1');
+</script>
+
+
+
+  </head>
+  <body     >
+    <div id="globalWrapper">
+    <div id="top"><h1><a href="/">www.mikrocontroller.net</a></h1></div>
+  <table id="twocolumns">
+  <tr>
+  <td id="sidebar-left" class="sidebar">
+  <!-- begin nav -->
+<div class="nav-container">
+  <ul class="nav-first">
+    <li><b><a href="/">Home</a></b></li>
+    <li>
+      <b><a href="/articles/AVR">AVR</a></b>
+      <ul>
+        <li><a href="/articles/AVR-Tutorial">AVR-Tutorial</a></li>
+        <li><a href="/articles/AVR-GCC-Tutorial">AVR-GCC-Tutorial</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/ARM">ARM</a></b>
+      <ul>
+        <li><a href="/articles/LPC1xxx">LPC1xxx</a></li>
+        <li><a href="/articles/LPC2000">LPC2000</a></li>
+        <li><a href="/articles/AT91SAM">AT91SAM7</a></li>
+        <li><a href="/articles/STM32">STM32</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/MSP430">MSP430</a></b>
+    </li>
+    <li>
+      <b><a href="/articles/Programmierbare_Logik">FPGA, CPLD &amp; Co.</a></b>
+      <ul>
+        <li><a href="/articles/FPGA">Grundlagen zu FPGAs</a></li>
+        <li><a href="/articles/Hardwarebeschreibungssprachen">VHDL &amp; Co.</a></li>
+        <li><a href="/articles/Xilinx_ISE">Xilinx ISE</a></li>
+      </ul>
+    </li>
+    <li>
+      <b><a href="/articles/Digitale_Signalverarbeitung">DSP</a></b>
+    </li>
+
+    <li>
+      <b><a href="/articles/Elektronik_Allgemein">Elektronik allgemein</a></b>
+      <ul>
+        <li><a href="/articles/SMD_L%C3%B6ten">SMD L&ouml;ten</a></li>
+        <li><a href="/articles/Operationsverst%C3%A4rker-Grundschaltungen">Operationsverst&auml;rker</a></li>
+        <li><a href="/articles/Oszilloskop">Oszilloskop</a></li>
+      </ul> 
+    </li>
+
+    <li>
+      <b><a href="/forum/all">Forum</a></b>
+      <ul>
+        <li><a href="/forum/mikrocontroller-elektronik">&micro;C &amp; Elektronik</a></li>
+        <li><a href="/forum/analogtechnik">Analogtechnik</a></li>
+        <li><a href="/forum/fpga-vhdl-cpld">FPGA, VHDL &amp; Co.</a></li>
+        <li><a href="/forum/dsp">DSP</a></li>
+        <li><a href="/forum/gcc">GCC</a></li>
+        <li><a href="/forum/codesammlung">Codesammlung</a></li>
+        <li><a href="/forum/markt">Markt</a></li>
+        <li><a href="/forum/platinen">Platinen</a></li>
+        <li><a href="/forum/mechanik">Mechanik &amp; Werkzeug</a></li>
+        <li><a href="/forum/hf">HF, Funk &amp; Felder</a></li>
+        <li><a href="/forum/hausbus">Hausbus</a></li>
+        <li><a href="/forum/pc-programmierung">PC-Programmierung</a></li>
+        <li><a href="/forum/pc-hardware-software">PC Hard- &amp; Software</a></li>
+        <li><a href="/forum/ausbildung-studium-beruf">Ausbildung &amp; Beruf</a></li>
+        <li><a href="/forum/offtopic">Offtopic</a></li>
+        <li><a href="/forum/website">Webseite</a></li>
+       </ul>
+    </li>
+    <li><b><a href="/buecher/">Buchtipps</a></b></li>
+    <li><b><a href="http://shop.mikrocontroller.net/">Shop</a></b></li>
+    <li><b><a href="/articles/Linksammlung">Linksammlung</a></b></li>
+    <li><b><a href="/articles/Hauptseite">Artikel&uuml;bersicht</a></b></li>
+    <li><b><a href="/articles/Spezial:Recentchanges">Letzte &Auml;nderungen</a></b></li>
+  </ul>
+</div>
+<!-- end nav -->
+  <hr />
+  <!-- google_ad_section_start(weight=ignore) -->
+
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+
+	<div id="p-cactions" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-cactions-box'); return false;" >&#9654; Dieser Artikel</a></h5>
+	  <div class="box" id="p-cactions-box">
+      <ul>
+	    <li id="ca-nstab-main"
+	       class="selected"	       ><a href="/articles/Beispiel_Makefile">Seite</a></li><li id="ca-talk"
+	       	       ><a href="/articles/Diskussion:Beispiel_Makefile">Diskussion</a></li><li id="ca-edit"
+	       	       ><a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit">Bearbeiten</a></li><li id="ca-history"
+	       	       ><a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=history">Versionen/Autoren</a></li>  	  </ul>
+    </div>
+	</div>
+	<div class="portlet" id="p-personal">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-personal-box'); return false;">&#9654; Benutzer</a></h5>
+	  <div class="box" id="p-personal-box">
+	    <ul>
+	    <li id="pt-anonuserpage"><a href="/articles/Benutzer:88.68.76.176" class="new">88.68.76.176</a></li><li id="pt-anontalk"><a href="/articles/Benutzer_Diskussion:88.68.76.176" class="new">Diskussionsseite dieser IP</a></li><li id="pt-anonlogin"><a href="/wikisoftware/index.php?title=Spezial:Anmelden&amp;returnto=Beispiel+Makefile">Anmelden</a></li>	    </ul>
+	  </div>
+	</div>
+  <!-- LOGO
+	<div class="portlet" id="p-logo">
+	  <a style="background-image: url(/wikisoftware/skins/common/images/wiki.png);"
+	    href="/articles/Hauptseite"
+	    title="Hauptseite"></a>
+	</div>
+  -->
+	<div id="p-search" class="portlet">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-search-box'); return false;">&#9654; Suche</a></h5>
+	  <div class="box" id="p-search-box">
+	    <form name="searchform" action="/articles/Spezial:Suche" id="searchform">
+	      <input id="searchInputX" name="search" type="text" accesskey="f" value="" /><br />
+	      <input type='submit' name="go" class="searchButton"
+	        value="Ausführen"
+	        />&nbsp;<input type='submit' name="fulltext"
+	        class="searchButton"
+	        value="Suche" />
+	    </form>
+	  </div>
+	</div>
+	<div class="portlet" id="p-tb">
+	  <h5><a href="#toggle" onclick="javascript:toggle_visibility('p-tb-box'); return false;">&#9654; Werkzeuge</a></h5>
+	    <div class="box" id="p-tb-box">
+      <ul>
+		  		  <li id="t-whatlinkshere"><a href="/articles/Spezial:Linkliste/Beispiel_Makefile">Links auf diese Seite</a></li>
+		  		  <li id="t-recentchangeslinked"><a href="/articles/Spezial:%C3%84nderungen_an_verlinkten_Seiten/Beispiel_Makefile">Änderungen an verlinkten Seiten</a></li>
+		  	      	      	      	      	      	      	      	      	      <li id="t-specialpages"><a href="/articles/Spezial:Spezialseiten">Spezialseiten</a></li>	      	    </ul>
+      </div>
+	</div>
+  <!-- google_ad_section_end -->
+  
+  <!-- start adsense -->
+    <!-- end adsense -->
+  
+      </td><!-- end of the left (by default at least) column -->
+  <td id="main">
+    <!-- google_ad_section_start -->
+    <a name="top" id="contentTop"></a>
+        <h1 class="firstHeading">Beispiel Makefile</h1>
+    <div id="bodyContent">
+
+						<!-- tagline -->
+			<!-- <div id="siteSub">Aus Uc-wiki</div> -->
+			<!-- /tagline -->
+						<!-- subtitle -->
+			<div id="contentSub"></div>
+			<!-- /subtitle -->
+												<!-- jumpto -->
+			<div id="jump-to-nav" class="mw-jump">
+				Wechseln zu:				<a href="#mw-navigation">Navigation</a>, 				<a href="#p-search">Suche</a>
+			</div>
+			<!-- /jumpto -->
+						<!-- bodycontent -->
+			<div id="mw-content-text" lang="de" dir="ltr" class="mw-content-ltr"><table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Allgemeines"><span class="tocnumber">1</span> <span class="toctext">Allgemeines</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Beispiel_1"><span class="tocnumber">2</span> <span class="toctext">Beispiel 1</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Beispiel_2"><span class="tocnumber">3</span> <span class="toctext">Beispiel 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Die_Datei_C:.5Chome.5Ccc.5Cts.5Cavr.5Ctsadc.5Cmakefile"><span class="tocnumber">3.1</span> <span class="toctext">Die Datei C:\home\cc\ts\avr\tsadc\makefile</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Die_Datei_C:.5Chome.5Ccc.5Cavrbat.5Cmakedefs"><span class="tocnumber">3.2</span> <span class="toctext">Die Datei C:\home\cc\avrbat\makedefs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Bibliothek_erstellen"><span class="tocnumber">4</span> <span class="toctext">Bibliothek erstellen</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Modifikationen_f.C3.BCr_Bibliothek"><span class="tocnumber">4.1</span> <span class="toctext">Modifikationen für Bibliothek</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Modifikationen_am_Zielprojekt"><span class="tocnumber">4.2</span> <span class="toctext">Modifikationen am Zielprojekt</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Makefile"><span class="tocnumber">4.3</span> <span class="toctext">Makefile</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Siehe_auch"><span class="tocnumber">5</span> <span class="toctext">Siehe auch</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Weblinks"><span class="tocnumber">6</span> <span class="toctext">Weblinks</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=1" title="Abschnitt bearbeiten: Allgemeines">Bearbeiten</a>]</span> <span class="mw-headline" id="Allgemeines"> Allgemeines </span></h2>
+<p>makefiles sind Steuerdateien für ein Programm, das "make" "/bin/make" oder make.exe heißt. Mit dem WinAVR kommt C:\WINAVR\utils\bin\make.exe
+</p><p>Um ein Makefile zu benutzen, muss man in dem Verzeichnis, in dem sich das makefile befindet, "make" aufrufen. Wenn man das von der DOS-Box aus tut, dann sieht man auch die Fehlerausgaben.
+</p>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=2" title="Abschnitt bearbeiten: Beispiel 1">Bearbeiten</a>]</span> <span class="mw-headline" id="Beispiel_1"> Beispiel 1 </span></h2>
+<p>Dies ist ein Beispiel-Makefile für Programmieranfänger:
+</p>
+<ul><li>AVR: Mega16
+</li><li>Programmer: Pony-Stk200
+</li><li>CPU-Frequenz: 1 Mhz
+</li><li>C-Datei: main.c
+</li></ul>
+<p>Hier gibt es das Beispiel-Makefile zum <a href="/wikifiles/b/b6/Makefile" class="internal" title="Makefile"> Herunterladen</a>. (Anm. 30-08-2009: Datei und Listing sind unterschiedlich! <a class="external text" href="http://www.mikrocontroller.net/attachment/57243/Makefile">Hier</a> eine ähnliche, korrigierte Fassung.[Anm.: wegen den Optionen --combine und --fwhole-program eignet sich das "korrigierte" Makefile nicht, wenn das Programm aus mehr als einer Datei besteht. Ungenutzte Symbole in Modulen werden wegoptimiert, auch, wenn main sie benötigt.])
+</p><p><b>Bitte den Link benutzen, statt zu versuchen, das Makefile per copy&amp;paste aus dem Text zu extrahieren!</b>
+</p><p>Beim Copy&amp;Paste können die wichtigen Tabulatoren verloren gehen und es kann dadurch diese Fehlermeldung geben: <a class="external text" href="http://www.mikrocontroller.net/articles/WinAVR#make.exe:_.2A.2A.2A_No_rule_to_make_target_.60main.elf.27.2C_needed_by_.60elf.27.%7Cmake.exe:">*** No rule to make target `main.elf', needed by `elf'</a>
+</p><p>Edit: Der Copy&amp;Paste Fehler trat nur auf, weil das Beispielmakefile fehlerhaft war.
+</p>
+<div class="code"><pre>
+# Hey Emacs, this is a -*- makefile -*-
+#----------------------------------------------------------------------------
+# WinAVR Makefile Template written by Eric B. Weddington, Jörg Wunsch, et al.
+#
+# Released to the Public Domain
+#
+# Additional material for this makefile was written by:
+# Peter Fleury
+# Tim Henigan
+# Colin O'Flynn
+# Reiner Patommel
+# Markus Pfaff
+# Sander Pool
+# Frederik Rouleau
+# Carlos Lamas
+#
+#----------------------------------------------------------------------------
+# On command line:
+#
+# make all = Make software.
+#
+# make clean = Clean out built project files.
+#
+# make coff = Convert ELF to AVR COFF.
+#
+# make extcoff = Convert ELF to AVR Extended COFF.
+#
+# make program = Download the hex file to the device, using avrdude.
+#                Please customize the avrdude settings below first!
+#
+# make debug = Start either simulavr or avarice as specified for debugging, 
+#              with avr-gdb or avr-insight as the front end for debugging.
+#
+# make filename.s = Just compile filename.c into the assembler code only.
+#
+# make filename.i = Create a preprocessed source file for use in submitting
+#                   bug reports to the GCC project.
+#
+# To rebuild project do &quot;make clean&quot; then &quot;make all&quot;.
+#----------------------------------------------------------------------------
+
+
+# MCU name
+MCU = atmega16
+
+
+# Processor frequency.
+#     This will define a symbol, F_CPU, in all source code files equal to the 
+#     processor frequency. You can then use this symbol in your source code to 
+#     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
+#     automatically to create a 32-bit value in your source code.
+#     Typical values are:
+F_CPU =  1000000
+#         F_CPU =  1843200
+#         F_CPU =  2000000
+#         F_CPU =  3686400
+#         F_CPU =  4000000
+#         F_CPU =  7372800
+#         F_CPU =  8000000
+#         F_CPU = 11059200
+#         F_CPU = 14745600
+#         F_CPU = 16000000
+#         F_CPU = 18432000
+#         F_CPU = 20000000
+#         F_CPU = 8000000
+
+
+# Output format. (can be srec, ihex, binary)
+FORMAT = ihex
+
+
+# Target file name (without extension).
+TARGET = main
+
+
+# Object files directory
+OBJDIR = obj
+
+
+# List C source files here. (C dependencies are automatically generated.)
+SRC = $(TARGET).c
+
+
+# List C++ source files here. (C dependencies are automatically generated.)
+CPPSRC = 
+
+
+# List Assembler source files here.
+#     Make them always end in a capital .S.  Files ending in a lowercase .s
+#     will not be considered source files but generated files (assembler
+#     output from the compiler), and will be deleted upon &quot;make clean&quot;!
+#     Even though the DOS/Win* filesystem matches both .s and .S the same,
+#     it will preserve the spelling of the filenames, and gcc itself does
+#     care about how the name is spelled on its command-line.
+ASRC =
+
+
+# Optimization level, can be [0, 1, 2, 3, s]. 
+#     0 = turn off optimization. s = optimize for size.
+#     (Note: 3 is not always the best optimization level. See avr-libc FAQ.)
+OPT = s
+
+
+# Debugging format.
+#     Native formats for AVR-GCC's -g are dwarf-2 [default] or stabs.
+#     AVR Studio 4.10 requires dwarf-2.
+#     AVR [Extended] COFF format requires stabs, plus an avr-objcopy run.
+DEBUG = dwarf-2
+
+
+# List any extra directories to look for include files here.
+#     Each directory must be seperated by a space.
+#     Use forward slashes for directory separators.
+#     For a directory that has spaces, enclose it in quotes.
+EXTRAINCDIRS = 
+
+
+# Compiler flag to set the C Standard level.
+#     c89   = &quot;ANSI&quot; C
+#     gnu89 = c89 plus GCC extensions
+#     c99   = ISO C99 standard (not yet fully implemented)
+#     gnu99 = c99 plus GCC extensions
+CSTANDARD = -std=gnu99
+
+
+# Place -D or -U options here for C sources
+CDEFS = -DF_CPU=$(F_CPU)UL
+
+
+# Place -D or -U options here for C++ sources
+CPPDEFS = -DF_CPU=$(F_CPU)UL
+#CPPDEFS += -D__STDC_LIMIT_MACROS
+#CPPDEFS += -D__STDC_CONSTANT_MACROS
+
+
+
+#---------------- Compiler Options C ----------------
+#  -g*:          generate debugging information
+#  -O*:          optimization level
+#  -f...:        tuning, see GCC manual and avr-libc documentation
+#  -Wall...:     warning level
+#  -Wa,...:      tell GCC to pass this to the assembler.
+#    -adhlns...: create assembler listing
+CFLAGS = -g$(DEBUG)
+CFLAGS += $(CDEFS)
+CFLAGS += -O$(OPT)
+#CFLAGS += -mint8
+#CFLAGS += -mshort-calls
+CFLAGS += -funsigned-char
+CFLAGS += -funsigned-bitfields
+CFLAGS += -fpack-struct
+CFLAGS += -fshort-enums
+#CFLAGS += -fno-unit-at-a-time
+CFLAGS += -Wall
+CFLAGS += -Wstrict-prototypes
+CFLAGS += -Wundef
+#CFLAGS += -Wunreachable-code
+#CFLAGS += -Wsign-compare
+CFLAGS += -Wa,-adhlns=$(&lt;:%.c=$(OBJDIR)/%.lst)
+CFLAGS += $(patsubst&#160;%,-I%,$(EXTRAINCDIRS))
+CFLAGS += $(CSTANDARD)
+
+
+#---------------- Compiler Options C++ ----------------
+#  -g*:          generate debugging information
+#  -O*:          optimization level
+#  -f...:        tuning, see GCC manual and avr-libc documentation
+#  -Wall...:     warning level
+#  -Wa,...:      tell GCC to pass this to the assembler.
+#    -adhlns...: create assembler listing
+CPPFLAGS = -g$(DEBUG)
+CPPFLAGS += $(CPPDEFS)
+CPPFLAGS += -O$(OPT)
+#CPPFLAGS += -mint8
+#CPPFLAGS += -mshort-calls
+CPPFLAGS += -funsigned-char
+CPPFLAGS += -funsigned-bitfields
+CPPFLAGS += -fpack-struct
+CPPFLAGS += -fshort-enums
+CPPFLAGS += -fno-exceptions
+#CPPFLAGS += -fno-unit-at-a-time
+CPPFLAGS += -Wall
+#CPPFLAGS += -Wstrict-prototypes
+CFLAGS += -Wundef
+#CPPFLAGS += -Wunreachable-code
+#CPPFLAGS += -Wsign-compare
+CPPFLAGS += -Wa,-adhlns=$(&lt;:%.cpp=$(OBJDIR)/%.lst)
+CPPFLAGS += $(patsubst&#160;%,-I%,$(EXTRAINCDIRS))
+#CPPFLAGS += $(CSTANDARD)
+
+
+#---------------- Assembler Options ----------------
+#  -Wa,...:   tell GCC to pass this to the assembler.
+#  -ahlms:    create listing
+#  -gstabs:   have the assembler create line number information; note that
+#             for use in COFF files, additional information about filenames
+#             and function names needs to be present in the assembler source
+#             files -- see avr-libc docs [FIXME: not yet described there]
+ASFLAGS = -Wa,-adhlns=$(&lt;:%.S=$(OBJDIR)/%.lst),-gstabs 
+
+
+#---------------- Library Options ----------------
+# Minimalistic printf version
+PRINTF_LIB_MIN = -Wl,-u,vfprintf -lprintf_min
+
+# Floating point printf version (requires MATH_LIB = -lm below)
+PRINTF_LIB_FLOAT = -Wl,-u,vfprintf -lprintf_flt
+
+# If this is left blank, then it will use the Standard printf version.
+PRINTF_LIB = 
+#PRINTF_LIB = $(PRINTF_LIB_MIN)
+#PRINTF_LIB = $(PRINTF_LIB_FLOAT)
+
+
+# Minimalistic scanf version
+SCANF_LIB_MIN = -Wl,-u,vfscanf -lscanf_min
+
+# Floating point +&#160;%[ scanf version (requires MATH_LIB = -lm below)
+SCANF_LIB_FLOAT = -Wl,-u,vfscanf -lscanf_flt
+
+# If this is left blank, then it will use the Standard scanf version.
+SCANF_LIB = 
+#SCANF_LIB = $(SCANF_LIB_MIN)
+#SCANF_LIB = $(SCANF_LIB_FLOAT)
+
+
+MATH_LIB = -lm
+
+
+
+#---------------- External Memory Options ----------------
+
+# 64 KB of external RAM, starting after internal RAM (ATmega128!),
+# used for variables (.data/.bss) and heap (malloc()).
+#EXTMEMOPTS = -Wl,-Tdata=0x801100,--defsym=__heap_end=0x80ffff
+
+# 64 KB of external RAM, starting after internal RAM (ATmega128!),
+# only used for heap (malloc()).
+#EXTMEMOPTS = -Wl,--defsym=__heap_start=0x801100,--defsym=__heap_end=0x80ffff
+
+EXTMEMOPTS =
+
+
+
+#---------------- Linker Options ----------------
+#  -Wl,...:     tell GCC to pass this to linker.
+#    -Map:      create map file
+#    --cref:    add cross reference to  map file
+LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
+LDFLAGS += $(EXTMEMOPTS)
+LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
+#LDFLAGS += -T linker_script.x
+
+
+
+#---------------- Programming Options (avrdude) ----------------
+
+# Programming hardware: alf avr910 avrisp bascom bsd 
+# dt006 pavr picoweb pony-stk200 sp12 stk200 stk500
+#
+# Type: avrdude -c&#160;?
+# to get a full listing.
+#
+AVRDUDE_PROGRAMMER = pony-stk200
+
+# com1 = serial port. Use lpt1 to connect to parallel port.
+AVRDUDE_PORT = lpt1
+
+AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
+#AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
+
+
+# Uncomment the following if you want avrdude's erase cycle counter.
+# Note that this counter needs to be initialized first using -Yn,
+# see avrdude manual.
+#AVRDUDE_ERASE_COUNTER = -y
+
+# Uncomment the following if you do /not/ wish a verification to be
+# performed after programming the device.
+#AVRDUDE_NO_VERIFY = -V
+
+# Increase verbosity level.  Please use this when submitting bug
+# reports about avrdude. See &lt;http://savannah.nongnu.org/projects/avrdude&gt; 
+# to submit bug reports.
+#AVRDUDE_VERBOSE = -v -v
+
+AVRDUDE_FLAGS = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)
+AVRDUDE_FLAGS += $(AVRDUDE_NO_VERIFY)
+AVRDUDE_FLAGS += $(AVRDUDE_VERBOSE)
+AVRDUDE_FLAGS += $(AVRDUDE_ERASE_COUNTER)
+
+
+
+#---------------- Debugging Options ----------------
+
+# For simulavr only - target MCU frequency.
+DEBUG_MFREQ = $(F_CPU)
+
+# Set the DEBUG_UI to either gdb or insight.
+DEBUG_UI = gdb
+# DEBUG_UI = insight
+
+# Set the debugging back-end to either avarice, simulavr.
+#DEBUG_BACKEND = avarice
+DEBUG_BACKEND = simulavr
+
+# GDB Init Filename.
+GDBINIT_FILE = __avr_gdbinit
+
+# When using avarice settings for the JTAG
+JTAG_DEV = /dev/com1
+
+# Debugging port used to communicate between GDB / avarice / simulavr.
+DEBUG_PORT = 4242
+
+# Debugging host used to communicate between GDB / avarice / simulavr, normally
+#     just set to localhost unless doing some sort of crazy debugging when 
+#     avarice is running on a different computer.
+DEBUG_HOST = localhost
+
+
+
+#============================================================================
+
+
+# Define programs and commands.
+SHELL = sh
+CC = avr-gcc
+OBJCOPY = avr-objcopy
+OBJDUMP = avr-objdump
+SIZE = avr-size
+NM = avr-nm
+AVRDUDE = avrdude
+REMOVE = rm -f
+REMOVEDIR = rm -rf
+COPY = cp
+WINSHELL = cmd
+
+
+# Define Messages
+# English
+MSG_ERRORS_NONE = Errors: none
+MSG_BEGIN = -------- begin --------
+MSG_END = --------  end  --------
+MSG_SIZE_BEFORE = Size before: 
+MSG_SIZE_AFTER = Size after:
+MSG_COFF = Converting to AVR COFF:
+MSG_EXTENDED_COFF = Converting to AVR Extended COFF:
+MSG_FLASH = Creating load file for Flash:
+MSG_EEPROM = Creating load file for EEPROM:
+MSG_EXTENDED_LISTING = Creating Extended Listing:
+MSG_SYMBOL_TABLE = Creating Symbol Table:
+MSG_LINKING = Linking:
+MSG_COMPILING = Compiling C:
+MSG_COMPILING_CPP = Compiling C++:
+MSG_ASSEMBLING = Assembling:
+MSG_CLEANING = Cleaning project:
+MSG_CREATING_LIBRARY = Creating library:
+
+
+
+
+# Define all object files.
+OBJ = $(SRC:%.c=$(OBJDIR)/%.o) $(CPPSRC:%.cpp=$(OBJDIR)/%.o) $(ASRC:%.S=$(OBJDIR)/%.o) 
+
+# Define all listing files.
+LST = $(SRC:%.c=$(OBJDIR)/%.lst) $(CPPSRC:%.cpp=$(OBJDIR)/%.lst) $(ASRC:%.S=$(OBJDIR)/%.lst) 
+
+
+# Compiler flags to generate dependency files.
+GENDEPFLAGS = -MD -MP -MF .dep/$(@F).d
+
+
+# Combine all necessary flags and optional flags.
+# Add target processor to flags.
+ALL_CFLAGS = -mmcu=$(MCU) -I. $(CFLAGS) $(GENDEPFLAGS)
+ALL_CPPFLAGS = -mmcu=$(MCU) -I. -x c++ $(CPPFLAGS) $(GENDEPFLAGS)
+ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
+
+
+
+
+
+# Default target.
+all: begin gccversion sizebefore build sizeafter end
+
+# Change the build target to build a HEX file or a library.
+build: elf hex eep lss sym
+#build: lib
+
+
+elf: $(TARGET).elf
+hex: $(TARGET).hex
+eep: $(TARGET).eep
+lss: $(TARGET).lss
+sym: $(TARGET).sym
+LIBNAME=lib$(TARGET).a
+lib: $(LIBNAME)
+
+
+
+# Eye candy.
+# AVR Studio 3.x does not check make's exit code but relies on
+# the following magic strings to be generated by the compile job.
+
+begin:
+	@echo
+	@echo $(MSG_BEGIN)
+
+end:
+	@echo $(MSG_END)
+	@echo
+
+
+# Display size of file.
+HEXSIZE = $(SIZE) --target=$(FORMAT) $(TARGET).hex
+ELFSIZE = $(SIZE) -A $(TARGET).elf
+AVRMEM = avr-mem.sh $(TARGET).elf $(MCU)
+
+sizebefore:
+	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_BEFORE); $(ELFSIZE); \
+	$(AVRMEM) 2&gt;/dev/null; echo; fi
+
+sizeafter:
+	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); \
+	$(AVRMEM) 2&gt;/dev/null; echo; fi
+
+
+
+# Display compiler version information.
+gccversion&#160;: 
+	@$(CC) --version
+
+
+
+# Program the device.  
+program: $(TARGET).hex $(TARGET).eep
+	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH)
+	$(AVRDUDE_WRITE_EEPROM)
+
+
+# Generate avr-gdb config/init file which does the following:
+#     define the reset signal, load the target file, connect to target, and set 
+#     a breakpoint at main().
+gdb-config: 
+	@$(REMOVE) $(GDBINIT_FILE)
+	@echo define reset &gt;&gt; $(GDBINIT_FILE)
+	@echo SIGNAL SIGHUP &gt;&gt; $(GDBINIT_FILE)
+	@echo end &gt;&gt; $(GDBINIT_FILE)
+	@echo file $(TARGET).elf &gt;&gt; $(GDBINIT_FILE)
+	@echo target remote $(DEBUG_HOST):$(DEBUG_PORT)  &gt;&gt; $(GDBINIT_FILE)
+	ifeq ($(DEBUG_BACKEND),simulavr)
+	@echo load  &gt;&gt; $(GDBINIT_FILE)
+	endif
+	@echo break main &gt;&gt; $(GDBINIT_FILE)
+
+debug: gdb-config $(TARGET).elf
+	ifeq ($(DEBUG_BACKEND), avarice)
+	@echo Starting AVaRICE - Press enter when &quot;waiting to connect&quot; message displays.
+	@$(WINSHELL) /c start avarice --jtag $(JTAG_DEV) --erase --program --file \
+	$(TARGET).elf $(DEBUG_HOST):$(DEBUG_PORT)
+	@$(WINSHELL) /c pause
+
+	else
+	@$(WINSHELL) /c start simulavr --gdbserver --device $(MCU) --clock-freq \
+	$(DEBUG_MFREQ) --port $(DEBUG_PORT)
+	endif
+	@$(WINSHELL) /c start avr-$(DEBUG_UI) --command=$(GDBINIT_FILE)
+
+
+
+
+# Convert ELF to COFF for use in debugging / simulating in AVR Studio or VMLAB.
+	COFFCONVERT = $(OBJCOPY) --debugging
+	COFFCONVERT += --change-section-address .data-0x800000
+	COFFCONVERT += --change-section-address .bss-0x800000
+	COFFCONVERT += --change-section-address .noinit-0x800000
+	COFFCONVERT += --change-section-address .eeprom-0x810000
+
+
+
+coff: $(TARGET).elf
+	@echo
+	@echo $(MSG_COFF) $(TARGET).cof
+	$(COFFCONVERT) -O coff-avr $&lt; $(TARGET).cof
+
+
+extcoff: $(TARGET).elf
+	@echo
+	@echo $(MSG_EXTENDED_COFF) $(TARGET).cof
+	$(COFFCONVERT) -O coff-ext-avr $&lt; $(TARGET).cof
+
+
+
+# Create final output files (.hex, .eep) from ELF output file.
+%.hex:&#160;%.elf
+	@echo
+	@echo $(MSG_FLASH) $@
+	$(OBJCOPY) -O $(FORMAT) -R .eeprom $&lt; $@
+
+	%.eep:&#160;%.elf
+	@echo
+	@echo $(MSG_EEPROM) $@
+	-$(OBJCOPY) -j .eeprom --set-section-flags=.eeprom=&quot;alloc,load&quot; \
+--change-section-lma .eeprom=0 -O $(FORMAT) $&lt; $@
+
+# Create extended listing file from ELF output file.
+%.lss:&#160;%.elf
+	@echo
+	@echo $(MSG_EXTENDED_LISTING) $@
+	$(OBJDUMP) -h -S $&lt; &gt; $@
+
+# Create a symbol table from ELF output file.
+%.sym:&#160;%.elf
+	@echo
+	@echo $(MSG_SYMBOL_TABLE) $@
+	$(NM) -n $&lt; &gt; $@
+
+
+
+# Create library from object files.
+.SECONDARY&#160;: $(TARGET).a
+.PRECIOUS&#160;: $(OBJ)
+%.a: $(OBJ)
+	@echo
+	@echo $(MSG_CREATING_LIBRARY) $@
+	$(AR) $@ $(OBJ)
+
+
+# Link: create ELF output file from object files.
+.SECONDARY&#160;: $(TARGET).elf
+.PRECIOUS&#160;: $(OBJ)
+%.elf: $(OBJ)
+	@echo
+	@echo $(MSG_LINKING) $@
+	$(CC) $(ALL_CFLAGS) $^ --output $@ $(LDFLAGS)
+
+
+# Compile: create object files from C source files.
+$(OBJDIR)/%.o&#160;:&#160;%.c
+	@echo
+	@echo $(MSG_COMPILING) $&lt;
+	$(CC) -c $(ALL_CFLAGS) $&lt; -o $@
+
+
+# Compile: create object files from C++ source files.
+$(OBJDIR)/%.o&#160;:&#160;%.cpp
+	@echo
+	@echo $(MSG_COMPILING_CPP) $&lt;
+	$(CC) -c $(ALL_CPPFLAGS) $&lt; -o $@
+
+
+# Compile: create assembler files from C source files.
+%.s&#160;:&#160;%.c
+	$(CC) -S $(ALL_CFLAGS) $&lt; -o $@
+
+
+# Compile: create assembler files from C++ source files.
+%.s&#160;:&#160;%.cpp
+	$(CC) -S $(ALL_CPPFLAGS) $&lt; -o $@
+
+
+# Assemble: create object files from assembler source files.
+$(OBJDIR)/%.o&#160;:&#160;%.S
+	@echo
+	@echo $(MSG_ASSEMBLING) $&lt;
+	$(CC) -c $(ALL_ASFLAGS) $&lt; -o $@
+
+
+# Create preprocessed source for use in sending a bug report.
+%.i&#160;:&#160;%.c
+	$(CC) -E -mmcu=$(MCU) -I. $(CFLAGS) $&lt; -o $@
+
+
+# Target: clean project.
+clean: begin clean_list end
+
+clean_list&#160;:
+	@echo
+	@echo $(MSG_CLEANING)
+	$(REMOVE) $(TARGET).hex
+	$(REMOVE) $(TARGET).eep
+	$(REMOVE) $(TARGET).cof
+	$(REMOVE) $(TARGET).elf
+	$(REMOVE) $(TARGET).map
+	$(REMOVE) $(TARGET).sym
+	$(REMOVE) $(TARGET).lss
+	$(REMOVEDIR) $(OBJDIR)
+	$(REMOVE) $(SRC:.c=.s)
+	$(REMOVE) $(SRC:.c=.d)
+	$(REMOVEDIR) .dep
+
+
+# Create object files directory
+	$(shell mkdir $(OBJDIR) 2&gt;/dev/null)
+
+
+# Include the dependency files.
+	-include $(shell mkdir .dep 2&gt;/dev/null) $(wildcard .dep/*)
+
+
+# Listing of phony targets.
+.PHONY&#160;: all begin finish end sizebefore sizeafter gccversion \
+build elf hex eep lss sym coff extcoff \
+clean clean_list program debug gdb-config
+</pre></div>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=3" title="Abschnitt bearbeiten: Beispiel 2">Bearbeiten</a>]</span> <span class="mw-headline" id="Beispiel_2"> Beispiel 2 </span></h2>
+<p>Wenn man mehrere Projekte aus mehreren Mikroprozessoren ausprobieren will, muss man pro Projekt ein Unterverzeichnis und darin ein Makefile haben.
+</p><p>Wenn wegen neuer Erkenntnisse etwas am Kompilieren geändert werden soll, dann müssen alle diese makefiles angepasst werden. Das kann umgangen werden, wenn man "include" im Makefile benutzt.
+</p><p>Das hier vorgestellte Beispiel geht davon aus, dass im Windows-Rechner die Quellen der Unterprogramme, Hauptprogramme und Header so geordnet sind:
+</p>
+<pre>
+ C:\home\cc\include          - Alle Header
+ C:\home\cc\lq               - Alle Unterprogramme
+ C:\home\cc\ts               - Alle Hauptprogramme fixapfel.cpp tsadc.cpp 
+ C:\home\cc\ts\avr\tsadc     - Der makefile und die astudio tsadc.apf-Datei 
+                               und die pnproj-Datei
+ C:\home\cc\ts\avr\fixapfel  - Der makefile und die astudio fixapfel.apf-Datei
+ C:\home\cc\avrinc           - Da habe ich eine Kopie der Header von WinAVR
+ c:\home\cc\avrbat           - makedefs
+</pre>
+<p>Die beiden Dateien benutze ich sowohl beim Kompilieren mit Windows und WinAVR als auch beim Kompilieren mit Linux. Dann muss ich nur die jeweils andere Zeile "HOME=" auskommentieren.
+</p>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=4" title="Abschnitt bearbeiten: Die Datei C:\home\cc\ts\avr\tsadc\makefile">Bearbeiten</a>]</span> <span class="mw-headline" id="Die_Datei_C:.5Chome.5Ccc.5Cts.5Cavr.5Ctsadc.5Cmakefile"> Die Datei C:\home\cc\ts\avr\tsadc\makefile </span></h3>
+<div class="code"><pre>
+PRG            = tsadc
+
+# all objects required to link this project
+OBJ			= $(PRG).o adc.o asctohw.o asctouc.o getticks.o inhex16.o \
+	inline.o inuint8.o mul_uw_uw.o mul_sw_sw.o othex1.o othex2.o \
+	othex4.o otint16.o otnl.o otputs.o otuint16.o otuint32.o otuint8.o \
+	tsdaytim.o tshar.o tsser.o
+
+NPRGPATH	=	3
+
+include ../../../avrbat/makedefs
+</pre></div>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=5" title="Abschnitt bearbeiten: Die Datei C:\home\cc\avrbat\makedefs">Bearbeiten</a>]</span> <span class="mw-headline" id="Die_Datei_C:.5Chome.5Ccc.5Cavrbat.5Cmakedefs"> Die Datei C:\home\cc\avrbat\makedefs </span></h3>
+<div class="code"><pre>
+# Select here which processor
+
+#MCU     = atmega8535
+#F_CPU   = 16000000L
+#BAUD    = 9600L
+
+MCU     = atmega32
+F_CPU	  = 1008136L	
+BAUD    = 4800L 
+
+# When using WINAVR
+HOME=C:
+
+# when using Linux
+# HOME=/home/hjh
+
+# Always in $(HOME)/home/cc/include are my headers
+# Always in $(HOME)/home/cc/avrinc  are the avr-gcc headers
+# Always in $(HOME)/home/cc/lq are my sources (.cpp and .s)
+
+# Because I copied the headers from C:\winavr here, I use this path
+# Then I do not need to adapt this part of the make file if I compile with Linux
+# instead with Windows WinAVR
+HJH_IDIR = -I $(HOME)/home/cc/include -I $(HOME)/home/cc/avrinc
+
+# predefinitons:
+# NPRGPATH&#160;: the amount of timesharing parallel functions, including 
+#            the main loop in main()
+# F_CPU   &#160;: The CPU frequency, may be long or float. The compiler converts 
+#            it to the used type
+# BAUD    &#160;: The baud rate, used in tsser.cpp
+DEFS           = -DNPRGPATH=$(NPRGPATH) -DF_CPU=$(F_CPU) -DBAUD=$(BAUD)
+
+CC             = avr-gcc
+
+ASFLAGS 	= -g -mmcu=$(MCU) $(DEFS)
+CFLAGS	= -g -mmcu=$(MCU) -Wall -Os -DAVR $(DEFS)
+LDFLAGS	= -g -mmcu=$(MCU) -Wall -Wl,-Map,$(PRG).map -L $(HOME)home/cc/lq/avr/$(MCU) -l c
+
+
+all: $(PRG).elf lst text
+	echo  Makefile of $(PRG) all done
+
+
+$(PRG).elf: $(OBJ)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+
+
+clean:
+	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
+	rm -rf *.lst *.map *.tmp
+
+
+lst:  $(PRG).lst
+
+%.lst:&#160;%.elf
+	avr-objdump -h -S $&lt; &gt; $@
+
+# Rules for building the .text rom images
+
+text: hex
+
+hex:  $(PRG).hex
+
+%.hex:&#160;%.elf
+	avr-objcopy -j .text -j .data -O ihex $&lt; $@
+
+# Compile the main program
+$(PRG).o&#160;: ../../$(PRG).cpp
+	@echo compiling special input=$&lt; output=$@
+	$(CC) -S -c $(HJH_IDIR) $(CFLAGS) $&lt; -o $@.tmp
+	$(CC) -c $(HJH_IDIR) $(CFLAGS) $&lt; -o $@
+
+# Warning for Windows Users:
+# For the&#160;%s,&#160;%S and&#160;%.cpp to work, all files in the ../../../lq directory 
+# must have lower case file names (use total commander to do this)
+#
+# Compile one of the programs of the library
+%.o&#160;: ../../../lq/%.s
+	@echo compiling special input=$&lt; output=$@
+	$(CC) -c $(HJH_IDIR) $(ASFLAGS) $&lt; -o $@
+
+%.o&#160;: ../../../lq/%.S
+	@echo compiling special input=$&lt; output=$@
+	$(CC) -c $(HJH_IDIR) $(ASFLAGS) $&lt; -o $@
+
+%.o&#160;: ../../../lq/%.cpp
+	@echo compiling special input=$&lt; output=$@
+	$(CC) -c $(HJH_IDIR) $(CFLAGS) $&lt; -o $@
+
+</pre></div>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=6" title="Abschnitt bearbeiten: Bibliothek erstellen">Bearbeiten</a>]</span> <span class="mw-headline" id="Bibliothek_erstellen"> Bibliothek erstellen </span></h2>
+<p>Das folgende Beispiel basiert auf einer durch <a rel="nofollow" class="external text" href="http://www.sax.de/~joerg/mfile/">mfile</a> (Jörg Wunsch) generierten Makefile. Das Makefile erstellt aus den angegebenen Targets Object-Dateien und packt diese in ein Archiv. Das Zielprojekt in dem die Bibliotheken eingebunden werden sollen basiert ebenfalls auf einer modifizierten Makefile von mfile.
+</p><p>Verzeichnisstruktur:
+</p>
+<ul><li><tt>./projekt</tt>, das Projekt
+</li><li><tt>./lib</tt>, für Bibliotheken
+</li><li><tt>./include</tt>, deren Header-Dateinen
+</li></ul>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=7" title="Abschnitt bearbeiten: Modifikationen für Bibliothek">Bearbeiten</a>]</span> <span class="mw-headline" id="Modifikationen_f.C3.BCr_Bibliothek"> Modifikationen für Bibliothek </span></h3>
+<p>Nahezu alles überflüssige Auskommentiert, desweiteren folgende Änderungen...
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">...
+&#160;
+<span class="me1">TARGET</span> <span class="sy0">=</span> uart lcd keypad <span class="kw3">clock</span> alarm
+SRC <span class="sy0">=</span> $<span class="br0">&#40;</span>TARGET<span class="sy0">:%=%</span>.<span class="me1">c</span><span class="br0">&#41;</span>
+&#160;
+...
+&#160;
+<span class="co2"># LIBRARY</span>
+CF_CPU <span class="sy0">=</span> <span class="sy0">-</span>DF_CPU<span class="sy0">=</span>8000000UL
+&#160;
+<span class="co2"># LIBDIRS =  -L&quot;$(LIBRARY_DIR)/lib&quot;</span>
+INCLUDES <span class="sy0">=</span> <span class="sy0">-</span>I<span class="st0">&quot;../include&quot;</span>
+&#160;
+...
+&#160;
+<span class="co2"># CFLAGS = $(CDEBUG) $(CDEFS) $(CINCS) -O$(OPT) $(CWARN) $(CSTANDARD) $(CEXTRA)</span>
+CFLAGS <span class="sy0">=</span> $<span class="br0">&#40;</span>CDEBUG<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CDEFS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CINCS<span class="br0">&#41;</span> <span class="sy0">-</span>O$<span class="br0">&#40;</span>OPT<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CWARN<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CSTANDARD<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CEXTRA<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CF_CPU<span class="br0">&#41;</span> $<span class="br0">&#40;</span>INCLUDES<span class="br0">&#41;</span>
+&#160;
+...
+&#160;
+<span class="co2">#build: elf hex eep</span>
+build<span class="sy0">:</span> $<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span> lib
+&#160;
+...
+&#160;
+<span class="me1">lib</span> <span class="sy0">:</span> $<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span>
+	$<span class="br0">&#40;</span>AR<span class="br0">&#41;</span> cr .<span class="sy0">/</span>libWecker.<span class="me1">a</span> $<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span></pre></div></div>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=8" title="Abschnitt bearbeiten: Modifikationen am Zielprojekt">Bearbeiten</a>]</span> <span class="mw-headline" id="Modifikationen_am_Zielprojekt"> Modifikationen am Zielprojekt </span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1">...
+&#160;
+<span class="co2"># ohne lib am Anfang oder .a als Anhang!</span>
+LIBDIRS <span class="sy0">=</span>  <span class="sy0">-</span>L<span class="st0">&quot;../lib&quot;</span>
+LIB_WECKER <span class="sy0">=</span>  <span class="sy0">-</span>lWecker
+&#160;
+INCLUDES <span class="sy0">=</span> <span class="sy0">-</span>I<span class="st0">&quot;../include&quot;</span>
+&#160;
+...
+&#160;
+<span class="co2"># CFLAGS = $(CDEBUG) $(CDEFS) $(CINCS) -O$(OPT) $(CWARN) $(CSTANDARD) $(CEXTRA)</span>
+CFLAGS <span class="sy0">=</span> $<span class="br0">&#40;</span>CDEBUG<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CDEFS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CINCS<span class="br0">&#41;</span> <span class="sy0">-</span>O$<span class="br0">&#40;</span>OPT<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CWARN<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CSTANDARD<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CEXTRA<span class="br0">&#41;</span> \
+$<span class="br0">&#40;</span>CF_CPU<span class="br0">&#41;</span> $<span class="br0">&#40;</span>INCLUDES<span class="br0">&#41;</span> $<span class="br0">&#40;</span>LIBDIRS<span class="br0">&#41;</span>
+&#160;
+...
+&#160;
+<span class="co2"># LDFLAGS = $(EXTMEMOPTS) $(LDMAP) $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)</span>
+LDFLAGS <span class="sy0">=</span> $<span class="br0">&#40;</span>EXTMEMOPTS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>LDMAP<span class="br0">&#41;</span> $<span class="br0">&#40;</span>PRINTF_LIB<span class="br0">&#41;</span> $<span class="br0">&#40;</span>SCANF_LIB<span class="br0">&#41;</span> $<span class="br0">&#40;</span>MATH_LIB<span class="br0">&#41;</span> $<span class="br0">&#40;</span>LIB_WECKER<span class="br0">&#41;</span></pre></div></div>
+<h3><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=9" title="Abschnitt bearbeiten: Makefile">Bearbeiten</a>]</span> <span class="mw-headline" id="Makefile"> Makefile </span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="c source-c"><pre class="de1"><span class="co2"># Hey Emacs, this is a -*- makefile -*-</span>
+&#160;
+<span class="co2"># AVR-GCC Makefile template, derived from the WinAVR template (which</span>
+<span class="co2"># is public domain), believed to be neutral to any flavor of &quot;make&quot;</span>
+<span class="co2"># (GNU make, BSD make, SysV make)</span>
+&#160;
+<span class="co2"># Modifikationen zum erstellen einer Bibliothek</span>
+<span class="co2"># build: ... in build: $(OBJ) umbauen</span>
+<span class="co2"># alles offensichtlich überflüssige auskommentiert</span>
+<span class="co2"># CF_CPU dazu</span>
+<span class="co2"># SRC = $(TARGET:%=%.c)</span>
+<span class="co2"># INCLUDES</span>
+<span class="co2"># Target lib:</span>
+&#160;
+&#160;
+MCU <span class="sy0">=</span> atmega168
+FORMAT <span class="sy0">=</span> ihex
+TARGET <span class="sy0">=</span> uart lcd keypad <span class="kw3">clock</span> alarm
+SRC <span class="sy0">=</span> $<span class="br0">&#40;</span>TARGET<span class="sy0">:%=%</span>.<span class="me1">c</span><span class="br0">&#41;</span>
+ASRC <span class="sy0">=</span>
+OPT <span class="sy0">=</span> s
+&#160;
+<span class="co2"># mut hs 21.04.2012</span>
+AR <span class="sy0">=</span> avr<span class="sy0">-</span>ar
+<span class="co2">#OBJ = \
+#uart.o \
+#lcd.o</span>
+&#160;
+&#160;
+<span class="co2"># LIBRARY</span>
+CF_CPU <span class="sy0">=</span> <span class="sy0">-</span>DF_CPU<span class="sy0">=</span>8000000UL
+&#160;
+<span class="co2"># LIBDIRS =  -L&quot;$(LIBRARY_DIR)/lib&quot;</span>
+INCLUDES <span class="sy0">=</span> <span class="sy0">-</span>I<span class="st0">&quot;../include&quot;</span>
+&#160;
+&#160;
+<span class="co2"># Name of this Makefile (used for &quot;make depend&quot;).</span>
+MAKEFILE <span class="sy0">=</span> Makefile
+&#160;
+<span class="co2"># Debugging format.</span>
+<span class="co2"># Native formats for AVR-GCC's -g are stabs [default], or dwarf-2.</span>
+<span class="co2"># AVR (extended) COFF requires stabs, plus an avr-objcopy run.</span>
+DEBUG <span class="sy0">=</span> stabs
+&#160;
+<span class="co2"># Compiler flag to set the C Standard level.</span>
+<span class="co2"># c89   - &quot;ANSI&quot; C</span>
+<span class="co2"># gnu89 - c89 plus GCC extensions</span>
+<span class="co2"># c99   - ISO C99 standard (not yet fully implemented)</span>
+<span class="co2"># gnu99 - c99 plus GCC extensions</span>
+CSTANDARD <span class="sy0">=</span> <span class="sy0">-</span>std<span class="sy0">=</span>gnu99
+&#160;
+<span class="co2"># Place -D or -U options here</span>
+CDEFS <span class="sy0">=</span>
+&#160;
+<span class="co2"># Place -I options here</span>
+CINCS <span class="sy0">=</span>
+&#160;
+&#160;
+CDEBUG <span class="sy0">=</span> <span class="sy0">-</span>g$<span class="br0">&#40;</span>DEBUG<span class="br0">&#41;</span>
+CWARN <span class="sy0">=</span> <span class="sy0">-</span>Wall <span class="sy0">-</span>Wstrict<span class="sy0">-</span>prototypes
+CTUNING <span class="sy0">=</span> <span class="sy0">-</span>funsigned<span class="sy0">-</span><span class="kw4">char</span> <span class="sy0">-</span>funsigned<span class="sy0">-</span>bitfields <span class="sy0">-</span>fpack<span class="sy0">-</span><span class="kw4">struct</span> <span class="sy0">-</span>fshort<span class="sy0">-</span>enums
+<span class="co2">#CEXTRA = -Wa,-adhlns=$(&lt;:.c=.lst)</span>
+CFLAGS <span class="sy0">=</span> $<span class="br0">&#40;</span>CDEBUG<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CDEFS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CINCS<span class="br0">&#41;</span> <span class="sy0">-</span>O$<span class="br0">&#40;</span>OPT<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CWARN<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CSTANDARD<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CEXTRA<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CF_CPU<span class="br0">&#41;</span> $<span class="br0">&#40;</span>INCLUDES<span class="br0">&#41;</span>
+&#160;
+&#160;
+<span class="co2">#ASFLAGS = -Wa,-adhlns=$(&lt;:.S=.lst),-gstabs </span>
+&#160;
+&#160;
+<span class="co2">#Additional libraries.</span>
+&#160;
+<span class="co2"># Minimalistic printf version</span>
+PRINTF_LIB_MIN <span class="sy0">=</span> <span class="sy0">-</span>Wl<span class="sy0">,-</span>u<span class="sy0">,</span><span class="kw3">vfprintf</span> <span class="sy0">-</span>lprintf_min
+&#160;
+<span class="co2"># Floating point printf version (requires MATH_LIB = -lm below)</span>
+PRINTF_LIB_FLOAT <span class="sy0">=</span> <span class="sy0">-</span>Wl<span class="sy0">,-</span>u<span class="sy0">,</span><span class="kw3">vfprintf</span> <span class="sy0">-</span>lprintf_flt
+&#160;
+PRINTF_LIB <span class="sy0">=</span> 
+&#160;
+<span class="co2"># Minimalistic scanf version</span>
+SCANF_LIB_MIN <span class="sy0">=</span> <span class="sy0">-</span>Wl<span class="sy0">,-</span>u<span class="sy0">,</span><span class="kw3">vfscanf</span> <span class="sy0">-</span>lscanf_min
+&#160;
+<span class="co2"># Floating point +&#160;%[ scanf version (requires MATH_LIB = -lm below)</span>
+SCANF_LIB_FLOAT <span class="sy0">=</span> <span class="sy0">-</span>Wl<span class="sy0">,-</span>u<span class="sy0">,</span><span class="kw3">vfscanf</span> <span class="sy0">-</span>lscanf_flt
+&#160;
+SCANF_LIB <span class="sy0">=</span> 
+&#160;
+MATH_LIB <span class="sy0">=</span> <span class="sy0">-</span>lm
+&#160;
+<span class="co2"># External memory options</span>
+&#160;
+<span class="co2"># 64 KB of external RAM, starting after internal RAM (ATmega128!),</span>
+<span class="co2"># used for variables (.data/.bss) and heap (malloc()).</span>
+<span class="co2">#EXTMEMOPTS = -Wl,--section-start,.data=0x801100,--defsym=__heap_end=0x80ffff</span>
+&#160;
+<span class="co2"># 64 KB of external RAM, starting after internal RAM (ATmega128!),</span>
+<span class="co2"># only used for heap (malloc()).</span>
+<span class="co2">#EXTMEMOPTS = -Wl,--defsym=__heap_start=0x801100,--defsym=__heap_end=0x80ffff</span>
+&#160;
+EXTMEMOPTS <span class="sy0">=</span>
+&#160;
+<span class="co2">#LDMAP = $(LDFLAGS) -Wl,-Map=$(TARGET).map,--cref</span>
+LDFLAGS <span class="sy0">=</span> $<span class="br0">&#40;</span>EXTMEMOPTS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>LDMAP<span class="br0">&#41;</span> $<span class="br0">&#40;</span>PRINTF_LIB<span class="br0">&#41;</span> $<span class="br0">&#40;</span>SCANF_LIB<span class="br0">&#41;</span> $<span class="br0">&#40;</span>MATH_LIB<span class="br0">&#41;</span>
+&#160;
+&#160;
+<span class="co2"># Programming support using avrdude. Settings and variables.</span>
+&#160;
+<span class="co2">#AVRDUDE_PROGRAMMER = stk500v2</span>
+<span class="co2">#AVRDUDE_PORT = usb</span>
+&#160;
+<span class="co2">#AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex</span>
+<span class="co2">#AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep</span>
+&#160;
+&#160;
+<span class="co2"># Uncomment the following if you want avrdude's erase cycle counter.</span>
+<span class="co2"># Note that this counter needs to be initialized first using -Yn,</span>
+<span class="co2"># see avrdude manual.</span>
+<span class="co2">#AVRDUDE_ERASE_COUNTER = -y</span>
+&#160;
+<span class="co2"># Uncomment the following if you do /not/ wish a verification to be</span>
+<span class="co2"># performed after programming the device.</span>
+<span class="co2">#AVRDUDE_NO_VERIFY = -V</span>
+&#160;
+<span class="co2"># Increase verbosity level.  Please use this when submitting bug</span>
+<span class="co2"># reports about avrdude. See &lt;http://savannah.nongnu.org/projects/avrdude&gt; </span>
+<span class="co2"># to submit bug reports.</span>
+<span class="co2">#AVRDUDE_VERBOSE = -v -v</span>
+&#160;
+<span class="co2">#AVRDUDE_BASIC = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)</span>
+<span class="co2">#AVRDUDE_FLAGS = $(AVRDUDE_BASIC) $(AVRDUDE_NO_VERIFY) $(AVRDUDE_VERBOSE) $(AVRDUDE_ERASE_COUNTER)</span>
+&#160;
+&#160;
+CC <span class="sy0">=</span> avr<span class="sy0">-</span>gcc
+OBJCOPY <span class="sy0">=</span> avr<span class="sy0">-</span>objcopy
+OBJDUMP <span class="sy0">=</span> avr<span class="sy0">-</span>objdump
+SIZE <span class="sy0">=</span> avr<span class="sy0">-</span>size
+NM <span class="sy0">=</span> avr<span class="sy0">-</span>nm
+AVRDUDE <span class="sy0">=</span> avrdude
+REMOVE <span class="sy0">=</span> rm <span class="sy0">-</span>f
+MV <span class="sy0">=</span> mv <span class="sy0">-</span>f
+&#160;
+<span class="co2"># Define all object files.</span>
+OBJ <span class="sy0">=</span> $<span class="br0">&#40;</span>SRC<span class="sy0">:%</span>.<span class="me1">c</span><span class="sy0">=%</span>.<span class="me1">o</span><span class="br0">&#41;</span> $<span class="br0">&#40;</span>ASRC<span class="sy0">:%</span>.<span class="me1">S</span><span class="sy0">=%</span>.<span class="me1">o</span><span class="br0">&#41;</span>
+&#160;
+<span class="co2"># Define all listing files.</span>
+<span class="co2">#LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)</span>
+&#160;
+<span class="co2"># Combine all necessary flags and optional flags.</span>
+<span class="co2"># Add target processor to flags.</span>
+ALL_CFLAGS <span class="sy0">=</span> <span class="sy0">-</span>mmcu<span class="sy0">=</span>$<span class="br0">&#40;</span>MCU<span class="br0">&#41;</span> <span class="sy0">-</span>I. $<span class="br0">&#40;</span>CFLAGS<span class="br0">&#41;</span>
+ALL_ASFLAGS <span class="sy0">=</span> <span class="sy0">-</span>mmcu<span class="sy0">=</span>$<span class="br0">&#40;</span>MCU<span class="br0">&#41;</span> <span class="sy0">-</span>I. <span class="sy0">-</span>x assembler<span class="sy0">-</span>with<span class="sy0">-</span>cpp $<span class="br0">&#40;</span>ASFLAGS<span class="br0">&#41;</span>
+&#160;
+&#160;
+<span class="co2"># Default target.</span>
+all<span class="sy0">:</span> build
+&#160;
+&#160;
+<span class="co2">#build: elf hex eep</span>
+build<span class="sy0">:</span> $<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span> lib
+&#160;
+<span class="co2">#elf: $(TARGET).elf</span>
+<span class="co2">#hex: $(TARGET).hex</span>
+<span class="co2">#eep: $(TARGET).eep</span>
+<span class="co2">#lss: $(TARGET).lss </span>
+<span class="co2">#sym: $(TARGET).sym</span>
+&#160;
+&#160;
+<span class="co2"># Program the device.  </span>
+<span class="co2">#program: $(TARGET).hex $(TARGET).eep</span>
+<span class="co2">#	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)</span>
+&#160;
+&#160;
+&#160;
+&#160;
+<span class="co2"># Convert ELF to COFF for use in debugging / simulating in AVR Studio or VMLAB.</span>
+<span class="co2">#COFFCONVERT=$(OBJCOPY) --debugging \
+#--change-section-address .data-0x800000 \
+#--change-section-address .bss-0x800000 \
+#--change-section-address .noinit-0x800000 \
+#--change-section-address .eeprom-0x810000 </span>
+&#160;
+&#160;
+<span class="co2"># coff: $(TARGET).elf</span>
+<span class="co2">#	$(COFFCONVERT) -O coff-avr $(TARGET).elf $(TARGET).cof</span>
+&#160;
+&#160;
+<span class="co2"># extcoff: $(TARGET).elf</span>
+<span class="co2">#	$(COFFCONVERT) -O coff-ext-avr $(TARGET).elf $(TARGET).cof</span>
+&#160;
+&#160;
+<span class="co2">#.SUFFIXES: .elf .hex .eep .lss .sym</span>
+&#160;
+<span class="co2">#.elf.hex:</span>
+<span class="co2">#	$(OBJCOPY) -O $(FORMAT) -R .eeprom $&lt; $@</span>
+&#160;
+<span class="co2">#.elf.eep:</span>
+<span class="co2">#	-$(OBJCOPY) -j .eeprom --set-section-flags=.eeprom=&quot;alloc,load&quot; \
+#	--change-section-lma .eeprom=0 -O $(FORMAT) $&lt; $@</span>
+&#160;
+<span class="co2"># Create extended listing file from ELF output file.</span>
+<span class="co2">#.elf.lss:</span>
+<span class="co2">#	$(OBJDUMP) -h -S $&lt; &gt; $@</span>
+&#160;
+<span class="co2"># Create a symbol table from ELF output file.</span>
+<span class="co2">#.elf.sym:</span>
+<span class="co2">#	$(NM) -n $&lt; &gt; $@</span>
+&#160;
+&#160;
+&#160;
+<span class="co2">#Link: create ELF output file from object files.</span>
+<span class="co2">#$(TARGET).elf: $(OBJ)</span>
+<span class="co2">#	$(CC) $(ALL_CFLAGS) $(OBJ) --output $@ $(LDFLAGS)</span>
+&#160;
+&#160;
+<span class="co2"># Compile: create object files from C source files.</span>
+.<span class="me1">c</span>.<span class="me1">o</span><span class="sy0">:</span>
+	$<span class="br0">&#40;</span>CC<span class="br0">&#41;</span> <span class="sy0">-</span>c $<span class="br0">&#40;</span>ALL_CFLAGS<span class="br0">&#41;</span> $<span class="sy0">&lt;</span> <span class="sy0">-</span>o $@ 
+&#160;
+&#160;
+<span class="co2"># Compile: create assembler files from C source files.</span>
+<span class="co2">#.c.s:</span>
+<span class="co2">#	$(CC) -S $(ALL_CFLAGS) $&lt; -o $@</span>
+&#160;
+&#160;
+<span class="co2"># Assemble: create object files from assembler source files.</span>
+.<span class="me1">S</span>.<span class="me1">o</span><span class="sy0">:</span>
+	$<span class="br0">&#40;</span>CC<span class="br0">&#41;</span> <span class="sy0">-</span>c $<span class="br0">&#40;</span>ALL_ASFLAGS<span class="br0">&#41;</span> $<span class="sy0">&lt;</span> <span class="sy0">-</span>o $@
+&#160;
+&#160;
+&#160;
+<span class="co2"># Target: clean project.</span>
+clean<span class="sy0">:</span>
+	$<span class="br0">&#40;</span>REMOVE<span class="br0">&#41;</span> $<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">hex</span> $<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">eep</span> $<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">cof</span> $<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">elf</span> \
+	$<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">map</span> $<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">sym</span> $<span class="br0">&#40;</span>TARGET<span class="br0">&#41;</span>.<span class="me1">lss</span> \
+	$<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span> $<span class="br0">&#40;</span>LST<span class="br0">&#41;</span> $<span class="br0">&#40;</span>SRC<span class="sy0">:</span>.<span class="me1">c</span><span class="sy0">=</span>.<span class="me1">s</span><span class="br0">&#41;</span> $<span class="br0">&#40;</span>SRC<span class="sy0">:</span>.<span class="me1">c</span><span class="sy0">=</span>.<span class="me1">d</span><span class="br0">&#41;</span>
+&#160;
+depend<span class="sy0">:</span>
+	<span class="kw1">if</span> grep <span class="st0">'^# DO NOT DELETE'</span> $<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span> <span class="sy0">&gt;/</span>dev<span class="sy0">/</span><span class="kw2">null</span><span class="sy0">;</span> \
+	then \
+		sed <span class="sy0">-</span>e <span class="st0">'/^# DO NOT DELETE/,$$d'</span> $<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span> <span class="sy0">&gt;</span> \
+			$<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span>.$$$$ <span class="sy0">&amp;&amp;</span> \
+		$<span class="br0">&#40;</span>MV<span class="br0">&#41;</span> $<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span>.$$$$ $<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span><span class="sy0">;</span> \
+	fi
+	echo <span class="st0">'# DO NOT DELETE THIS LINE -- make depend depends on it.'</span> \
+		<span class="sy0">&gt;&gt;</span> $<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span><span class="sy0">;</span> \
+	$<span class="br0">&#40;</span>CC<span class="br0">&#41;</span> <span class="sy0">-</span>M <span class="sy0">-</span>mmcu<span class="sy0">=</span>$<span class="br0">&#40;</span>MCU<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CDEFS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CINCS<span class="br0">&#41;</span> $<span class="br0">&#40;</span>SRC<span class="br0">&#41;</span> $<span class="br0">&#40;</span>ASRC<span class="br0">&#41;</span> <span class="sy0">&gt;&gt;</span> $<span class="br0">&#40;</span>MAKEFILE<span class="br0">&#41;</span>
+&#160;
+lib <span class="sy0">:</span> $<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span>
+	$<span class="br0">&#40;</span>AR<span class="br0">&#41;</span> cr .<span class="sy0">/</span>libWecker.<span class="me1">a</span> $<span class="br0">&#40;</span>OBJ<span class="br0">&#41;</span>
+&#160;
+.<span class="me1">PHONY</span><span class="sy0">:</span>	all build elf hex eep lss sym program coff extcoff clean depend</pre></div></div>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=10" title="Abschnitt bearbeiten: Siehe auch">Bearbeiten</a>]</span> <span class="mw-headline" id="Siehe_auch"> Siehe auch </span></h2>
+<ul><li><a href="/articles/AVR-GCC-Tutorial" title="AVR-GCC-Tutorial">AVR-GCC-Tutorial</a>
+<ul><li> <a href="/articles/AVR-GCC-Tutorial#Zus.C3.A4tzliche_Funktionen_im_Makefile" title="AVR-GCC-Tutorial">Zusätzliche Funktionen im Makefile</a>
+</li><li> <a href="/articles/AVR-GCC-Tutorial/Exkurs_Makefiles" title="AVR-GCC-Tutorial/Exkurs Makefiles"> Exkurs: Makefile</a>
+</li></ul>
+</li></ul>
+<h2><span class="editsection">[<a href="/wikisoftware/index.php?title=Beispiel_Makefile&amp;action=edit&amp;section=11" title="Abschnitt bearbeiten: Weblinks">Bearbeiten</a>]</span> <span class="mw-headline" id="Weblinks"> Weblinks </span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.gnu.org/software/make/">GNU-Make Homepage</a>
+</li><li> <a rel="nofollow" class="external text" href="http://www.ijon.de/comp/tutorials/makefile.html">Einführung in make</a> von Michael Becker 
+</li><li> <a rel="nofollow" class="external text" href="http://www.linuxjournal.com/content/man-make-primer-make-utility?page=0,0">man make: a Primer on the Make Utility</a> by Adrian Hannah in Linux Journal 2011
+</li><li> <a rel="nofollow" class="external text" href="http://www.sax.de/~joerg/mfile/">Makefile-Generator für AVR</a>
+</li><li> <a rel="nofollow" class="external text" href="http://gmd.sourceforge.net/">GNU Make Debugger</a>
+</li><li> <a rel="nofollow" class="external text" href="http://ttsiodras.googlepages.com/makefile.html">Writing Makefiles</a> that takes care of source code dependencies over a directory tree.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 108/1000000
+Preprocessor generated node count: 194/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key uc_wiki:pcache:idhash:2812-0!*!0!!de!*!* and timestamp 20131011121239 -->
+</div>			<!-- /bodycontent -->
+						<!-- printfooter -->
+			<div class="printfooter">
+			Von „<a href="http://www.mikrocontroller.net/wikisoftware/index.php?title=Beispiel_Makefile&amp;oldid=76886">http://www.mikrocontroller.net/wikisoftware/index.php?title=Beispiel_Makefile&amp;oldid=76886</a>“			</div>
+			<!-- /printfooter -->
+									<!-- catlinks -->
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/articles/Spezial:Kategorien" title="Spezial:Kategorien">Kategorie</a>: <ul><li><a href="/articles/Kategorie:Avr-gcc" title="Kategorie:Avr-gcc">Avr-gcc</a></li></ul></div></div>			<!-- /catlinks -->
+									<div class="visualClear"></div>
+			<!-- debughtml -->
+						<!-- /debughtml -->
+
+      <!-- start adsense -->
+            <!-- end adsense -->
+      
+      <div class="visualClear"></div>
+    </div>
+  </td>
+  <!-- google_ad_section_end -->
+      </tr>
+      </table>
+      <!--
+      <div class="visualClear"></div>
+      <div id="footer" style="clear:both">
+    <div id="f-poweredbyico"><a href="//www.mediawiki.org/"><img src="/wikisoftware/skins/common/images/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki" /></a></div>		<ul id="f-list">
+	  <li id="f-lastmod"> Diese Seite wurde zuletzt am 23. Juni 2013 um 21:23 Uhr geändert.</li>	  <li id="f-viewcount">Diese Seite wurde bisher 76.082-mal abgerufen.</li>	  	  	  <li id="f-about"><a href="/articles/Uc-wiki:%C3%9Cber_Uc-wiki" title="Uc-wiki:Über Uc-wiki">Über Uc-wiki</a></li>	  <li id="f-disclaimer"><a href="/articles/Uc-wiki:Impressum" title="Uc-wiki:Impressum">Impressum</a></li>	</ul>
+      </div>-->
+    </div>
+<div id="bottom">
+  <div id="impress">
+    <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Mikrocontroller.net">webmaster@mikrocontroller.net</a> – <a href="/contact">Impressum</a> – <a href="/user/conditions">Nutzungsbedingungen</a> – <a href="mailto:webmaster@mikrocontroller&#46;net?subject=Anfrage%20zu%20Werbung%20auf%20Mikrocontroller.net">Werbung auf Mikrocontroller.net</a>
+  </div>
+  <div id="powered">
+<!--    powered by Ruby on Rails -->
+  </div>
+ <a href="/util/rb"><!-- nothing --></a>
+ <!-- <a href="http://www.mikrocontroller.net/hp/curlews.php">nothing to see here</a> -->
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-80574-1");
+if (typeof GS_googleAddAdSenseService != 'function') {
+  pageTracker._setCustomVar(3, "GAM", "No", 1);
+} else {
+  pageTracker._setCustomVar(3, "GAM", "Yes", 1);
+}
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<script>if(window.mw){
+mw.loader.state({"site":"loading","user":"missing","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.page.ready","mediawiki.searchSuggest","mediawiki.hidpi"], null, true);
+}</script>
+<script src="http://www.mikrocontroller.net/wikisoftware/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=scripts&amp;skin=mikrocontroller&amp;*"></script>
+<!-- Served in 0.069 secs. -->  </body>
+</html>
