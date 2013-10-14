@@ -21,8 +21,11 @@ help:
 
 own:
 	$(CP) wallpaper ~/wallpaper
+	chown -R bla ~/wallpaper
 	$(CP) xkcd ~/xkcd
+	chown -R bla ~/xkcd
 	$(CP) programming ~/programming
+	chown -R bla ~/programming
 
 all:
 	make update
@@ -42,7 +45,9 @@ upgrade:
 
 core: compression
 	$(CP) .bashrc ~/.bashrc
+	chown -R bla ~/.bashrc
 	$(CP) .ssh ~/.ssh
+	chown -R bla ~/.ssh
 	$(INSTALL) tree
 #	$(INSTALL) parted
 #	$(INSTALL) pwgen
@@ -67,7 +72,9 @@ core: compression
 #	ufw enable
 	$(INSTALL) vim
 	$(CP) .vim ~/.vim
+	chown -R bla ~/.vim
 	$(CP) .vimrc ~/.vimrc
+	chown -R bla ~/.vimrc
 	$(INSTALL) yakuake
 
 compression:
