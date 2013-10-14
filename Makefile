@@ -124,8 +124,8 @@ avr:
 	$(INSTALL) gcc-avr
 	$(INSTALL) avrdude
 	$(INSTALL) binutils-avr
-	$(INSTALL) simulavr
-	$(INSTALL) gdb-avr
+#	$(INSTALL) simulavr
+#	$(INSTALL) gdb-avr
 
 gui:
 	$(INSTALL) libreoffice
