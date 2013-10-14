@@ -68,6 +68,7 @@ core: compression
 	$(INSTALL) vim
 	$(CP) .vim ~/.vim
 	$(CP) .vimrc ~/.vimrc
+	$(INSTALL) yakuake
 
 compression:
 	$(INSTALL) p7zip-full
@@ -104,7 +105,6 @@ programming:
 	git config --global alias.ci commit
 	git config --global alias.st status
 	git config --global alias.co checkout
-	git config --global alias.up push origin master
 #	ssh-keygen -t rsa -b 4096 -C "daniel.tkocz@gmx.de"
 	$(INSTALL) gitk
 #	$(INSTALL) bvi
