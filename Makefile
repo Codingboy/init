@@ -21,11 +21,11 @@ help:
 
 own:
 	$(CP) wallpaper ~/wallpaper
-	chown -R bla ~/wallpaper
+	chown -R $$SUDO_USER ~/wallpaper
 	$(CP) xkcd ~/xkcd
-	chown -R bla ~/xkcd
+	chown -R $$SUDO_USER ~/xkcd
 	$(CP) programming ~/programming
-	chown -R bla ~/programming
+	chown -R $$SUDO_USER ~/programming
 
 all:
 	make update
@@ -45,9 +45,9 @@ upgrade:
 
 core: compression
 	$(CP) .bashrc ~/.bashrc
-	chown -R bla ~/.bashrc
+	chown -R $$SUDO_USER ~/.bashrc
 	$(CP) .ssh ~/.ssh
-	chown -R bla ~/.ssh
+	chown -R $$SUDO_USER ~/.ssh
 	$(INSTALL) tree
 #	$(INSTALL) parted
 #	$(INSTALL) pwgen
@@ -72,9 +72,9 @@ core: compression
 #	ufw enable
 	$(INSTALL) vim
 	$(CP) .vim ~/.vim
-	chown -R bla ~/.vim
+	chown -R $$SUDO_USER ~/.vim
 	$(CP) .vimrc ~/.vimrc
-	chown -R bla ~/.vimrc
+	chown -R $$SUDO_USER ~/.vimrc
 	$(INSTALL) yakuake
 
 compression:
@@ -139,19 +139,19 @@ gui:
 	$(INSTALL) ksnapshot
 	$(INSTALL) inkscape
 	$(INSTALL) gimp
-#	$(INSTALL) k9copy
-	$(INSTALL) vlc vlc-data vlc-plugin-pulse vlc-plugin-ggi vlc-plugin-jack vlc-plugin-sdl vlc-plugin-svgalib mozilla-plugin-vlc libxvidcore4 libfaad2 libfaac0
-#	$(INSTALL) k3b
+	$(INSTALL) thunderbird
 	$(INSTALL) amarok
 	$(INSTALL) audacity
 	$(INSTALL) libxine1-bin libxvidcore4 libxine1-plugins libquicktime1 flashplugin-installer
 	$(INSTALL) filezilla
 	$(INSTALL) ktorrent
+#	$(INSTALL) k9copy
+	$(INSTALL) vlc vlc-data vlc-plugin-pulse vlc-plugin-ggi vlc-plugin-jack vlc-plugin-sdl vlc-plugin-svgalib mozilla-plugin-vlc libxvidcore4 libfaad2 libfaac0
+#	$(INSTALL) k3b
 #	$(INSTALL) kget
 #	$(INSTALL) kontact
 #	$(INSTALL) ktimer
 #	$(INSTALL) kalarm
-	$(INSTALL) thunderbird thunderbird-locale-de
 #	$(INSTALL) quassel
 #	$(INSTALL) pidgin
 #	$(INSTALL) gobby
