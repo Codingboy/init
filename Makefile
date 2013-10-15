@@ -60,6 +60,8 @@ core: compression
 	$(INSTALL) kcalc
 	$(INSTALL) firefox
 	$(CP) .firefox/prefs.js ~/.mozilla/firefox/*/prefs.js
+	$(INSTALL) xul-ext-adblock-plus
+	$(INSTALL) xul-ext-firebug
 	$(INSTALL) gdebi
 	$(INSTALL) gparted
 	$(INSTALL) okular
