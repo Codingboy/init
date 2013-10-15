@@ -56,8 +56,10 @@ core: compression
 	$(INSTALL) dpkg
 	$(INSTALL) kdesudo
 	$(INSTALL) kate
+	$(CP) .katerc ~/.kde/share/config/katerc
 	$(INSTALL) kcalc
-	$(INSTALL) firefox firefox-locale-de
+	$(INSTALL) firefox
+	$(CP) .firefox/prefs.js ~/.mozilla/firefox/*/prefs.js
 	$(INSTALL) gdebi
 	$(INSTALL) gparted
 	$(INSTALL) okular
@@ -77,6 +79,7 @@ core: compression
 	$(CP) .vimrc ~/.vimrc
 	$(CHOWN) ~/.vimrc
 	$(INSTALL) yakuake
+	$(CP) .plasma-desktop-appletsrc ~/.kde/share/config/plasma-desktop-appletsrc
 
 compression:
 	$(INSTALL) p7zip-full
