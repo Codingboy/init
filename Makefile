@@ -5,6 +5,7 @@ INSTALL=apt-get install -y
 CP=cp -rf
 MV=mv -rf
 RM=rm -rf
+CHOWN=chown -R $$SUDO_USER
 
 .PHONY: help all update upgrade core compression programming avr gui libs own
 
@@ -21,11 +22,11 @@ help:
 
 own:
 	$(CP) wallpaper ~/wallpaper
-	chown -R $$SUDO_USER ~/wallpaper
+	$(CHOWN) ~/wallpaper
 	$(CP) xkcd ~/xkcd
-	chown -R $$SUDO_USER ~/xkcd
+	$(CHOWN) ~/xkcd
 	$(CP) programming ~/programming
-	chown -R $$SUDO_USER ~/programming
+	$(CHOWN) ~/programming
 
 all:
 	make update
@@ -45,9 +46,9 @@ upgrade:
 
 core: compression
 	$(CP) .bashrc ~/.bashrc
-	chown -R $$SUDO_USER ~/.bashrc
+	$(CHOWN) ~/.bashrc
 	$(CP) .ssh ~/.ssh
-	chown -R $$SUDO_USER ~/.ssh
+	$(CHOWN) ~/.ssh
 	$(INSTALL) tree
 #	$(INSTALL) parted
 #	$(INSTALL) pwgen
@@ -72,9 +73,9 @@ core: compression
 #	ufw enable
 	$(INSTALL) vim
 	$(CP) .vim ~/.vim
-	chown -R $$SUDO_USER ~/.vim
+	$(CHOWN) ~/.vim
 	$(CP) .vimrc ~/.vimrc
-	chown -R $$SUDO_USER ~/.vimrc
+	$(CHOWN) ~/.vimrc
 	$(INSTALL) yakuake
 
 compression:
