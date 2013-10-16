@@ -28,6 +28,20 @@ own:
 	$(CP) programming ~/programming
 	$(CHOWN) ~/programming
 
+security:
+	mkdir -p ~/.ssh
+	$(CHOWN) ~/.ssh
+	openssl genrsa -aes256 -out private.pem 32768
+	$(CHOWN) private.pem
+	chmod o-rwx private.pem
+	chmod g-rwx private.pem
+	openssl rsa -in private.pem -pubout -out public.pem
+	$(CHOWN) public.pem
+	ssh-keygen -f private.pem -y > id_rsa
+	$(CHOWN) id_rsa
+	ssh-keygen -f public.pem -i -m PKCS8 > id_rsa.pub
+	$(CHOWN) id_rsa.pub
+
 all:
 	make update
 	make core
