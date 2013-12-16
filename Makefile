@@ -63,6 +63,7 @@ core: compression
 	$(CHOWN) ~/.bashrc
 	$(CP) .ssh ~/.ssh
 	$(CHOWN) ~/.ssh
+	$(INSTALL) recode
 	$(INSTALL) tree
 #	$(INSTALL) parted
 #	$(INSTALL) pwgen
